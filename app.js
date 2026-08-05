@@ -557,7 +557,7 @@ function createFramePlayer(image, imageId, onReady = null, interval = 400) {
     if (shownIndex >= 0 && label) {
       label.textContent = formatFrameTime(state.frames[shownIndex].time);
     }
-    if (state.frames.length >= 3 && !state.timer) {
+    if (state.frames.length >= 2 && !state.timer) {
       state.timer = setInterval(tick, interval);
       wpAnimTimers[imageId] = state.timer;
       if (onReady) onReady();
@@ -1059,7 +1059,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
     add(time) {
       this.frames.push(time);
       this.frames.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
-      if (this.frames.length >= 3 && !this.timer) {
+      if (this.frames.length >= 2 && !this.timer) {
         this.timer = setInterval(() => this.tick(), 420);
         wpAnimTimers[`himawari${kind}`] = this.timer;
         if (badge) badge.hidden = false;
