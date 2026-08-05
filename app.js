@@ -1322,6 +1322,7 @@ function renderWpStorm(stormId, preserveDate = false) {
   });
   renderStormValues(storm, wpSelectedDate);
   $("openWpSource").href = storm.products?.tropical_tidbits || "https://www.tropicaltidbits.com/storminfo/";
+  if ($("wpSourceMini")) $("wpSourceMini").href = $("openWpSource").href;
   renderWpMedia(storm, wpSelectedDate);
   loadTimeline(storm.id);
 }
@@ -1775,6 +1776,19 @@ function bindEvents() {
     $("wpTimelineSlider").value = $("wpTimelineSlider").max;
     applyTimelineValue();
   });
+  const expandToggle = $("wpExpandToggle");
+  const dataDetails = $("wpDataDetails");
+  if (expandToggle && dataDetails) {
+    const sync = () => {
+      expandToggle.textContent = dataDetails.open ? "收起 ▴" : "展开全部 ▾";
+    };
+    expandToggle.addEventListener("click", () => {
+      dataDetails.open = !dataDetails.open;
+      sync();
+    });
+    dataDetails.addEventListener("toggle", sync);
+    sync();
+  }
   document.querySelectorAll(".app-tab").forEach((button) => {
     button.addEventListener("click", () => showPage(button.dataset.page));
   });
