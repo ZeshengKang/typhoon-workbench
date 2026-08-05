@@ -14,13 +14,13 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.16">
+  <link rel="stylesheet" href="./style.css?v=web1.17">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.16";
+      var CURRENT = "web1.17";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -46,15 +46,15 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.16</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.17</span></div>
       </div>
     </header>
 
     <nav class="app-tabs" aria-label="主要功能">
-      <button class="app-tab active" type="button" data-page="analysis">台风云图实时分析</button>
-      <button class="app-tab" type="button" data-page="resources">台风资料中心</button>
-      <button class="app-tab" type="button" data-page="glossary">术语与德沃夏克</button>
-      <button class="app-tab" type="button" data-page="download">本地软件</button>
+      <button class="app-tab active" type="button" data-page="analysis"><span class="tab-long">台风云图实时分析</span><span class="tab-short">实时分析</span></button>
+      <button class="app-tab" type="button" data-page="resources"><span class="tab-long">台风资料中心</span><span class="tab-short">资料中心</span></button>
+      <button class="app-tab" type="button" data-page="glossary"><span class="tab-long">术语与德沃夏克</span><span class="tab-short">术语速查</span></button>
+      <button class="app-tab" type="button" data-page="download"><span class="tab-long">本地软件</span><span class="tab-short">本地软件</span></button>
     </nav>
 
     <section id="wpSituation" class="wp-situation page-panel page-analysis" aria-labelledby="wpSituationTitle">
@@ -645,6 +645,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.16"></script>
+  <script src="./app.js?v=web1.17"></script>
 </body>
 </html>
