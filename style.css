@@ -468,6 +468,8 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .banner-download { padding: 16px; }
   .banner-download h2 { font-size: 20px; }
   .banner-download .download-link { padding: 12px 13px; }
+  .track-map-bar { padding: 12px 10px; }
+  #wpTrackMap { height: 260px; }
   .resource-hero, .viewer-toolbar, .resource-grid, .glossary-head, .glossary-grid, .favorite-form, .favorite-row, .site-grid, .dvorak-lessons article { grid-template-columns: 1fr; }
   .resource-hero { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 16px; align-items: stretch; }
   .resource-hero h2 { font-size: 22px; }
@@ -615,3 +617,19 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .media-loading b i:nth-child(3) { animation-delay: .4s; }
 @keyframes mediaSpin { to { transform: rotate(360deg); } }
 @keyframes mediaDot { 0%, 60%, 100% { opacity: .2; } 30% { opacity: 1; } }
+
+/* 路径定位地图 */
+.track-map-bar { display: grid; gap: 10px; margin: 0 0 14px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.72); }
+.track-map-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.track-map-head > div:first-child { display: grid; gap: 3px; }
+.track-map-head strong { font-size: 15px; }
+.track-map-head span { color: var(--muted); font-size: 12px; }
+.track-map-layers { display: flex; gap: 6px; }
+.track-map-layers button { min-height: 28px; padding: 0 11px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--muted); font-size: 12px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+.track-map-layers button.active { border-color: var(--teal); background: #e9f4f0; color: var(--teal-dark); }
+#wpTrackMap { width: 100%; height: 380px; min-height: 380px; border-radius: 12px; background: #dce6e8; z-index: 1; }
+
+/* 手机端地图高度（放最后确保覆盖基础规则） */
+@media (max-width: 760px) {
+  #wpTrackMap { height: 260px; min-height: 260px; }
+}
