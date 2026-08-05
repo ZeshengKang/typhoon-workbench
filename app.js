@@ -1483,6 +1483,7 @@ function initTrackMap() {
   trackMap = L.map("wpTrackMap", {
     zoomControl: true
   }).setView([20, 130], 4);
+  window.__trackMap = trackMap;
   const layers = {
     amap: L.tileLayer("https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}", {
       subdomains: "1234",
@@ -1537,6 +1538,22 @@ function initTrackMap() {
       });
       layers[key].addTo(trackMap);
     });
+  });
+  const scheduleReset = () => {
+    if (trackMap._resetTimer) clearTimeout(trackMap._resetTimer);
+    trackMap._resetTimer = setTimeout(() => {
+      const storm = currentStormObject();
+      if (!storm) return;
+      trackMap._autoResetting = true;
+      updateTrackMap(storm, wpSelectedDate);
+      setTimeout(() => {
+        trackMap._autoResetting = false;
+      }, 800);
+    }, 10000);
+  };
+  trackMap.on("dragend zoomend", () => {
+    if (trackMap._autoResetting) return;
+    scheduleReset();
   });
 }
 function updateTrackMap(storm, selectedDate) {
@@ -2015,17 +2032,17 @@ function saveFavorite() {
 }
 const glossaryTerms = [["NRL", "Naval Research Laboratory", "美国海军研究实验室"], ["FNMOC", "Fleet Numerical Meteorology and Oceanography Center", "美国舰队数值气象与海洋中心"], ["JTWC", "Joint Typhoon Warning Center", "联合台风警报中心"], ["JMA", "Japan Meteorological Agency", "日本气象厅"], ["RSMC", "Regional Specialized Meteorological Centre", "区域专业气象中心"], ["TCWC", "Tropical Cyclone Warning Centre", "热带气旋警报中心"], ["CMA", "China Meteorological Administration", "中国气象局"], ["CWA", "Central Weather Administration", "交通部中央气象署；台湾地区气象业务机构（原 CWB）"], ["KMA", "Korea Meteorological Administration", "韩国气象厅"], ["HKO", "Hong Kong Observatory", "香港天文台"], ["NHC", "National Hurricane Center", "美国国家飓风中心"], ["CPHC", "Central Pacific Hurricane Center", "中太平洋飓风中心"], ["ECMWF", "European Centre for Medium-Range Weather Forecasts", "欧洲中期天气预报中心"], ["NOAA", "National Oceanic and Atmospheric Administration", "美国国家海洋和大气管理局"], ["CIMSS", "Cooperative Institute for Meteorological Satellite Studies", "威斯康星大学合作气象卫星研究所"], ["TCFA", "Tropical Cyclone Formation Alert", "热带气旋形成警报"], ["LLCC", "Low-Level Circulation Center", "低层环流中心；可见光与微波分析中的重要定位依据"], ["ITCZ", "Intertropical Convergence Zone", "热带辐合带"], ["TUTT", "Tropical Upper-Tropospheric Trough", "热带对流层上部槽"], ["SST", "Sea Surface Temperature", "海表温度"], ["VWS", "Vertical Wind Shear", "垂直风切变"], ["STR", "Subtropical Ridge", "副热带高压脊"], ["CAPE", "Convective Available Potential Energy", "对流有效位能"], ["MJO", "Madden–Julian Oscillation", "马登－朱利安振荡"], ["ENSO", "El Niño–Southern Oscillation", "厄尔尼诺－南方涛动"], ["MCC", "Mesoscale Convective Complex", "中尺度对流复合体"], ["MCS", "Mesoscale Convective System", "中尺度对流系统"], ["LCL", "Lifting Condensation Level", "抬升凝结高度"], ["CTT", "Cloud Top Temperature", "云顶温度"], ["CTH", "Cloud Top Height", "云顶高度"], ["TD / TS / STS", "Tropical Depression / Tropical Storm / Severe Tropical Storm", "热带低压 / 热带风暴 / 强热带风暴"], ["TY / STY / SuperTY", "Typhoon / Severe Typhoon / Super Typhoon", "台风 / 强台风 / 超强台风；不同机构风速门槛并不完全一致"], ["T-number", "Dvorak T-number", "德沃夏克卫星分析强度指数，通常从 T1.0 到 T8.0"], ["DT / MET / PT", "Data / Model Expected / Pattern T-number", "德沃夏克分析中的资料型、模式期望型与云型 T 数"], ["WMG", "Warm Medium Grey", "暖中灰；BD 色阶中约高于 +9°C"], ["OW", "Off White", "灰白；BD 色阶中约 +9 至 -31°C"], ["DG / MG / LG", "Dark / Medium / Light Grey", "深灰 / 中灰 / 浅灰色阶"], ["B / W", "Black / White", "BD 色阶中的黑与白，约 -64 至 -76°C"], ["CMG", "Cold Medium Grey", "冷中灰；约 -76 至 -81°C"], ["CDG", "Cold Dark Grey", "冷深灰；约低于 -81°C，代表极冷且很高的强对流云顶"]];
 const glossaryCategories = [{
-  id: "agencies",
-  icon: "⚑",
-  title: "业务机构与数据中心",
-  subtitle: "Agencies & Data Centers",
-  terms: new Set(["NRL", "FNMOC", "JTWC", "JMA", "RSMC", "TCWC", "CMA", "CWA", "KMA", "HKO", "NHC", "CPHC", "ECMWF", "NOAA", "CIMSS"])
-}, {
   id: "environment",
   icon: "≋",
   title: "环流结构与环境参数",
   subtitle: "Structure & Environmental Parameters",
   terms: new Set(["LLCC", "ITCZ", "TUTT", "SST", "VWS", "STR", "CAPE", "MJO", "ENSO", "MCC", "MCS", "LCL", "CTT", "CTH"])
+}, {
+  id: "agencies",
+  icon: "⚑",
+  title: "业务机构与数据中心",
+  subtitle: "Agencies & Data Centers",
+  terms: new Set(["NRL", "FNMOC", "JTWC", "JMA", "RSMC", "TCWC", "CMA", "CWA", "KMA", "HKO", "NHC", "CPHC", "ECMWF", "NOAA", "CIMSS"])
 }, {
   id: "operations",
   icon: "◈",
