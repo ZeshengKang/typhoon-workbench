@@ -516,6 +516,7 @@ function renderStormValues(storm, selectedDate = null) {
   fill("msPressure", pressure != null ? `${pressure} hPa` : "—");
   fill("msLocation", latitude != null ? `${formatCoordinate(latitude, "N", "S")} ${formatCoordinate(longitude, "E", "W")}` : "—");
   fill("msJtwc", jtwcWind != null ? `${jtwcWind} kt` : "—");
+  fill("msAdt", adt?.ci != null ? `CI ${Number(adt.ci).toFixed(1)}` : "—");
 }
 
 /* ------------------------- 动图播放器 ------------------------- */
@@ -1779,6 +1780,11 @@ function bindEvents() {
   const expandToggle = $("wpExpandToggle");
   const dataDetails = $("wpDataDetails");
   if (expandToggle && dataDetails) {
+    const summaryEl = dataDetails.querySelector("summary");
+    if (summaryEl) {
+      // 手机端点数据格子不应触发折叠，折叠只由底部按钮控制
+      summaryEl.addEventListener("click", (event) => event.preventDefault());
+    }
     const sync = () => {
       expandToggle.textContent = dataDetails.open ? "收起 ▴" : "展开全部 ▾";
     };
