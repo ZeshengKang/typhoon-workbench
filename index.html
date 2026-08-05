@@ -19,13 +19,13 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.24">
+  <link rel="stylesheet" href="./style.css?v=web1.25">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.24";
+      var CURRENT = "web1.25";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -51,7 +51,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.24</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.25</span></div>
       </div>
     </header>
 
@@ -193,6 +193,16 @@
                     <div id="wpBdLoading" class="forecast-loading">正在载入 BD 云图…</div>
                     <img id="wpBdImage" alt="当前热带气旋 BD 增强红外云图" hidden>
                     <div id="wpBdFallback" class="mini-fallback" hidden>当前系统暂无 BD 图像</div>
+                  </div>
+                </a>
+              </article>
+              <article class="media-card pmr-card">
+                <header><div><strong>PMR 降水测量雷达</strong><span id="wpPmrMeta">FY-3G · Dapiya</span></div></header>
+                <a id="wpPmrSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图">
+                  <div class="media-stage media-stage-wide">
+                    <div id="wpPmrLoading" class="forecast-loading">正在载入 PMR…</div>
+                    <img id="wpPmrImage" alt="FY-3 PMR 降水测量雷达云图" hidden>
+                    <div id="wpPmrFallback" class="mini-fallback" hidden>当前系统暂无 PMR</div>
                   </div>
                 </a>
               </article>
@@ -674,6 +684,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.24"></script>
+  <script src="./app.js?v=web1.25"></script>
 </body>
 </html>
