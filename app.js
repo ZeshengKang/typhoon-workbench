@@ -1065,7 +1065,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
   const token = String(Date.now() + Math.random());
   tiles.forEach((tile) => { tile.dataset.animToken = token; });
   let times = himawariTimes();
-  times = times.slice(-8);
+  times = times.slice(-6);
   const label = document.createElement("span");
   label.className = "anim-time";
   stage.appendChild(label);
@@ -1130,7 +1130,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
   let active = 0;
   const pump = () => {
     if (tiles[0]?.dataset.animToken !== token) return;
-    while (active < 1 && queue.length) {
+    while (active < 2 && queue.length) {
       const item = queue.shift();
       active++;
       preloadTiles(tiles, item.time, kind).then((ok) => {
