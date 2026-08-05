@@ -371,7 +371,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .live { display: inline-block; margin-top: 16px; }
 }
 @media (max-width: 760px) {
-  .shell { width: min(100% - 20px, 1480px); padding-top: 22px; zoom: 1; }
+  .shell { width: 100%; padding: 18px 6px 20px; zoom: 1; }
   .hero { margin-bottom: 16px; }
   .hero h1 { font-size: clamp(22px, 6vw, 30px); line-height: 1.14; letter-spacing: -.02em; }
   .hero .eyebrow { font-size: 10px; letter-spacing: .18em; }
@@ -385,7 +385,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .app-tab { flex: 0 0 auto; min-height: 34px; padding: 0 14px; font-size: 13px; border-radius: 999px; white-space: nowrap; }
 
   /* 标题行右侧放“立即更新” */
-  .situation-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 16px 10px; }
+  .situation-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 10px 10px; }
   .situation-head > div:first-child { min-width: 0; }
   .situation-head h2 { font-size: 22px; }
   .situation-status { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
@@ -394,7 +394,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .situation-status .button { min-height: 32px; padding: 0 12px; font-size: 12px; }
 
   /* 台风选择：单行横排，缩成小卡片（不用横向滚动容器，避免手机误判为滑动） */
-  .storm-rank { display: flex; gap: 8px; padding: 0 16px 12px; }
+  .storm-rank { display: flex; gap: 8px; padding: 0 10px 12px; }
   .storm-rank-card { flex: 1 1 0; min-width: 0; grid-template-columns: 18px minmax(0, 1fr); gap: 2px 6px; padding: 8px 9px; text-align: left; border-radius: 11px; }
   .storm-rank-card:active { transform: scale(.97); }
   .storm-rank-card > b { font-size: 12px; }
@@ -403,7 +403,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .storm-rank-card em { display: none; }
   .storm-rank-card, .data-details > summary, .app-tab { touch-action: manipulation; }
 
-  .storm-overview, .forecast-viewer { padding: 16px; }
+  .storm-overview, .forecast-viewer { padding: 10px; }
   .storm-identity { position: relative; }
   .source-mini { display: inline-flex; align-items: center; position: absolute; top: 0; right: 0; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.14); color: #cdeae3; font-size: 11px; font-weight: 800; text-decoration: none; }
   .source-mini:active { transform: scale(.96); }
@@ -432,12 +432,13 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .overview-actions #openWpSource { display: none; }
   .overview-actions .button { min-height: 36px; font-size: 13px; border-radius: 9px; }
 
-  .timeline-bar { padding: 12px 16px 14px; }
+  .timeline-bar { padding: 12px 10px 14px; }
   .timeline-head { gap: 6px; }
   .timeline-head strong { font-size: 14px; }
   .timeline-head span { font-size: 11px; }
 
-  .media-section { padding: 14px 16px; }
+  .media-section { padding: 10px; }
+  .media-card, .environment-card { padding: 6px; }
   .media-section-title { display: grid; gap: 4px; }
   .media-section-title h3 { font-size: 18px; }
   .media-section-title p { font-size: 11px; }
@@ -456,7 +457,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .full-disk-grid { grid-template-columns: 1fr; }
 
   .notice { padding: 10px 12px; font-size: 12px; align-items: flex-start; }
-  .situation-sources { grid-template-columns: 1fr; gap: 10px; padding: 12px 16px; }
+  .situation-sources { grid-template-columns: 1fr; gap: 10px; padding: 12px 10px; }
   .source-links { flex-wrap: wrap; }
 
   /* 资料中心 / 术语页 */
@@ -481,12 +482,13 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 }
 
 @media (max-width: 420px) {
-  .shell { width: 100%; padding: 16px 10px 20px; }
+  .shell { width: 100%; padding: 14px 4px 18px; }
   .hero h1 { font-size: 20px; }
   .owner-badge { display: none; }
-  .situation-head { padding: 14px 14px 10px; }
-  .storm-rank { padding: 0 14px 12px; }
-  .storm-overview, .forecast-viewer { padding: 14px; }
+  .situation-head { padding: 12px 8px 10px; }
+  .storm-rank { padding: 0 8px 12px; }
+  .storm-overview, .forecast-viewer { padding: 8px; }
+  .media-card, .environment-card { padding: 5px; }
   .storm-data-list > div { grid-template-columns: minmax(88px, .95fr) minmax(0, 1.05fr); }
   .storm-data-list dd strong { font-size: 15px; }
   .media-section { padding: 12px 14px; }
