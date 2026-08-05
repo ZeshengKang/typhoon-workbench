@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.12">
+  <link rel="stylesheet" href="./style.css?v=web1.13">
 </head>
 <body>
   <script>
@@ -22,7 +22,7 @@
     (function () {
       if (sessionStorage.getItem("vrel")) return;
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
-        if (v && v.v && v.v !== "web1.12") {
+        if (v && v.v && v.v !== "web1.13") {
           sessionStorage.setItem("vrel", "1");
           location.reload();
         }
@@ -37,7 +37,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.12</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.13</span></div>
       </div>
     </header>
 
@@ -99,13 +99,13 @@
               </span>
             </summary>
             <dl class="storm-data-list">
-              <div class="data-row-primary"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
-              <div><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
-              <div><dt>JTWC 最大风速</dt><dd><strong id="wpJtwcWind">—</strong><span id="wpJtwcWindMps">—</span></dd></div>
-              <div><dt>中心气压</dt><dd><strong id="wpPressure">—</strong><span id="wpPressureSource">—</span></dd></div>
-              <div><dt>中心位置</dt><dd><strong id="wpLocation">—</strong><span id="wpLocationSource">—</span></dd></div>
+              <div class="data-row-primary stat-dup"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
+              <div class="stat-dup"><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
+              <div class="stat-dup"><dt>JTWC 最大风速</dt><dd><strong id="wpJtwcWind">—</strong><span id="wpJtwcWindMps">—</span></dd></div>
+              <div class="stat-dup"><dt>中心气压</dt><dd><strong id="wpPressure">—</strong><span id="wpPressureSource">—</span></dd></div>
+              <div class="stat-dup"><dt>中心位置</dt><dd><strong id="wpLocation">—</strong><span id="wpLocationSource">—</span></dd></div>
               <div><dt>最大风速半径</dt><dd><strong id="wpRmw">—</strong><span id="wpRmwKm">—</span></dd></div>
-              <div class="adt-row"><dt>ADT 当前强度</dt><dd><strong id="wpAdtCi">—</strong></dd></div>
+              <div class="adt-row stat-dup"><dt>ADT 当前强度</dt><dd><strong id="wpAdtCi">—</strong></dd></div>
               <div class="adt-row"><dt>Final T</dt><dd><strong id="wpFinalT">—</strong></dd></div>
               <div class="adt-row"><dt>风眼 / 中心温度</dt><dd><strong id="wpEyeTemp">—</strong></dd></div>
               <div class="adt-row"><dt>云区温度</dt><dd><strong id="wpCloudTemp">—</strong></dd></div>
@@ -355,6 +355,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.12"></script>
+  <script src="./app.js?v=web1.13"></script>
 </body>
 </html>
