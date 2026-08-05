@@ -99,6 +99,9 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .overview-actions { display: grid; gap: 8px; margin-top: 22px; }
 .overview-actions .button { display: grid; place-items: center; text-decoration: none; font-size: 14px; }
 .overview-actions .ghost { background: rgba(255,255,255,.1); color: #e8f3f0; }
+.data-details > summary { list-style: none; cursor: pointer; }
+.data-details > summary::-webkit-details-marker { display: none; }
+.data-details[open] > summary { display: none; }
 .forecast-viewer { display: grid; gap: 28px; min-width: 0; padding: 26px; background: #eef2ef; }
 .forecast-primary { min-width: 0; }
 .forecast-image-link { display: block; min-width: 0; color: inherit; text-decoration: none; }
@@ -386,17 +389,25 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .situation-update .button { min-height: 32px; padding: 0 12px; font-size: 12px; }
   .live-state { font-size: 12px; }
 
-  .storm-rank { grid-template-columns: 1fr; gap: 8px; padding: 0 16px 14px; }
-  .storm-rank-card { grid-template-columns: 28px minmax(0, 1fr); gap: 6px 10px; min-width: 0; padding: 9px 11px; text-align: left; border-radius: 12px; }
-  .storm-rank-card > b { font-size: 15px; }
-  .storm-rank-card strong { font-size: 14px; }
-  .storm-rank-card small { font-size: 11px; }
-  .storm-rank-card em { grid-column: 2; text-align: left; font-size: 12px; }
+  /* 台风选择：单行横排，缩成小卡片 */
+  .storm-rank { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 12px; scrollbar-width: none; }
+  .storm-rank::-webkit-scrollbar { display: none; }
+  .storm-rank-card { flex: 1 1 0; min-width: 0; grid-template-columns: 18px minmax(0, 1fr); gap: 2px 6px; padding: 8px 9px; text-align: left; border-radius: 11px; }
+  .storm-rank-card > b { font-size: 12px; }
+  .storm-rank-card strong { font-size: 13px; }
+  .storm-rank-card small { font-size: 10px; }
+  .storm-rank-card em { display: none; }
 
   .storm-overview, .forecast-viewer { padding: 16px; }
   .storm-identity h3 { font-size: 30px; }
   .storm-code { margin: 14px 0 4px; font-size: 13px; }
   .operational-level { font-size: 12px; min-height: 26px; padding: 3px 9px; }
+  /* 数值详情：手机默认收起为一行 */
+  .data-details > summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; background: #e8f3ef; color: var(--teal-dark); font-size: 12px; font-weight: 800; cursor: pointer; list-style: none; }
+  .data-details > summary::-webkit-details-marker { display: none; }
+  .data-details > summary i { font-style: normal; color: var(--muted); font-weight: 700; font-size: 11px; }
+  .data-details[open] > summary { margin-bottom: 0; padding: 0 0 8px; background: transparent; }
+  .data-details[open] > summary i { display: none; }
   .storm-data-list { gap: 6px; margin: 16px 0 0; }
   .storm-data-list > div { grid-template-columns: minmax(96px, .9fr) minmax(0, 1.1fr); gap: 8px; padding: 7px 0; }
   .storm-data-list dt { font-size: 13px; }
@@ -417,8 +428,12 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .media-section-title p { font-size: 11px; }
   .core-observation-grid, .environment-grid { grid-template-columns: 1fr; }
   .ai-vis-card, .infrared-card, .bw-card, .bd-card, .intensity-card, .environment-card.environment-full { grid-column: auto; grid-row: auto; }
-  .core-observation-grid .media-stage { height: 220px; }
-  .forecast-mini-stage { min-height: 210px; }
+  /* 图像：按自身比例放大铺满，深色底避免白边 */
+  .core-observation-grid .media-stage { height: auto; aspect-ratio: 1 / 1; min-height: 0; background: #0e1c20; }
+  .core-observation-grid .infrared-card .media-stage { aspect-ratio: 4 / 3; }
+  .core-observation-grid .media-stage img { object-fit: cover; }
+  .environment-stage { background: #0e1c20; }
+  .forecast-mini-stage { min-height: 210px; background: #0e1c20; }
   .forecast-mini-grid { grid-template-columns: 1fr; }
   .full-disk-grid { grid-template-columns: 1fr; }
 
@@ -457,7 +472,6 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .storm-data-list > div { grid-template-columns: minmax(88px, .95fr) minmax(0, 1.05fr); }
   .storm-data-list dd strong { font-size: 15px; }
   .media-section { padding: 12px 14px; }
-  .core-observation-grid .media-stage { height: 200px; }
 }
 
 /*
