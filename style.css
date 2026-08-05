@@ -421,6 +421,8 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .storm-data-list { gap: 5px; margin: 4px 0 0; }
   .storm-data-list > div { grid-template-columns: minmax(96px, .9fr) minmax(0, 1.1fr); gap: 8px; padding: 7px 10px; border-radius: 8px; }
   .storm-data-list > div:nth-child(even) { background: rgba(255,255,255,.5); }
+  /* 展开的完整列表不再重复上方统计格已有的数据 */
+  .storm-data-list > .stat-dup { display: none; }
   .storm-data-list dt { font-size: 12px; }
   .storm-data-list dd { gap: 4px 8px; }
   .storm-data-list dd strong { font-size: 15px; }
