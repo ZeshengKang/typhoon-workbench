@@ -976,7 +976,7 @@ async function fetchPmrFrames(stormId) {
   const key = `pmr:${stormId}`;
   if (pmrCache.has(key)) return pmrCache.get(key);
   const url = `${DAPIYA_API}/typhoon/${encodeURIComponent(stormId)}/piclist/satprod/mw_pmr/FY-3`;
-  const text = await fetchText(url, 20000);
+  const text = await fetchText(url, 8000);
   const frames = [];
   for (const raw of text.split(",")) {
     const parts = raw.split("|");
@@ -999,8 +999,13 @@ async function loadPmrImage(stormId, selectedDate) {
   const image = $("wpPmrImage");
   const fallback = $("wpPmrFallback");
   const meta = $("wpPmrMeta");
+  const loading = $("wpPmrLoading");
   const stage = image ? image.closest(".media-stage") : null;
   if (!image || !fallback) return;
+  const token = String(Date.now() + Math.random());
+  image.dataset.pmrToken = token;
+  if (loading) loading.hidden = true;
+  image.removeAttribute("src");
   image.hidden = true;
   fallback.hidden = true;
   setStageLoading(stage, true);
@@ -1010,6 +1015,7 @@ async function loadPmrImage(stormId, selectedDate) {
   } catch (error) {
     frames = [];
   }
+  if (image.dataset.pmrToken !== token) return;
   if (!frames.length) {
     fallback.hidden = false;
     setStageLoading(stage, false);
@@ -1493,7 +1499,10 @@ function initTrackMap() {
     })
   };
   trackMap._tileLayers = layers;
-  layers.amap.addTo(trackMap);
+  layers.esri.addTo(trackMap);
+  document.querySelectorAll(".track-map-layers button").forEach(button => {
+    button.classList.toggle("active", button.dataset.layer === "esri");
+  });
   trackLine = L.polyline([], {
     color: "#4fc3f7",
     weight: 3,
