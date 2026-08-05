@@ -971,6 +971,73 @@ async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffi
   if (image.dataset.requestToken !== requestToken) return;
   applyUrl(found);
 }
+const pmrCache = new Map();
+async function fetchPmrFrames(stormId) {
+  const key = `pmr:${stormId}`;
+  if (pmrCache.has(key)) return pmrCache.get(key);
+  const url = `${DAPIYA_API}/typhoon/${encodeURIComponent(stormId)}/piclist/satprod/mw_pmr/FY-3`;
+  const text = await fetchText(url, 20000);
+  const frames = [];
+  for (const raw of text.split(",")) {
+    const parts = raw.split("|");
+    const path = (parts[0] || "").trim();
+    const label = parts[1] || "";
+    if (!path) continue;
+    const match = String(label).match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
+    const iso = match ? `${match[1]}-${match[2]}-${match[3]}T${match[4]}:${match[5]}:${match[6]}Z` : "";
+    frames.push({
+      url: `${DAPIYA_DATA}/${path}`,
+      time: iso || label || "",
+      label: label || ""
+    });
+  }
+  frames.sort((a, b) => a.time < b.time ? -1 : a.time > b.time ? 1 : 0);
+  pmrCache.set(key, frames);
+  return frames;
+}
+async function loadPmrImage(stormId, selectedDate) {
+  const image = $("wpPmrImage");
+  const fallback = $("wpPmrFallback");
+  const meta = $("wpPmrMeta");
+  const stage = image ? image.closest(".media-stage") : null;
+  if (!image || !fallback) return;
+  image.hidden = true;
+  fallback.hidden = true;
+  setStageLoading(stage, true);
+  let frames = [];
+  try {
+    frames = await fetchPmrFrames(stormId);
+  } catch (error) {
+    frames = [];
+  }
+  if (!frames.length) {
+    fallback.hidden = false;
+    setStageLoading(stage, false);
+    return;
+  }
+  const target = selectedDate ? `${selectedDate}T12:00:00Z` : "";
+  const frame = target ? frameNear(frames, target) : frames[frames.length - 1];
+  if (!frame) {
+    fallback.hidden = false;
+    fallback.textContent = "该时次暂无 PMR";
+    setStageLoading(stage, false);
+    return;
+  }
+  image.onload = () => {
+    image.hidden = false;
+    fallback.hidden = true;
+    setStageLoading(stage, false);
+    if (stage) stage.classList.add("image-ready");
+  };
+  image.onerror = () => {
+    image.hidden = true;
+    fallback.hidden = false;
+    setStageLoading(stage, false);
+  };
+  image.src = frame.url;
+  if ($("wpPmrSource")) $("wpPmrSource").href = frame.url;
+  if (meta) meta.textContent = frame.label || formatFrameTime(frame.time);
+}
 function renderIntensityChart(track, selectedDate = null) {
   const svg = $("wpIntensityChart");
   const fallback = $("wpIntensityFallback");
@@ -1566,6 +1633,7 @@ function renderWpMedia(storm, selectedDate = null) {
     loadHistoricalDapiyaFrame("wpAiVisImage", "wpAiVisFallback", storm.id, "AI_VIS", selectedDate, "wpAiVisLoading", "wpAiVisAnimBadge", "VIS");
     loadHistoricalDapiyaFrame("wpBwLatestImage", "wpBwLatestFallback", storm.id, "BW", selectedDate, "wpBwLatestLoading", "wpBwLatestAnimBadge");
     loadHistoricalDapiyaFrame("wpBdImage", "wpBdFallback", storm.id, "BD", selectedDate, "wpBdLoading", "wpBdAnimBadge");
+    loadPmrImage(storm.id, selectedDate);
     loadWeathernerdsHistory("wpEcmwfImage", "wpEcmwfFallback", storm.id, selectedDate, "ECENS");
     loadWeathernerdsHistory("wpGefsImage", "wpGefsFallback", storm.id, selectedDate, "GEFS");
     renderFullDiskGrid(selectedDate);
@@ -1575,6 +1643,7 @@ function renderWpMedia(storm, selectedDate = null) {
   loadPlainImage($("wpSatelliteImage"), $("wpSatelliteFallback"), products.satellite, $("wpSatelliteLoading"));
   loadDapiyaAnimated("wpBdImage", "wpBdFallback", storm.id, "BD", "wpBdLoading", "wpBdAnimBadge", products.bd);
   loadDapiyaAnimated("wpBwLatestImage", "wpBwLatestFallback", storm.id, "BW", "wpBwLatestLoading", "wpBwLatestAnimBadge", products.bw);
+  loadPmrImage(storm.id, null);
   loadModelImage("wpEcmwfImage", "wpEcmwfFallback", "ECENS", products.ecmwf_ensemble);
   loadModelImage("wpGefsImage", "wpGefsFallback", "GEFS", products.gefs_ensemble);
   loadPlainImage($("wpJtwcImage"), $("wpJtwcFallback"), products.official_forecast);
