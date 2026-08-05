@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.10">
+  <link rel="stylesheet" href="./style.css?v=web1.11">
 </head>
 <body>
   <script>
@@ -22,7 +22,7 @@
     (function () {
       if (sessionStorage.getItem("vrel")) return;
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
-        if (v && v.v && v.v !== "web1.10") {
+        if (v && v.v && v.v !== "web1.11") {
           sessionStorage.setItem("vrel", "1");
           location.reload();
         }
@@ -37,7 +37,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.10</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.11</span></div>
       </div>
     </header>
 
@@ -81,6 +81,7 @@
           <div class="storm-identity">
             <span id="wpPriority" class="priority-badge">当前重点系统</span>
             <p id="wpStormId" class="storm-code">—</p>
+            <a id="wpSourceMini" class="source-mini" href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener">来源 ↗</a>
             <div class="storm-name-row">
               <h3 id="wpStormName">—</h3>
               <span id="wpOperationalLevel" class="operational-level">—</span>
@@ -113,6 +114,7 @@
             </dl>
           </details>
           <div class="overview-actions">
+            <button id="wpExpandToggle" class="button ghost" type="button">展开全部 ▾</button>
             <a id="openWpSource" class="button ghost" href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener">查看来源站 ↗</a>
           </div>
         </article>
@@ -353,6 +355,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.10"></script>
+  <script src="./app.js?v=web1.11"></script>
 </body>
 </html>
