@@ -1914,6 +1914,14 @@ function showPage(page) {
     const selectedTool = document.querySelector(".resource-tool.active");
     if (selectedTool) activateResource(selectedTool);
   }
+  if (page === "analysis" && trackMap) {
+    setTimeout(() => {
+      if (!trackMap) return;
+      trackMap.invalidateSize();
+      const storm = currentStormObject();
+      if (storm) updateTrackMap(storm, wpSelectedDate);
+    }, 100);
+  }
   window.scrollTo({
     top: 0,
     behavior: "smooth"
