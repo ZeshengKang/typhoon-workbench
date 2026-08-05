@@ -102,6 +102,7 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .data-details > summary { list-style: none; cursor: pointer; }
 .data-details > summary::-webkit-details-marker { display: none; }
 .data-details[open] > summary { display: none; }
+#wpExpandToggle, .source-mini { display: none; }
 .forecast-viewer { display: grid; gap: 28px; min-width: 0; padding: 26px; background: #eef2ef; }
 .forecast-primary { min-width: 0; }
 .forecast-image-link { display: block; min-width: 0; color: inherit; text-decoration: none; }
@@ -383,11 +384,14 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .app-tabs::-webkit-scrollbar { display: none; }
   .app-tab { flex: 0 0 auto; min-height: 34px; padding: 0 14px; font-size: 13px; border-radius: 999px; white-space: nowrap; }
 
-  .situation-head { display: grid; gap: 8px; padding: 16px 16px 12px; }
+  /* 标题行右侧放“立即更新” */
+  .situation-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 16px 10px; }
+  .situation-head > div:first-child { min-width: 0; }
   .situation-head h2 { font-size: 22px; }
-  .situation-update { justify-items: start; }
-  .situation-update .button { min-height: 32px; padding: 0 12px; font-size: 12px; }
-  .live-state { font-size: 12px; }
+  .situation-status { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .situation-status small { display: none; }
+  .live-state { font-size: 11px; }
+  .situation-status .button { min-height: 32px; padding: 0 12px; font-size: 12px; }
 
   /* 台风选择：单行横排，缩成小卡片（不用横向滚动容器，避免手机误判为滑动） */
   .storm-rank { display: flex; gap: 8px; padding: 0 16px 12px; }
@@ -400,6 +404,9 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .storm-rank-card, .data-details > summary, .app-tab { touch-action: manipulation; }
 
   .storm-overview, .forecast-viewer { padding: 16px; }
+  .storm-identity { position: relative; }
+  .source-mini { display: inline-flex; align-items: center; position: absolute; top: 0; right: 0; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.14); color: #cdeae3; font-size: 11px; font-weight: 800; text-decoration: none; }
+  .source-mini:active { transform: scale(.96); }
   .storm-identity h3 { font-size: 30px; }
   .storm-code { margin: 14px 0 4px; font-size: 13px; }
   .operational-level { font-size: 12px; min-height: 26px; padding: 3px 9px; }
@@ -424,6 +431,8 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .storm-data-list dd strong { font-size: 15px; }
   .storm-data-list dd span { font-size: 11px; }
   .overview-actions { margin-top: 14px; }
+  #wpExpandToggle { display: grid; }
+  .overview-actions #openWpSource { display: none; }
   .overview-actions .button { min-height: 36px; font-size: 13px; border-radius: 9px; }
 
   .timeline-bar { padding: 12px 16px 14px; }
