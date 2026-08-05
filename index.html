@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>路人王老康 BG5VJM 台风云图分析工具 · 网页版</title>
+  <meta name="description" content="西太平洋热带气旋实时云图、CMA 数值、环境场与模式预报分析工作台">
+  <link rel="icon" href="./assets/icon-dapiya.ico">
+  <link rel="preconnect" href="https://api.dapiya.top">
+  <link rel="preconnect" href="https://data.dapiya.top">
+  <link rel="preconnect" href="https://data.dapiya.cn">
+  <link rel="preconnect" href="https://typhoon.nmc.cn">
+  <link rel="preconnect" href="https://jh190005-4.kudpc.kyoto-u.ac.jp">
+  <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
+  <link rel="preconnect" href="https://www.weathernerds.org">
+  <link rel="preconnect" href="https://www.ospo.noaa.gov">
+  <link rel="stylesheet" href="./style.css?v=web1.1">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">TROPICAL CYCLONE ANALYSIS WORKBENCH · WEB</p>
+        <h1>路人王老康 BG5VJM<br>台风云图分析工具</h1>
+      </div>
+      <div class="owner-stack">
+        <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages</span></div>
+      </div>
+    </header>
+
+    <nav class="app-tabs" aria-label="主要功能">
+      <button class="app-tab active" type="button" data-page="analysis">台风云图实时分析</button>
+      <button class="app-tab" type="button" data-page="resources">台风资料中心</button>
+      <button class="app-tab" type="button" data-page="glossary">术语与德沃夏克</button>
+    </nav>
+
+    <section id="wpSituation" class="wp-situation page-panel page-analysis" aria-labelledby="wpSituationTitle">
+      <header class="situation-head">
+        <div>
+          <p class="eyebrow">WESTERN NORTH PACIFIC · LIVE</p>
+          <h2 id="wpSituationTitle">西太平洋热带气旋</h2>
+        </div>
+        <div class="situation-status">
+          <span id="wpLiveState" class="live-state"><i></i> 正在读取最新资料</span>
+          <small id="wpUpdatedAt">—</small>
+          <button id="refreshWpSituation" class="button ghost" type="button">立即更新</button>
+        </div>
+      </header>
+
+      <div id="wpStormTabs" class="storm-rank" aria-label="当前西太平洋热带系统"></div>
+
+      <div id="wpTimelineBar" class="timeline-bar" hidden>
+        <div class="timeline-head">
+          <strong id="wpTimelineLabel">最新</strong>
+          <span id="wpTimelineHint">拖动时间轴回看历史资料 · 只有支持历史的数据源才会显示对应时次</span>
+          <button id="wpTimelineLatest" class="button ghost" type="button">回到最新</button>
+        </div>
+        <input id="wpTimelineSlider" type="range" min="0" max="0" value="0" step="1" aria-label="历史时间轴">
+        <div id="wpTimelineTicks" class="timeline-ticks" aria-hidden="true"></div>
+        <div class="timeline-scale">
+          <span id="wpTimelineStart">—</span>
+          <span id="wpTimelineEnd">—</span>
+        </div>
+      </div>
+
+      <div id="wpSituationBody" class="situation-body" hidden>
+        <article class="storm-overview">
+          <div class="storm-identity">
+            <span id="wpPriority" class="priority-badge">当前重点系统</span>
+            <p id="wpStormId" class="storm-code">—</p>
+            <div class="storm-name-row">
+              <h3 id="wpStormName">—</h3>
+              <span id="wpOperationalLevel" class="operational-level">—</span>
+            </div>
+          </div>
+          <dl class="storm-data-list">
+            <div class="data-row-primary"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
+            <div><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
+            <div><dt>JTWC 最大风速</dt><dd><strong id="wpJtwcWind">—</strong><span id="wpJtwcWindMps">—</span></dd></div>
+            <div><dt>中心气压</dt><dd><strong id="wpPressure">—</strong><span id="wpPressureSource">—</span></dd></div>
+            <div><dt>中心位置</dt><dd><strong id="wpLocation">—</strong><span id="wpLocationSource">—</span></dd></div>
+            <div><dt>最大风速半径</dt><dd><strong id="wpRmw">—</strong><span id="wpRmwKm">—</span></dd></div>
+            <div class="adt-row"><dt>ADT 当前强度</dt><dd><strong id="wpAdtCi">—</strong></dd></div>
+            <div class="adt-row"><dt>Final T</dt><dd><strong id="wpFinalT">—</strong></dd></div>
+            <div class="adt-row"><dt>风眼 / 中心温度</dt><dd><strong id="wpEyeTemp">—</strong></dd></div>
+            <div class="adt-row"><dt>云区温度</dt><dd><strong id="wpCloudTemp">—</strong></dd></div>
+            <div class="adt-row"><dt>ADT 云型</dt><dd><strong id="wpScene">—</strong></dd></div>
+            <div class="adt-row"><dt>ADT 分析时次</dt><dd><strong id="wpAdtTime">—</strong></dd></div>
+          </dl>
+          <div class="overview-actions">
+            <a id="openWpSource" class="button ghost" href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener">查看来源站 ↗</a>
+          </div>
+        </article>
+
+        <section class="forecast-viewer" aria-label="卫星云图、环境场与模式预报">
+          <section class="media-section core-section" aria-labelledby="coreObservationTitle">
+            <div class="media-section-title">
+              <div><span>01</span><h3 id="coreObservationTitle">核心卫星观测</h3></div>
+              <p>点击任一图像查看来源站原图</p>
+            </div>
+            <div class="core-observation-grid">
+              <article class="media-card ai-vis-card">
+                <header><div><strong>AI‑VIS 可见光</strong><span>Himawari‑9 · Dapiya</span></div><b id="wpAiVisAnimBadge" class="anim-badge" hidden>动图</b></header>
+                <a id="wpAiVisSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图">
+                  <div class="media-stage media-stage-portrait">
+                    <div id="wpAiVisLoading" class="forecast-loading">正在载入 AI‑VIS…</div>
+                    <img id="wpAiVisImage" alt="当前热带气旋 AI-VIS 可见光云图" hidden>
+                    <div id="wpAiVisFallback" class="mini-fallback" hidden>当前系统暂无 AI‑VIS</div>
+                  </div>
+                </a>
+              </article>
+              <article class="media-card bw-card">
+                <header><div><strong>IR‑BW 红外</strong><span>Dapiya Satellite Imagery</span></div><b id="wpBwLatestAnimBadge" class="anim-badge" hidden>动图</b></header>
+                <a id="wpBwLatestSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图">
+                  <div class="media-stage media-stage-wide">
+                    <div id="wpBwLatestLoading" class="forecast-loading">正在载入 IR‑BW…</div>
+                    <img id="wpBwLatestImage" alt="当前热带气旋 IR-BW 红外云图" hidden>
+                    <div id="wpBwLatestFallback" class="mini-fallback" hidden>当前系统暂无 IR‑BW</div>
+                  </div>
+                </a>
+              </article>
+              <article id="wpInfraredCard" class="media-card infrared-card">
+                <header><div><strong>红外增强</strong><span id="wpSatelliteMeta">Himawari‑9 · Tropical Tidbits</span></div></header>
+                <a id="wpSatelliteSource" class="forecast-image-link" href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener" title="点击查看原图">
+                  <div id="wpSatelliteStage" class="media-stage media-stage-wide">
+                    <div id="wpSatelliteLoading" class="forecast-loading">正在载入红外增强…</div>
+                    <img id="wpSatelliteImage" alt="当前热带气旋最新红外云图" hidden>
+                    <div id="wpSatelliteFallback" class="forecast-fallback" hidden><strong>红外云图暂时无法载入</strong><span>来源站可能正在更新，请稍后重试。</span></div>
+                  </div>
+                </a>
+              </article>
+              <article class="media-card bd-card">
+                <header><div><strong>BD 增强红外云图</strong><span>Dvorak BD 色阶 · Dapiya</span></div><b id="wpBdAnimBadge" class="anim-badge" hidden>动图</b></header>
+                <a id="wpBdSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图">
+                  <div class="media-stage media-stage-wide">
+                    <div id="wpBdLoading" class="forecast-loading">正在载入 BD 云图…</div>
+                    <img id="wpBdImage" alt="当前热带气旋 BD 增强红外云图" hidden>
+                    <div id="wpBdFallback" class="mini-fallback" hidden>当前系统暂无 BD 图像</div>
+                  </div>
+                </a>
+              </article>
+              <article class="media-card intensity-card">
+                <header><div><strong>强度曲线</strong><span>CMA 官方路径资料</span></div></header>
+                <div class="media-stage intensity-stage">
+                  <svg id="wpIntensityChart" viewBox="0 0 350 260" preserveAspectRatio="none" aria-label="台风强度曲线" hidden></svg>
+                  <div id="wpIntensityFallback" class="mini-fallback" hidden>暂无强度曲线数据</div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="media-section full-disk-section" aria-labelledby="fullDiskTitle">
+            <div class="media-section-title">
+              <div><span>02</span><h3 id="fullDiskTitle">Himawari‑9 全圆盘监测</h3></div>
+            </div>
+            <div id="wpFullDiskGrid" class="environment-grid full-disk-grid" aria-live="polite"></div>
+          </section>
+
+          <section class="media-section model-section" aria-labelledby="modelForecastTitle">
+            <div class="media-section-title">
+              <div><span>03</span><h3 id="modelForecastTitle">路径与模式预报</h3></div>
+              <p>不同模式存在分歧，请结合业务机构预报判断</p>
+            </div>
+            <div class="forecast-mini-grid" aria-label="主要路径预报">
+              <article class="forecast-mini-card">
+                <header><div><strong>ECMWF 集合路径</strong><span id="wpEcmwfMeta">EPS · Weathernerds</span></div></header>
+                <a id="wpEcmwfSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图"><div class="forecast-mini-stage"><img id="wpEcmwfImage" alt="ECMWF 集合路径预报" hidden><div id="wpEcmwfFallback" class="mini-fallback">暂无图片</div></div></a>
+              </article>
+              <article class="forecast-mini-card">
+                <header><div><strong>GEFS（GFS集合）路径</strong><span id="wpGefsMeta">GEFS · Weathernerds</span></div></header>
+                <a id="wpGefsSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图"><div class="forecast-mini-stage"><img id="wpGefsImage" alt="GEFS 集合路径预报" hidden><div id="wpGefsFallback" class="mini-fallback">暂无图片</div></div></a>
+              </article>
+              <article id="wpJtwcCard" class="forecast-mini-card">
+                <header><div><strong>JTWC 正式路径</strong><span id="wpJtwcMeta">Official Forecast</span></div></header>
+                <a id="wpJtwcSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图"><div class="forecast-mini-stage"><img id="wpJtwcImage" alt="JTWC 正式路径预报" hidden><div id="wpJtwcFallback" class="mini-fallback">暂无图片</div></div></a>
+              </article>
+            </div>
+          </section>
+
+          <section id="wpEnvironmentSection" class="media-section environment-section" aria-labelledby="environmentTitle">
+            <div class="media-section-title">
+              <div><span>04</span><h3 id="environmentTitle">环境场诊断</h3></div>
+              <p>西北太平洋区域产品 · 非单一风暴定点图</p>
+            </div>
+            <div id="wpEnvironmentGrid" class="environment-grid" aria-live="polite"></div>
+          </section>
+        </section>
+      </div>
+
+      <div id="wpSituationEmpty" class="situation-empty">
+        <strong>正在读取西太平洋热带气旋…</strong>
+        <span>首次读取通常需要数秒，之后每 2 分钟在后台检查更新。</span>
+      </div>
+
+      <footer class="situation-sources">
+        <div class="metric-help">
+          <strong>指标说明</strong>
+          <span>CMA 与 JTWC 强度分列，不直接换级</span>
+          <span>JTWC 为 1 分钟最大持续风速</span>
+          <span>1 海里＝1.852 公里</span>
+          <span>CI＝ADT 当前强度值</span>
+          <span>Final T＝德沃夏克最终 T 值</span>
+          <span>风眼温度、云区温度均为红外亮温</span>
+        </div>
+        <div class="source-links">
+          <span>资料来源：</span>
+          <a href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener">Tropical Tidbits</a>
+          <a href="https://www.weathernerds.org/tc_guidance/" target="_blank" rel="noopener">Weathernerds</a>
+          <a href="https://tropic.ssec.wisc.edu/real-time/adt/adt.html" target="_blank" rel="noopener">CIMSS ADT</a>
+          <a href="https://tropic.ssec.wisc.edu/real-time/windmain.php?basin=westpac" target="_blank" rel="noopener">CIMSS 环境场</a>
+          <a href="https://himawari.asia/" target="_blank" rel="noopener">NICT Himawari 实时网页</a>
+          <a href="https://ai-vis.dapiya.cn/sat.html" target="_blank" rel="noopener">Dapiya AI‑VIS</a>
+          <a href="https://www.dapiya.cn/" target="_blank" rel="noopener">Dapiya 区域分析</a>
+          <a href="https://m.nmc.cn/f/p-430" target="_blank" rel="noopener">中央气象台台风快讯</a>
+          <a href="https://www.cma.gov.cn/kppd/kppdsytj/201508/t20150808_290036.html" target="_blank" rel="noopener">风力等级</a>
+        </div>
+      </footer>
+    </section>
+
+    <section class="notice page-panel page-analysis">
+      <strong>网页版说明</strong>
+      <span>云图与 CMA 数值实时直连来源站；Tropical Tidbits、CIMSS ADT 等资料由 GitHub Actions 每 15 分钟快照。时间均为 UTC，北京时间 = UTC + 8 小时。</span>
+    </section>
+
+    <section id="resourcesPage" class="page-panel page-resources" hidden>
+      <div class="card resource-hero">
+        <div>
+          <p class="eyebrow">TROPICAL CYCLONE WORKBENCH</p>
+          <h2>台风资料中心</h2>
+          <p>集中查看卫星遥感、数值预报、业务警报和强度诊断资料。内嵌区仅保留已验证可用的 Windy 与 Himawari 机动观测。</p>
+        </div>
+        <div class="storm-context"><span>当前选择</span><strong id="resourceStorm">尚未选择风暴</strong></div>
+      </div>
+
+      <div class="card embedded-viewer">
+        <div class="viewer-toolbar">
+          <div class="resource-switcher" role="tablist" aria-label="内嵌资料切换">
+            <button class="resource-tool active" type="button" role="tab" aria-selected="true" data-url="https://embed.windy.com/embed2.html?lat=20&amp;lon=120&amp;zoom=3&amp;level=surface&amp;overlay=wind&amp;product=ecmwf&amp;menu=true&amp;message=false&amp;marker=&amp;calendar=now&amp;pressure=false&amp;type=map&amp;location=coordinates&amp;detail=false&amp;metricWind=kt&amp;metricTemp=%C2%B0C" data-site-url="https://www.windy.com/"><img src="./assets/icon-windy.ico" alt=""><span><strong>Windy 全球风场</strong><small>进入资料中心时默认显示</small></span></button>
+            <button class="resource-tool" type="button" role="tab" aria-selected="false" data-url="https://weather-models.info/latest/himawari-target.html" data-site-url="https://weather-models.info/latest/himawari-target.html"><img src="./assets/icon-himawari.ico" alt=""><span><strong>Himawari 机动观测域</strong><small>2.5 分钟目标区域观测</small></span></button>
+          </div>
+          <button id="openResource" class="button ghost" type="button">访问官方网站</button>
+        </div>
+        <div id="resourcePlaceholder" class="resource-placeholder">正在载入 Windy 全球风场…</div>
+        <iframe id="resourceFrame" title="在线气象工具" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="fullscreen" hidden></iframe>
+      </div>
+
+      <div class="resource-grid">
+        <section class="card resource-group wide">
+          <div class="resource-heading"><span class="category-symbol">◉</span><div><h3>卫星遥感与热带气旋产品</h3><p>Satellite Remote Sensing &amp; Tropical Cyclone Products</p></div></div>
+          <div class="site-grid">
+            <a class="site-card" href="https://weather-models.info/latest/himawari-target.html" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-himawari.ico" alt=""><b>H9</b></span><span><strong>Himawari 机动观测</strong><em>2.5 分钟目标区域高频观测</em><small>Himawari Target Area</small></span><i>↗</i></a>
+            <a class="site-card" href="https://slider.cira.colostate.edu/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cira.ico" alt=""><b>SL</b></span><span><strong>CIRA SLIDER</strong><em>多卫星、多通道云图交互浏览</em><small>RAMMB / CIRA</small></span><i>↗</i></a>
+            <a id="rammbStormLink" class="site-card" href="https://rammb-data.cira.colostate.edu/tc_realtime/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cira.ico" alt=""><b>TC</b></span><span><strong>RAMMB 热带气旋实时产品</strong><em id="rammbStormDescription">按当前选择风暴进入产品页</em><small>TC Real-Time</small></span><i>↗</i></a>
+            <a class="site-card" href="https://tropic.ssec.wisc.edu/real-time/windmain.php" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cimss.ico" alt=""><b>CI</b></span><span><strong>CIMSS 热带气旋环境场</strong><em>风切变、外流与大尺度环境诊断</em><small>TC Environmental Analysis</small></span><i>↗</i></a>
+            <a class="site-card" href="https://manati.star.nesdis.noaa.gov/datasets/ASCATData.php" target="_blank" rel="noopener"><span class="site-icon no-image"><b>AS</b></span><span><strong>ASCAT 海面风场</strong><em>散射计反演海面风矢量</em><small>Scatterometer Surface Winds</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.dapiya.top/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-dapiya.ico" alt=""><b>DP</b></span><span><strong>Dapiya 云图平台</strong><em>原始在线云图与动画平台</em><small>Satellite Imagery</small></span><i>↗</i></a>
+          </div>
+        </section>
+
+        <section class="card resource-group wide">
+          <div class="resource-heading"><span class="category-symbol">≋</span><div><h3>数值天气预报与环境场</h3><p>Numerical Weather Prediction &amp; Environmental Fields</p></div></div>
+          <div class="site-grid">
+            <a class="site-card" href="https://www.windy.com/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-windy.ico" alt=""><b>W</b></span><span><strong>Windy 官网</strong><em>全球风场、气压与多模式预报</em><small>Windy.com</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.tropicaltidbits.com/analysis/models/" target="_blank" rel="noopener"><span class="site-icon no-image"><b>TT</b></span><span><strong>Tropical Tidbits</strong><em>全球与区域数值模式图</em><small>Numerical Model Guidance</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.easterlywave.com/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-easterlywave.ico" alt=""><b>EW</b></span><span><strong>东风波 EasterlyWave</strong><em>模式、路径与热带天气资料</em><small>Tropical Weather Guidance</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.meteoblue.com/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-meteoblue.ico" alt=""><b>MB</b></span><span><strong>Meteoblue 官网</strong><em>进入后先选择地点，再查看 Meteogram 或 Astronomy</em><small>Location-based Forecasts</small></span><i>↗</i></a>
+          </div>
+        </section>
+
+        <section class="card resource-group wide">
+          <div class="resource-heading"><span class="category-symbol">⚑</span><div><h3>业务预报与警报机构</h3><p>Operational Forecast &amp; Warning Agencies</p></div></div>
+          <div class="site-grid">
+            <a class="site-card" href="https://typhoon.nmc.cn/" target="_blank" rel="noopener"><span class="site-icon no-image"><b>CMA</b></span><span><strong>中央气象台</strong><em>中国台风路径与业务预报</em><small>China Meteorological Administration</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.data.jma.go.jp/multi/cyclone/index.html?lang=en" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-jma.ico" alt=""><b>JMA</b></span><span><strong>日本气象厅</strong><em>西北太平洋 RSMC 台风信息</em><small>Japan Meteorological Agency</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.metoc.navy.mil/jtwc/jtwc.html?tropical" target="_blank" rel="noopener"><span class="site-icon no-image"><b>JT</b></span><span><strong>联合台风警报中心</strong><em>热带气旋警报、路径与报文</em><small>Joint Typhoon Warning Center</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.weather.go.kr/w/typhoon/typ-stat.do" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-kma.ico" alt=""><b>KMA</b></span><span><strong>韩国气象厅</strong><em>台风监测与业务预报</em><small>Korea Meteorological Administration</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.hko.gov.hk/en/wxinfo/currwx/tc_gis.htm" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-hko.ico" alt=""><b>HKO</b></span><span><strong>香港天文台</strong><em>热带气旋位置、路径与警告</em><small>Hong Kong Observatory</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.cwa.gov.tw/V8/E/P/Typhoon/TY_WARN.html" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cwa.ico" alt=""><b>CWA</b></span><span><strong>交通部中央气象署</strong><em>台湾地区台风警报与路径资料</em><small>Central Weather Administration (formerly CWB)</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.nhc.noaa.gov/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-nhc.ico" alt=""><b>NHC</b></span><span><strong>美国国家飓风中心</strong><em>大西洋与东太平洋业务预报</em><small>National Hurricane Center / CPHC</small></span><i>↗</i></a>
+          </div>
+        </section>
+
+        <section class="card resource-group wide">
+          <div class="resource-heading"><span class="category-symbol">◎</span><div><h3>强度估算与历史资料</h3><p>Intensity Estimation &amp; Historical Archives</p></div></div>
+          <div class="site-grid">
+            <a class="site-card" href="https://tropic.ssec.wisc.edu/real-time/adt/adt.html" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cimss.ico" alt=""><b>ADT</b></span><span><strong>CIMSS ADT</strong><em>高级德沃夏克技术客观强度估算</em><small>Advanced Dvorak Technique</small></span><i>↗</i></a>
+            <a class="site-card" href="https://tropic.ssec.wisc.edu/real-time/satcon/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-cimss.ico" alt=""><b>SC</b></span><span><strong>CIMSS SATCON</strong><em>多源卫星强度综合估算</em><small>Satellite Consensus</small></span><i>↗</i></a>
+            <a class="site-card" href="https://agora.ex.nii.ac.jp/digital-typhoon/" target="_blank" rel="noopener"><span class="site-icon"><img src="./assets/icon-digitaltyphoon.ico" alt=""><b>DT</b></span><span><strong>Digital Typhoon</strong><em>历史台风云图与路径检索</em><small>Historical Satellite Archive</small></span><i>↗</i></a>
+            <a class="site-card" href="https://www.ncei.noaa.gov/products/international-best-track-archive" target="_blank" rel="noopener"><span class="site-icon no-image"><b>IB</b></span><span><strong>IBTrACS</strong><em>全球热带气旋最佳路径综合档案</em><small>International Best Track Archive</small></span><i>↗</i></a>
+          </div>
+        </section>
+      </div>
+
+      <section class="card favorites-card">
+        <h3>常用地点与网址</h3>
+        <p>不自动定位。可保存 Meteoblue 地点页、Windy 分享链接或其他常用页面；记录仅保存在本机浏览器。</p>
+        <div class="favorite-form">
+          <input id="favoriteLabel" type="text" placeholder="名称，例如：福建 / 厦门 Astronomy">
+          <input id="favoriteUrl" type="url" placeholder="https://...">
+          <button id="saveFavorite" class="button primary" type="button">保存</button>
+        </div>
+        <div id="favoriteList" class="favorite-list"></div>
+      </section>
+    </section>
+
+    <section id="glossaryPage" class="page-panel page-glossary" hidden>
+      <div class="card glossary-head">
+        <div><p class="eyebrow">REFERENCE</p><h2>术语与德沃夏克速查</h2></div>
+        <input id="glossarySearch" type="search" placeholder="搜索缩写、中文或英文，例如 VWS、风切变、CDG">
+      </div>
+      <div class="notice warning-note"><strong>定级提醒</strong><span>TD、TS、STS、TY 等等级以持续风速标准为主；中心气压与风速并非固定一一对应，不能仅凭气压区间定级。</span></div>
+      <div id="glossaryGrid" class="glossary-categories"></div>
+      <section class="card dvorak-gallery">
+        <div class="resource-heading"><span class="category-symbol">D</span><div><h3>德沃夏克卫星分析图解</h3><p>Dvorak Satellite Intensity Analysis</p></div></div>
+        <p>图像与说明按分析步骤对应排列；点击图片可查看原尺寸。它们用于学习与辅助判读，正式定强仍须遵循业务机构规则。</p>
+        <div class="dvorak-lessons">
+          <article><a href="./assets/bd-curve-temperature.jpg" target="_blank"><img src="./assets/bd-curve-temperature.jpg" alt="BD 色阶与温度范围"></a><div><span>01 · IR-BD 色阶</span><h4>先读懂云顶温度增强</h4><p>WMG 至 CDG 表示不同亮温区间。CMG、CDG 对应极低云顶温度和很强的深对流，但单凭某一色阶不能直接确定强度。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info-goespg.html" target="_blank" rel="noopener">查看 CIMSS EIR 色阶与分析教程 ↗</a></div></article>
+          <article><a href="./assets/dvorak-t-patterns.jpg" target="_blank"><img src="./assets/dvorak-t-patterns.jpg" alt="德沃夏克 T1.5 到 T8 云型"></a><div><span>02 · 云型组织度</span><h4>对照云带、中心密集云区与风眼</h4><p>T 数随系统中心清晰度、弯曲云带包卷程度、中心密集云区和风眼结构演变。真实分析还要结合时间约束与趋势。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info.html" target="_blank" rel="noopener">查看 CIMSS 德沃夏克技术说明 ↗</a></div></article>
+          <article class="wide-lesson"><a href="./assets/dvorak-eir-analysis.jpg" target="_blank"><img src="./assets/dvorak-eir-analysis.jpg" alt="德沃夏克增强红外完整分析流程"></a><div><span>03 · 完整 EIR 流程</span><h4>从定位中心到 DT、MET、PT 与 CI</h4><p>先确定云系中心与主导云型，再求资料 T 数（DT）、模式期望 T 数（MET）和云型 T 数（PT），最后应用变化率约束得到最终 T 数与当前强度（CI）。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info.html" target="_blank" rel="noopener">查看 CIMSS ADT 专业说明 ↗</a></div></article>
+        </div>
+      </section>
+    </section>
+
+    <footer>
+      网页版仅展示公开来源站的实时与快照资料，不做本地下载。图像版权与再发布规则以 Dapiya、原始卫星数据提供方及当地法律为准。
+    </footer>
+  </main>
+  <script>
+    document.getElementById("appVersion").textContent = "3.8";
+  </script>
+  <script src="./app.js?v=web1.1"></script>
+</body>
+</html>
