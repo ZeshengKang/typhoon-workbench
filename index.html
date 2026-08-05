@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.13">
+  <link rel="stylesheet" href="./style.css?v=web1.14">
 </head>
 <body>
   <script>
@@ -22,7 +22,7 @@
     (function () {
       if (sessionStorage.getItem("vrel")) return;
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
-        if (v && v.v && v.v !== "web1.13") {
+        if (v && v.v && v.v !== "web1.14") {
           sessionStorage.setItem("vrel", "1");
           location.reload();
         }
@@ -37,7 +37,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.13</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.14</span></div>
       </div>
     </header>
 
@@ -355,6 +355,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.13"></script>
+  <script src="./app.js?v=web1.14"></script>
 </body>
 </html>
