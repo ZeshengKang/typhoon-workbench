@@ -97,14 +97,22 @@ const weathernerdsHistoryCache = {};
 /* ------------------------- 基础工具 ------------------------- */
 
 async function fetchText(url, timeout = 15000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeout);
+  let controller = null;
+  let timer = null;
   try {
-    const response = await fetch(url, { signal: controller.signal, cache: "no-store" });
+    controller = new AbortController();
+    timer = setTimeout(() => controller.abort(), timeout);
+  } catch (error) {
+    controller = null;
+  }
+  try {
+    const options = { cache: "no-store" };
+    if (controller) options.signal = controller.signal;
+    const response = await fetch(url, options);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return await response.text();
   } finally {
-    clearTimeout(timer);
+    if (timer) clearTimeout(timer);
   }
 }
 
@@ -1451,7 +1459,10 @@ async function loadWpSituation({ force = false } = {}) {
       $("wpLiveState").classList.add("stale");
       $("wpLiveState").lastChild.textContent = " 暂时无法更新";
       $("wpSituationEmpty").querySelector("strong").textContent = "西太平洋热带气旋资料读取失败";
-      $("wpSituationEmpty").querySelector("span").textContent = "请检查网络后稍后自动重试。";
+      const scriptError = (window.__webErrors || [])[0];
+      $("wpSituationEmpty").querySelector("span").textContent = scriptError
+        ? `脚本提示：${scriptError}`
+        : "请检查网络后稍后自动重试。";
     } else {
       renderWpDashboard(buildDashboard(storms, cma));
     }
@@ -1755,6 +1766,12 @@ function bindEvents() {
 }
 
 function boot() {
+  window.__webErrors = [];
+  window.addEventListener("error", (event) => {
+    if (window.__webErrors.length < 5) {
+      window.__webErrors.push(event.message || String(event.error || "脚本错误"));
+    }
+  });
   bindEvents();
   const dataDetails = $("wpDataDetails");
   if (dataDetails && window.matchMedia("(max-width: 760px)").matches) {
