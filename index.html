@@ -14,13 +14,15 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.18">
+  <link rel="preconnect" href="https://olorin.tropicaltidbits.com">
+  <link rel="preconnect" href="https://www.metoc.navy.mil">
+  <link rel="stylesheet" href="./style.css?v=web1.19">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.18";
+      var CURRENT = "web1.19";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -46,7 +48,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.18</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.19</span></div>
       </div>
     </header>
 
@@ -645,6 +647,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.18"></script>
+  <script src="./app.js?v=web1.19"></script>
 </body>
 </html>
