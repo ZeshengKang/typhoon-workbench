@@ -16,13 +16,16 @@
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
   <link rel="preconnect" href="https://olorin.tropicaltidbits.com">
   <link rel="preconnect" href="https://www.metoc.navy.mil">
-  <link rel="stylesheet" href="./style.css?v=web1.20">
+  <link rel="preconnect" href="https://webst01.is.autonavi.com">
+  <link rel="preconnect" href="https://server.arcgisonline.com">
+  <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
+  <link rel="stylesheet" href="./style.css?v=web1.21">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.20";
+      var CURRENT = "web1.21";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -48,7 +51,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.20</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.21</span></div>
       </div>
     </header>
 
@@ -86,6 +89,21 @@
           <span id="wpTimelineStart">—</span>
           <span id="wpTimelineEnd">—</span>
         </div>
+      </div>
+
+      <div id="wpTrackMapBar" class="track-map-bar" hidden>
+        <div class="track-map-head">
+          <div>
+            <strong>路径定位地图</strong>
+            <span id="wpTrackMapMeta">卫星影像 · 蓝线为 CMA 路径 · 随时间轴联动</span>
+          </div>
+          <div class="track-map-layers">
+            <button type="button" data-layer="amap" class="active">卫星</button>
+            <button type="button" data-layer="esri">Esri</button>
+            <button type="button" data-layer="osm">街道</button>
+          </div>
+        </div>
+        <div id="wpTrackMap"></div>
       </div>
 
       <div id="wpSituationBody" class="situation-body" hidden>
@@ -627,6 +645,7 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
+  <script src="./assets/leaflet/leaflet.min.js"></script>
   <script>
     // 旧版浏览器兜底：Promise.allSettled 缺失时补上；并显示脚本错误便于排查
     if (typeof Promise !== "undefined" && !Promise.allSettled) {
@@ -647,6 +666,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.20"></script>
+  <script src="./app.js?v=web1.21"></script>
 </body>
 </html>
