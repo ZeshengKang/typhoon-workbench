@@ -880,11 +880,14 @@ function renderIntensityChart(track, selectedDate = null) {
     points = points.filter((p) => (p.time || "").slice(0, 5) <= monthDay);
   }
   if (points.length < 2) {
-    svg.hidden = true;
+    svg.style.display = "none";
+    svg.setAttribute("hidden", "");
     if (fallback) fallback.hidden = false;
     return;
   }
-  svg.hidden = false;
+  // SVG 的 hidden 属性在不同内核里反射行为不一致，用显式 style + 移除属性来显示
+  svg.style.display = "block";
+  svg.removeAttribute("hidden");
   if (fallback) fallback.hidden = true;
   const W = 350;
   const H = 260;
