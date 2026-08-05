@@ -1552,7 +1552,7 @@ function initTrackMap() {
     }, 10000);
   };
   trackMap.on("dragend zoomend", () => {
-    if (trackMap._autoResetting) return;
+    if (trackMap._autoResetting || trackMap._programmatic) return;
     scheduleReset();
   });
 }
@@ -1603,14 +1603,23 @@ function updateTrackMap(storm, selectedDate) {
   if (meta) {
     meta.textContent = "蓝线 = CMA 实况路径 · 橙虚线 = CMA 官方预报 · 气泡为当前数值";
   }
+  if (trackMap._fitTimer) clearTimeout(trackMap._fitTimer);
+  if (trackMap._resetTimer) clearTimeout(trackMap._resetTimer);
   if (selectedDate) {
-    if (latlngs.length >= 2) {
-      trackMap.fitBounds(L.latLngBounds(latlngs).pad(0.35), {
-        maxZoom: 7
-      });
-    } else if (last) {
-      trackMap.setView(last, 5);
-    }
+    trackMap._fitTimer = setTimeout(() => {
+      if (!trackMap) return;
+      trackMap._programmatic = true;
+      if (latlngs.length >= 2) {
+        trackMap.fitBounds(L.latLngBounds(latlngs).pad(0.35), {
+          maxZoom: 7
+        });
+      } else if (last) {
+        trackMap.setView(last, 5);
+      }
+      setTimeout(() => {
+        trackMap._programmatic = false;
+      }, 800);
+    }, 450);
   } else if (last) {
     let zoom = 5;
     try {
@@ -1622,7 +1631,11 @@ function updateTrackMap(storm, selectedDate) {
     } catch (error) {
       zoom = 5;
     }
+    trackMap._programmatic = true;
     trackMap.setView(last, zoom);
+    setTimeout(() => {
+      trackMap._programmatic = false;
+    }, 800);
   }
   setTimeout(() => {
     if (trackMap) trackMap.invalidateSize();
