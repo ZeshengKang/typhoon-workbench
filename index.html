@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.4">
+  <link rel="stylesheet" href="./style.css?v=web1.5">
 </head>
 <body>
   <main class="shell">
@@ -75,7 +75,16 @@
             </div>
           </div>
           <details id="wpDataDetails" class="data-details" open>
-            <summary><span id="wpDataSummary">CMA 数值</span><i>展开 / 收起</i></summary>
+            <summary>
+              <span class="mobile-stats">
+                <span><b>CMA 最大风力</b><em id="msWind">—</em></span>
+                <span><b>CMA 强度</b><em id="msLevel">—</em></span>
+                <span><b>中心气压</b><em id="msPressure">—</em></span>
+                <span><b>中心位置</b><em id="msLocation">—</em></span>
+                <span><b>JTWC 风速</b><em id="msJtwc">—</em></span>
+                <span class="ms-more"><b>全部数据</b><em></em></span>
+              </span>
+            </summary>
             <dl class="storm-data-list">
               <div class="data-row-primary"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
               <div><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
@@ -332,6 +341,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.4"></script>
+  <script src="./app.js?v=web1.5"></script>
 </body>
 </html>
