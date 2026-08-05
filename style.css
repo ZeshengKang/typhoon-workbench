@@ -137,7 +137,7 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .media-section-title > div > span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 11px; font-weight: 900; }
 .media-section-title h3 { margin: 0; font-size: 21px; letter-spacing: -.015em; }
 .media-section-title p { margin: 0; color: var(--muted); font-size: 13px; }
-.core-observation-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: auto auto; gap: 12px; align-items: stretch; }
+.core-observation-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto; gap: 12px; align-items: stretch; }
 .media-card, .environment-card { min-width: 0; padding: 10px; border: 1px solid #d5ddda; border-radius: 13px; background: rgba(255,255,255,.9); box-shadow: 0 8px 22px rgba(33,47,54,.045); }
 .media-card header, .environment-card header { display: flex; justify-content: space-between; gap: 10px; align-items: center; min-height: 30px; margin-bottom: 8px; }
 .media-card header > div, .environment-card header > div { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; min-width: 0; }
@@ -145,11 +145,12 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .media-card header span, .environment-card header span { color: var(--muted); font-size: 12px; }
 .anim-badge { flex: 0 0 auto; padding: 2px 8px; border-radius: 99px; background: #e6f2ee; color: var(--teal-dark); font-size: 11px; font-weight: 800; }
 .environment-card header b { padding: 4px 8px; border-radius: 99px; background: #e6f2ee; color: var(--teal-dark); font-size: 11px; }
-.ai-vis-card { grid-column: span 3; grid-row: 1; }
-.bw-card { grid-column: span 3; grid-row: 1; }
-.infrared-card { grid-column: span 2; grid-row: 2; }
-.bd-card { grid-column: span 2; grid-row: 2; }
-.intensity-card { grid-column: span 2; grid-row: 2; }
+.ai-vis-card { grid-column: span 2; grid-row: 1; }
+.bw-card { grid-column: span 2; grid-row: 1; }
+.infrared-card { grid-column: span 1; grid-row: 2; }
+.bd-card { grid-column: span 1; grid-row: 2; }
+.pmr-card { grid-column: span 1; grid-row: 2; }
+.intensity-card { grid-column: span 1; grid-row: 2; }
 .media-stage, .environment-stage { position: relative; display: grid; place-items: center; width: 100%; min-height: 190px; overflow: hidden; border: 1px solid #dfe5e2; border-radius: 10px; background: #fff; }
 .media-stage.image-ready { min-height: 0; }
 .media-stage img, .environment-stage img { display: block; grid-area: 1 / 1; width: 100%; height: auto; min-width: 0; background: #fff; }
@@ -160,7 +161,7 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .ai-vis-card .media-stage, .bw-card .media-stage { height: 480px; border: none; background: transparent; }
 .ai-vis-card, .bw-card { padding: 8px 6px 4px; border: none; box-shadow: none; background: transparent; }
 .ai-vis-card header, .bw-card header { margin-bottom: 6px; }
-.infrared-card .media-stage, .bd-card .media-stage { height: 260px; }
+.infrared-card .media-stage, .bd-card .media-stage, .pmr-card .media-stage { height: 260px; }
 .intensity-stage { height: 260px; border: none; background: #10272d; }
 .intensity-stage svg { display: block; width: 100%; height: 100%; }
 .environment-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
@@ -445,7 +446,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .media-section-title h3 { font-size: 18px; }
   .media-section-title p { font-size: 11px; }
   .core-observation-grid, .environment-grid { grid-template-columns: 1fr; }
-  .ai-vis-card, .infrared-card, .bw-card, .bd-card, .intensity-card, .environment-card.environment-full { grid-column: auto; grid-row: auto; }
+  .ai-vis-card, .infrared-card, .bw-card, .bd-card, .pmr-card, .intensity-card, .environment-card.environment-full { grid-column: auto; grid-row: auto; }
   /* 图像：按自身比例放大铺满，深色底避免白边 */
   .core-observation-grid .media-stage { height: auto; aspect-ratio: 1 / 1; min-height: 0; background: #0e1c20; }
   .core-observation-grid .infrared-card .media-stage { aspect-ratio: 4 / 3; }
