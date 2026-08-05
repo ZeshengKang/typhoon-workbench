@@ -573,3 +573,43 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 /* Toast 提示 */
 #toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); z-index: 9999; max-width: min(90vw, 480px); padding: 12px 18px; border-radius: 12px; background: rgba(15,46,54,.96); color: #fff; font-size: 14px; line-height: 1.5; box-shadow: 0 10px 30px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* 图片加载中浮层：转圈 + 闪烁点点 */
+.media-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  background: rgba(8, 18, 21, .62);
+  color: #cdeae3;
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+}
+.media-loading::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid rgba(130, 221, 197, .22);
+  border-top-color: #82ddc5;
+  animation: mediaSpin .8s linear infinite;
+}
+.media-loading b i {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .2;
+  animation: mediaDot 1.2s ease-in-out infinite;
+  vertical-align: middle;
+}
+.media-loading b i:nth-child(2) { animation-delay: .2s; }
+.media-loading b i:nth-child(3) { animation-delay: .4s; }
+@keyframes mediaSpin { to { transform: rotate(360deg); } }
+@keyframes mediaDot { 0%, 60%, 100% { opacity: .2; } 30% { opacity: 1; } }
