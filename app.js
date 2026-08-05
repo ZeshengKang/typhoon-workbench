@@ -1509,12 +1509,26 @@ function updateTrackMap(storm, selectedDate) {
   if (meta) {
     meta.textContent = "蓝线 = CMA 实况路径 · 橙虚线 = CMA 官方预报 · 气泡为当前数值";
   }
-  if (latlngs.length >= 2) {
-    trackMap.fitBounds(L.latLngBounds(latlngs).pad(0.35), {
-      maxZoom: 7
-    });
+  if (selectedDate) {
+    if (latlngs.length >= 2) {
+      trackMap.fitBounds(L.latLngBounds(latlngs).pad(0.35), {
+        maxZoom: 7
+      });
+    } else if (last) {
+      trackMap.setView(last, 5);
+    }
   } else if (last) {
-    trackMap.setView(last, 5);
+    let zoom = 5;
+    try {
+      const bounds = L.latLngBounds(latlngs);
+      const fit = trackMap.getBoundsZoom(bounds.pad(0.35), false);
+      if (Number.isFinite(fit)) {
+        zoom = Math.min(Math.max(Math.round(fit) + 1, 4), 7);
+      }
+    } catch (error) {
+      zoom = 5;
+    }
+    trackMap.setView(last, zoom);
   }
   setTimeout(() => {
     if (trackMap) trackMap.invalidateSize();
