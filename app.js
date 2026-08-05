@@ -182,6 +182,18 @@ function probeFirst(candidates, timeout = 8000) {
     });
   });
 }
+function showToast(message) {
+  let toast = $("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove("show"), 3500);
+}
 async function loadSnapshotStorms(force = false) {
   try {
     snapshotStorms = await fetchJSON(SNAPSHOT_STORMS + (force ? `?t=${Date.now()}` : ""));
@@ -1473,6 +1485,23 @@ async function loadWpSituation({
       $("wpSituationEmpty").querySelector("span").textContent = scriptError ? `脚本提示：${scriptError}` : "请检查网络后稍后自动重试。";
     } else {
       renderWpDashboard(buildDashboard(storms, cma));
+      const stormSelect = $("storm");
+      if (stormSelect && storms.length) {
+        stormSelect.innerHTML = "";
+        for (const groupName of ["Mesoscale", "Floater"]) {
+          const list = storms.filter(item => item.group === groupName);
+          if (!list.length) continue;
+          const group = document.createElement("optgroup");
+          group.label = groupName;
+          list.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.textContent = item.name;
+            group.appendChild(option);
+          });
+          stormSelect.appendChild(group);
+        }
+      }
     }
   } catch (error) {
     $("wpLiveState").classList.add("stale");
@@ -1722,6 +1751,17 @@ function renderGlossary(query = "") {
   if (!container.children.length) container.innerHTML = "<p class='empty-result'>没有匹配的术语。</p>";
 }
 function bindEvents() {
+  const downloadPage = $("downloadPage");
+  if (downloadPage) {
+    downloadPage.addEventListener("click", event => {
+      if (event.target.closest(".banner-download")) return;
+      const control = event.target.closest("button");
+      if (control) {
+        event.preventDefault();
+        showToast("网页版仅展示界面：下载、预览与视频合成请使用本地软件，见上方公告下载链接。");
+      }
+    });
+  }
   $("refreshWpSituation").addEventListener("click", () => loadWpSituation({
     force: true
   }));
