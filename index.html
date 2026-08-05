@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.3">
+  <link rel="stylesheet" href="./style.css?v=web1.4">
 </head>
 <body>
   <main class="shell">
@@ -74,20 +74,23 @@
               <span id="wpOperationalLevel" class="operational-level">—</span>
             </div>
           </div>
-          <dl class="storm-data-list">
-            <div class="data-row-primary"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
-            <div><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
-            <div><dt>JTWC 最大风速</dt><dd><strong id="wpJtwcWind">—</strong><span id="wpJtwcWindMps">—</span></dd></div>
-            <div><dt>中心气压</dt><dd><strong id="wpPressure">—</strong><span id="wpPressureSource">—</span></dd></div>
-            <div><dt>中心位置</dt><dd><strong id="wpLocation">—</strong><span id="wpLocationSource">—</span></dd></div>
-            <div><dt>最大风速半径</dt><dd><strong id="wpRmw">—</strong><span id="wpRmwKm">—</span></dd></div>
-            <div class="adt-row"><dt>ADT 当前强度</dt><dd><strong id="wpAdtCi">—</strong></dd></div>
-            <div class="adt-row"><dt>Final T</dt><dd><strong id="wpFinalT">—</strong></dd></div>
-            <div class="adt-row"><dt>风眼 / 中心温度</dt><dd><strong id="wpEyeTemp">—</strong></dd></div>
-            <div class="adt-row"><dt>云区温度</dt><dd><strong id="wpCloudTemp">—</strong></dd></div>
-            <div class="adt-row"><dt>ADT 云型</dt><dd><strong id="wpScene">—</strong></dd></div>
-            <div class="adt-row"><dt>ADT 分析时次</dt><dd><strong id="wpAdtTime">—</strong></dd></div>
-          </dl>
+          <details id="wpDataDetails" class="data-details" open>
+            <summary><span id="wpDataSummary">CMA 数值</span><i>展开 / 收起</i></summary>
+            <dl class="storm-data-list">
+              <div class="data-row-primary"><dt>CMA 最大风力</dt><dd><strong id="wpCmaWind">—</strong><span id="wpCmaForce" hidden></span></dd></div>
+              <div><dt>CMA 强度等级</dt><dd><strong id="wpCmaLevel">—</strong></dd></div>
+              <div><dt>JTWC 最大风速</dt><dd><strong id="wpJtwcWind">—</strong><span id="wpJtwcWindMps">—</span></dd></div>
+              <div><dt>中心气压</dt><dd><strong id="wpPressure">—</strong><span id="wpPressureSource">—</span></dd></div>
+              <div><dt>中心位置</dt><dd><strong id="wpLocation">—</strong><span id="wpLocationSource">—</span></dd></div>
+              <div><dt>最大风速半径</dt><dd><strong id="wpRmw">—</strong><span id="wpRmwKm">—</span></dd></div>
+              <div class="adt-row"><dt>ADT 当前强度</dt><dd><strong id="wpAdtCi">—</strong></dd></div>
+              <div class="adt-row"><dt>Final T</dt><dd><strong id="wpFinalT">—</strong></dd></div>
+              <div class="adt-row"><dt>风眼 / 中心温度</dt><dd><strong id="wpEyeTemp">—</strong></dd></div>
+              <div class="adt-row"><dt>云区温度</dt><dd><strong id="wpCloudTemp">—</strong></dd></div>
+              <div class="adt-row"><dt>ADT 云型</dt><dd><strong id="wpScene">—</strong></dd></div>
+              <div class="adt-row"><dt>ADT 分析时次</dt><dd><strong id="wpAdtTime">—</strong></dd></div>
+            </dl>
+          </details>
           <div class="overview-actions">
             <a id="openWpSource" class="button ghost" href="https://www.tropicaltidbits.com/storminfo/" target="_blank" rel="noopener">查看来源站 ↗</a>
           </div>
@@ -329,6 +332,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.3"></script>
+  <script src="./app.js?v=web1.4"></script>
 </body>
 </html>
