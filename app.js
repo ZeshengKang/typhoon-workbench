@@ -714,7 +714,7 @@ async function loadDapiyaAnimated(imageId, fallbackId, stormId, layer, loadingId
     let active = 0;
     const pump = () => {
       if (image.dataset.animToken !== token) return;
-      while (active < 3 && queue.length) {
+      while (active < 2 && queue.length) {
         const item = queue.shift();
         active++;
         imageExists(item.frame.url).then(ok => {
@@ -1034,6 +1034,7 @@ async function loadPmrImage(stormId, selectedDate) {
     fallback.hidden = false;
     setStageLoading(stage, false);
   };
+  image.fetchPriority = "high";
   image.src = frame.url;
   if ($("wpPmrSource")) $("wpPmrSource").href = frame.url;
   if (meta) meta.textContent = frame.label || formatFrameTime(frame.time);
