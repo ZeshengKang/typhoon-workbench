@@ -14,17 +14,26 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.14">
+  <link rel="stylesheet" href="./style.css?v=web1.15">
 </head>
 <body>
   <script>
-    // 版本自检：发现线上有新版本时自动重载一次，避免浏览器一直用旧缓存
+    // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      if (sessionStorage.getItem("vrel")) return;
+      var CURRENT = "web1.15";
+      var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
-        if (v && v.v && v.v !== "web1.14") {
-          sessionStorage.setItem("vrel", "1");
-          location.reload();
+        if (v && v.v && v.v !== CURRENT) {
+          if (attempts < 3) {
+            sessionStorage.setItem("vrel", String(attempts + 1));
+            if (location.search.indexOf("fresh=") === -1) {
+              location.replace(location.pathname + "?fresh=" + Date.now());
+            } else {
+              location.reload();
+            }
+          }
+        } else if (location.search.indexOf("fresh=") !== -1) {
+          history.replaceState(null, "", location.pathname);
         }
       }).catch(function () {});
     })();
@@ -37,7 +46,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.14</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.15</span></div>
       </div>
     </header>
 
@@ -355,6 +364,26 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.14"></script>
+  <script>
+    // 旧版浏览器兜底：Promise.allSettled 缺失时补上；并显示脚本错误便于排查
+    if (typeof Promise !== "undefined" && !Promise.allSettled) {
+      Promise.allSettled = function (promises) {
+        return Promise.all(promises.map(function (p) {
+          return Promise.resolve(p).then(
+            function (value) { return { status: "fulfilled", value: value }; },
+            function (reason) { return { status: "rejected", reason: reason }; }
+          );
+        }));
+      };
+    }
+    window.addEventListener("error", function (e) {
+      var el = document.getElementById("wpSituationEmpty");
+      if (el && e && e.message && e.message.indexOf("Script error") === -1) {
+        var s = el.querySelector("span");
+        if (s) s.textContent = "页面脚本错误：" + e.message;
+      }
+    });
+  </script>
+  <script src="./app.js?v=web1.15"></script>
 </body>
 </html>
