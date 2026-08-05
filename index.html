@@ -14,13 +14,13 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.15">
+  <link rel="stylesheet" href="./style.css?v=web1.16">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.15";
+      var CURRENT = "web1.16";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -46,7 +46,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.15</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.16</span></div>
       </div>
     </header>
 
@@ -54,6 +54,7 @@
       <button class="app-tab active" type="button" data-page="analysis">台风云图实时分析</button>
       <button class="app-tab" type="button" data-page="resources">台风资料中心</button>
       <button class="app-tab" type="button" data-page="glossary">术语与德沃夏克</button>
+      <button class="app-tab" type="button" data-page="download">本地软件</button>
     </nav>
 
     <section id="wpSituation" class="wp-situation page-panel page-analysis" aria-labelledby="wpSituationTitle">
@@ -258,6 +259,266 @@
       <span>云图与 CMA 数值实时直连来源站；Tropical Tidbits、CIMSS ADT 等资料由 GitHub Actions 每 15 分钟快照。时间均为 UTC，北京时间 = UTC + 8 小时。</span>
     </section>
 
+    <section id="downloadPage" class="page-panel page-download" hidden>
+      <div class="card banner-download">
+        <p class="eyebrow">DESKTOP APP · 本地版</p>
+        <h2>下载本地软件</h2>
+        <p>网页版仅展示界面，不提供在线下载与视频合成。需要完整功能请下载本地软件：</p>
+        <div class="download-link">
+          <strong>『来自123云盘用户的分享』路人王老康 BG5VJM 台风云图分析工具-v3.8.zip</strong>
+          <a href="https://1826369355.share.123pan.cn/123pan/xApRjv-ADSkh?pwd=8888#" target="_blank" rel="noopener">https://1826369355.share.123pan.cn/123pan/xApRjv-ADSkh?pwd=8888#</a>
+          <span>提取码：<b>8888</b></span>
+        </div>
+      </div>
+
+      <div class="inert-demo">
+        <div class="grid">
+          <section class="card form-card">
+            <div class="section-title">
+              <span>01</span>
+              <div><h2>选择资料</h2><p>当前风暴、图层与时间窗口</p></div>
+            </div>
+
+            <div>
+              <label>当前风暴列表（自动读取）</label>
+              <div class="inline">
+                <select id="storm"><option value="">正在读取 Dapiya…</option></select>
+                <button id="refreshStorms" class="button ghost" type="button">刷新</button>
+              </div>
+            </div>
+            <p id="stormHint" class="field-hint">从 Dapiya 自动读取当前活动风暴。</p>
+
+            <div class="two-col">
+              <div>
+                <label for="layer">云图类型</label>
+                <select id="layer">
+                  <optgroup label="可见光与 RGB">
+                    <option value="VIS" selected>VIS</option>
+                    <option value="EVIS">EVIS</option>
+                    <option value="RGB">RGB</option>
+                    <option value="TRUECOLOR">TRUE COLOR</option>
+                    <option value="SANDWICH">SANDWICH</option>
+                    <option value="AIRMASS">AIRMASS</option>
+                  </optgroup>
+                  <optgroup label="红外增强">
+                    <option value="BD">IR-BD</option>
+                    <option value="BDL">IR-BDL</option>
+                    <option value="BW">IR-BW</option>
+                    <option value="CC">IR-CC</option>
+                    <option value="RAMMB">IR-RAMMB</option>
+                    <option value="OTT">IR-OTT</option>
+                    <option value="RBTOP">IR-RBTOP</option>
+                    <option value="CA">IR-CA</option>
+                    <option value="DIAS">IR-DIAS</option>
+                  </optgroup>
+                  <optgroup label="水汽">
+                    <option value="AWV">AVG-WV</option>
+                    <option value="WV">WV-SSD</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div>
+                <label for="limit">列表读取上限</label>
+                <input id="limit" type="number" min="1" max="200000" value="100000">
+              </div>
+            </div>
+
+            <section class="preview-panel" aria-label="云图快速预览">
+              <div class="preview-head">
+                <div>
+                  <strong>云图快速预览</strong>
+                  <span id="previewRange">选择风暴后读取可用时段</span>
+                  <span class="auto-update-note"><i></i> 自动更新：30 秒</span>
+                </div>
+                <button id="refreshPreview" class="button ghost" type="button">刷新预览</button>
+              </div>
+              <div class="preview-stage">
+                <div id="previewPlaceholder">网页版仅展示：预览需在本地软件中使用</div>
+                <img id="previewImage" alt="当前卫星云图" hidden>
+              </div>
+              <div class="preview-time-row">
+                <button id="previewPrev" class="frame-nav" type="button" title="上一张">←</button>
+                <strong id="previewTime">—</strong>
+                <button id="previewNext" class="frame-nav" type="button" title="下一张">→</button>
+              </div>
+              <input id="previewTimeline" class="preview-slider" type="range" min="0" max="0" value="0" disabled>
+              <div class="preview-scale"><span id="previewStart">—</span><span id="previewEnd">—</span></div>
+              <div class="preview-jump">
+                <span>查看距最新</span>
+                <input id="previewOffset" type="number" min="0" step="1" value="120">
+                <select id="previewUnit"><option value="minutes">分钟前</option><option value="hours">小时前</option></select>
+                <button id="previewJump" class="button ghost" type="button">跳转</button>
+                <button id="previewLatest" class="button ghost" type="button">最新一张</button>
+              </div>
+              <p id="previewMessage" class="field-hint">网页版仅展示界面，不会实际下载或预览图片。</p>
+            </section>
+
+            <div class="two-col">
+              <div>
+                <label for="start">开始时间（UTC）</label>
+                <input id="start" type="datetime-local" step="150">
+              </div>
+              <div>
+                <label for="end">结束时间（UTC）</label>
+                <input id="end" type="datetime-local" step="150">
+              </div>
+            </div>
+            <div class="quick-range">
+              <button type="button" data-hours="24">最近 24 小时</button>
+              <button type="button" data-hours="72">最近 3 天</button>
+              <button type="button" data-hours="168">最近 7 天</button>
+              <button type="button" data-hours="720">最近 30 天</button>
+              <button type="button" data-hours="0">全部可用</button>
+            </div>
+
+            <div class="section-title compact">
+              <span>02</span>
+              <div><h2>下载与输出</h2><p>图片下载和视频参数相互独立</p></div>
+            </div>
+
+            <label for="name">输出名称</label>
+            <input id="name" type="text" value="DOLPHIN_12W_BD" maxlength="100">
+
+            <label for="outputRoot">保存位置</label>
+            <div class="inline">
+              <input id="outputRoot" type="text" placeholder="选择 C 盘或 D 盘中的文件夹">
+              <button id="browseOutput" class="button ghost" type="button">选择目录</button>
+            </div>
+            <p class="field-hint">所选位置下会自动创建 <code>download</code> 原图目录和 <code>video</code> 视频目录。</p>
+
+            <div class="download-settings">
+              <div>
+                <label for="workers">下载 Workers</label>
+                <input id="workers" type="number" min="1" max="64" step="1" value="20">
+              </div>
+              <p><strong>Workers = 同时下载多少张图片。</strong>20 表示最多并行处理 20 张；网络不稳定或网站限速时请降低。</p>
+            </div>
+
+            <h3 class="subheading">视频参数（“仅下载图片”不会使用）</h3>
+            <div class="three-col">
+              <div>
+                <label for="format">格式</label>
+                <select id="format"><option value="mp4">MP4</option><option value="gif">GIF</option></select>
+              </div>
+              <div>
+                <label for="interval">每帧间隔（秒）</label>
+                <input id="interval" type="number" max="60" step="any" value="0.1">
+              </div>
+              <div>
+                <label for="skipEvery">Skip Every</label>
+                <input id="skipEvery" type="number" min="0" max="10000" step="1" value="0">
+              </div>
+            </div>
+            <p class="field-hint">不设置固定下限，只要求大于 0：0.1 秒 = 10 帧/秒；Skip Every 0 = 不跳帧。</p>
+
+            <label class="check-row">
+              <input id="deleteImages" type="checkbox">
+              <span>视频合成成功后删除本任务的原始下载图片</span>
+            </label>
+
+            <div class="actions">
+              <button id="downloadOnly" class="button secondary" type="button">仅下载图片</button>
+              <button id="startJob" class="button primary" type="button">开始下载并合成</button>
+              <button id="pauseEncode" class="button warning" type="button" disabled>暂停下载并直接合成</button>
+              <button id="cancelJob" class="button danger" type="button" disabled>取消</button>
+            </div>
+          </section>
+
+          <aside class="side-stack">
+            <section class="card status-card">
+              <div class="section-title">
+                <span>03</span>
+                <div><h2>任务状态</h2><p id="phaseLabel">等待任务</p></div>
+              </div>
+              <div class="progress-wrap">
+                <div id="progressBar" class="progress-bar"></div>
+              </div>
+              <div class="progress-meta">
+                <strong id="percent">0%</strong>
+                <span id="counter">0 / 0 帧</span>
+              </div>
+              <p id="message" class="message">网页版展示界面，任务需在本地软件中运行。</p>
+              <dl>
+                <div><dt>已存在</dt><dd id="skipped">0</dd></div>
+                <div><dt>失败</dt><dd id="failed">0</dd></div>
+                <div><dt>合成帧数</dt><dd id="encodedFrames">0</dd></div>
+                <div><dt>输出文件</dt><dd id="output">—</dd></div>
+              </dl>
+              <div class="stack-actions">
+                <button id="resumeEncode" class="button primary" type="button" hidden>继续合成</button>
+                <button id="openOutput" class="button ghost" type="button">打开输出文件夹</button>
+                <button id="openVideo" class="button ghost" type="button" disabled>打开视频</button>
+              </div>
+            </section>
+
+            <section class="card ffmpeg-card">
+              <div class="ffmpeg-head">
+                <div><h3>FFmpeg</h3><p>用于流式合成 MP4 / GIF</p></div>
+                <span id="ffmpegBadge" class="badge">检测中</span>
+              </div>
+              <div class="mini-progress"><div id="ffmpegProgress"></div></div>
+              <p id="ffmpegMessage">正在检测…</p>
+              <button id="installFfmpeg" class="button ghost full" type="button">安装 FFmpeg</button>
+            </section>
+
+            <section class="card tips">
+              <h3>长序列建议</h3>
+              <ul>
+                <li>先用短片段确认 0.1 秒间隔和跳帧效果。</li>
+                <li>Workers 是并行下载图片的数量，默认 20；网络不稳定时可降低。</li>
+                <li>随时可“暂停下载并直接合成”现有完整图片。</li>
+                <li>只保留视频时，可勾选合成成功后删除原图。</li>
+              </ul>
+            </section>
+          </aside>
+        </div>
+
+        <section class="card reencode-card">
+          <div class="section-title">
+            <span>04</span>
+            <div><h2>已有图片重新合成</h2><p>不联网、不重新下载；可反复修改速度、跳帧和格式</p></div>
+          </div>
+          <div class="local-encode-toolbar">
+            <button id="addImageFolder" class="button ghost" type="button">添加图片文件夹</button>
+            <button id="reverseImageFolders" class="button ghost" type="button" disabled>反向排列</button>
+            <span>支持 PNG、JPG、WEBP；多个目录按列表顺序连续合成。</span>
+          </div>
+          <div id="imageFolderList" class="merge-list"><p>尚未选择图片文件夹。可以选择本工具以前的 download 任务目录，也可以选择其他图片目录。</p></div>
+          <div class="four-col local-video-options">
+            <div><label for="localFormat">格式</label><select id="localFormat"><option value="mp4">MP4</option><option value="gif">GIF</option></select></div>
+            <div><label for="localInterval">每帧间隔（秒）</label><input id="localInterval" type="number" max="60" step="any" value="0.1"></div>
+            <div><label for="localSkip">Skip Every</label><input id="localSkip" type="number" min="0" max="10000" step="1" value="0"></div>
+            <div><label for="localName">输出名称</label><input id="localName" type="text" value="RECOMPOSED_VIDEO" maxlength="100"></div>
+          </div>
+          <p class="field-hint">每帧间隔不设固定下限，但必须大于 0。原图片不会被修改或删除。Skip Every 1 表示每隔一张取一张；输出写入当前“保存位置”的 video 目录。</p>
+          <div class="actions">
+            <button id="startLocalEncode" class="button primary" type="button" disabled>用已有图片合成视频</button>
+            <button id="clearImageFolders" class="button ghost" type="button" disabled>清空目录列表</button>
+          </div>
+        </section>
+
+        <section class="card merge-card">
+          <div class="section-title">
+            <span>05</span>
+            <div><h2>视频拼接</h2><p>先分别导出 VIS、BD、TRUE COLOR 等视频，再按这里的列表顺序合并</p></div>
+          </div>
+          <div class="merge-toolbar">
+            <button id="chooseVideos" class="button ghost" type="button">选择多个视频</button>
+            <button id="reverseVideos" class="button ghost" type="button" disabled>反向排列</button>
+            <label for="mergeName">拼接后名称</label>
+            <input id="mergeName" type="text" value="DOLPHIN_MULTI_LAYER" maxlength="100">
+          </div>
+          <div id="mergeList" class="merge-list"><p>尚未选择视频。至少选择两段；列表从上到下就是播放顺序。</p></div>
+          <div class="actions merge-actions">
+            <button id="startMerge" class="button primary" type="button" disabled>按当前顺序拼接</button>
+            <button id="cancelMerge" class="button danger" type="button" disabled>取消拼接</button>
+            <button id="openMergedVideo" class="button ghost" type="button" disabled>打开拼接视频</button>
+          </div>
+          <p id="mergeMessage" class="message">可使用 ↑ ↓ 调整顺序，也可以反向排列。</p>
+        </section>
+      </div>
+    </section>
+
     <section id="resourcesPage" class="page-panel page-resources" hidden>
       <div class="card resource-hero">
         <div>
@@ -384,6 +645,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.15"></script>
+  <script src="./app.js?v=web1.16"></script>
 </body>
 </html>
