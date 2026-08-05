@@ -1052,8 +1052,12 @@ function preloadTiles(tiles, timeIso, kind) {
 
 async function loadHimawariHistorical(tiles, fallback, kind, date) {
   const timeIso = `${date}T03:00:00Z`;
-  const urls = await preloadTiles(tiles, timeIso, kind);
-  if (urls.some(Boolean)) {
+  let urls = [false, false, false, false];
+  for (let attempt = 0; attempt < 2; attempt++) {
+    urls = await preloadTiles(tiles, timeIso, kind);
+    if (urls.every(Boolean)) break;
+  }
+  if (urls.every(Boolean)) {
     const rows = himawariTileUrls(timeIso, kind);
     tiles[0].src = rows[0][0];
     tiles[1].src = rows[0][1];
@@ -1118,9 +1122,14 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
 
   // 最新一帧优先
   const latestTime = times[times.length - 1];
-  const latestOk = await preloadTiles(tiles, latestTime, kind);
+  let latestOk = [false, false, false, false];
+  for (let attempt = 0; attempt < 3; attempt++) {
+    latestOk = await preloadTiles(tiles, latestTime, kind);
+    if (latestOk.every(Boolean) || tiles[0]?.dataset.animToken !== token) break;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
   if (tiles[0]?.dataset.animToken !== token) return;
-  if (!latestOk.some(Boolean)) {
+  if (!latestOk.every(Boolean)) {
     fallback.hidden = false;
     label.remove();
     return;
@@ -1139,7 +1148,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
       active++;
       preloadTiles(tiles, item.time, kind).then((ok) => {
         active--;
-        if (ok.some(Boolean) && tiles[0]?.dataset.animToken === token) {
+        if (ok.every(Boolean) && tiles[0]?.dataset.animToken === token) {
           player.add(item.time);
         } else if (item.attempts < 2 && tiles[0]?.dataset.animToken === token) {
           item.attempts++;
