@@ -524,7 +524,11 @@ function stopWpAnim(imageId) {
   const image = $(imageId);
   if (image) image.dataset.animToken = String(Date.now() + Math.random());
   if (wpAnimPlayers[imageId]) {
-    wpAnimPlayers[imageId].stop();
+    try {
+      wpAnimPlayers[imageId].stop();
+    } catch (error) {
+      /* 单个播放器异常不能阻断台风切换 */
+    }
     delete wpAnimPlayers[imageId];
   }
   if (wpAnimTimers[imageId]) {
@@ -1095,6 +1099,16 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
       this.index = (this.index + 1) % this.frames.length;
       this.show(this.frames[this.index]);
     },
+    stop() {
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+        delete wpAnimTimers[`himawari${kind}`];
+      }
+      if (label && label.parentNode) {
+        label.parentNode.removeChild(label);
+      }
+    },
   };
   wpAnimPlayers[`himawari${kind}`] = player;
 
@@ -1293,7 +1307,11 @@ function renderWpStorm(stormId, preserveDate = false) {
   const storm = wpDashboard.storms.find((item) => item.id === stormId) || wpDashboard.storms[0];
   if (!preserveDate || wpStormId !== storm.id) {
     wpSelectedDate = null;
-    stopAllAnims();
+    try {
+      stopAllAnims();
+    } catch (error) {
+      /* 动图停止失败不能阻断台风切换 */
+    }
   }
   wpStormId = storm.id;
   document.querySelectorAll(".storm-rank-card").forEach((card) => {
