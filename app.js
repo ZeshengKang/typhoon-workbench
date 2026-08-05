@@ -197,6 +197,10 @@ function showToast(message) {
 function setStageLoading(stage, active) {
   if (!stage) return;
   let overlay = stage.querySelector(".media-loading");
+  if (active) {
+    const img = stage.querySelector("img");
+    if (img && img.naturalWidth > 0) active = false;
+  }
   if (active && !overlay) {
     overlay = document.createElement("div");
     overlay.className = "media-loading";
@@ -204,6 +208,19 @@ function setStageLoading(stage, active) {
     stage.appendChild(overlay);
   }
   if (overlay) overlay.hidden = !active;
+  if (overlay && !overlay._poll) {
+    overlay._poll = setInterval(() => {
+      const img = stage.querySelector("img");
+      if (img && img.naturalWidth > 0) {
+        clearInterval(overlay._poll);
+        overlay._poll = null;
+        overlay.hidden = true;
+      }
+    }, 300);
+  } else if (overlay && !active && overlay._poll) {
+    clearInterval(overlay._poll);
+    overlay._poll = null;
+  }
 }
 async function loadSnapshotStorms(force = false) {
   try {
@@ -611,6 +628,13 @@ function loadPlainImage(image, fallback, url, loading) {
     return;
   }
   image.fetchPriority = "high";
+  image.dataset.retry = "0";
+  setTimeout(() => {
+    if (image.naturalWidth === 0 && !image.complete) {
+      setStageLoading(stage, false);
+      if (fallback.hidden) fallback.hidden = false;
+    }
+  }, 20000);
   image.onload = () => {
     image.hidden = false;
     fallback.hidden = true;
@@ -618,6 +642,13 @@ function loadPlainImage(image, fallback, url, loading) {
     if (stage) stage.classList.add("image-ready");
   };
   image.onerror = () => {
+    if (image.dataset.retry === "0") {
+      image.dataset.retry = "1";
+      setTimeout(() => {
+        image.src = url;
+      }, 2000);
+      return;
+    }
     image.hidden = true;
     fallback.hidden = false;
     setStageLoading(stage, false);
@@ -836,9 +867,9 @@ async function loadModelImage(imageId, fallbackId, sourceId, url) {
   const settle = showFallback => {
     clearTimeout(settledTimer);
     setStageLoading(stage, false);
-    if (showFallback && image.dataset.requestToken === token) fallback.hidden = false;
+    if (showFallback && image.naturalWidth === 0 && image.dataset.requestToken === token) fallback.hidden = false;
   };
-  settledTimer = setTimeout(() => settle(true), 12000);
+  settledTimer = setTimeout(() => settle(true), 20000);
   if (url) {
     image.onload = () => {
       image.hidden = false;
@@ -887,9 +918,9 @@ async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffi
   const settle = showFallback => {
     clearTimeout(settledTimer);
     setStageLoading(stage, false);
-    if (showFallback && image.dataset.requestToken === requestToken) fallback.hidden = false;
+    if (showFallback && image.naturalWidth === 0 && image.dataset.requestToken === requestToken) fallback.hidden = false;
   };
-  settledTimer = setTimeout(() => settle(true), 12000);
+  settledTimer = setTimeout(() => settle(true), 20000);
   fallback.textContent = "该时次暂无数据";
   const cacheKey = `${stormId}:${date}:${suffix}`;
   const applyUrl = url => {
