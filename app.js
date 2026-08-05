@@ -72,7 +72,7 @@ let snapshotSst = null;
 let frameCache = new Map();
 let cmaCache = null;
 const weathernerdsHistoryCache = {};
-async function fetchText(url, timeout = 15000) {
+async function fetchText(url, timeout = 15000, cache = "no-store") {
   let controller = null;
   let timer = null;
   try {
@@ -83,7 +83,7 @@ async function fetchText(url, timeout = 15000) {
   }
   try {
     const options = {
-      cache: "no-store"
+      cache
     };
     if (controller) options.signal = controller.signal;
     const response = await fetch(url, options);
@@ -93,8 +93,8 @@ async function fetchText(url, timeout = 15000) {
     if (timer) clearTimeout(timer);
   }
 }
-async function fetchJSON(url, timeout = 15000) {
-  const text = await fetchText(url, timeout);
+async function fetchJSON(url, timeout = 15000, cache = "no-cache") {
+  const text = await fetchText(url, timeout, cache);
   return JSON.parse(text);
 }
 function stripJsonp(text) {
@@ -410,9 +410,13 @@ function buildDashboard(dapiyaStorms, cmaByEnglish) {
     };
   });
   storms.sort((a, b) => {
-    var _ref, _a$cma$wind_mps, _a$cma, _ref2, _b$cma$wind_mps, _b$cma;
-    const aw = (_ref = (_a$cma$wind_mps = (_a$cma = a.cma) === null || _a$cma === void 0 ? void 0 : _a$cma.wind_mps) !== null && _a$cma$wind_mps !== void 0 ? _a$cma$wind_mps : a.wind_kt) !== null && _ref !== void 0 ? _ref : 0;
-    const bw = (_ref2 = (_b$cma$wind_mps = (_b$cma = b.cma) === null || _b$cma === void 0 ? void 0 : _b$cma.wind_mps) !== null && _b$cma$wind_mps !== void 0 ? _b$cma$wind_mps : b.wind_kt) !== null && _ref2 !== void 0 ? _ref2 : 0;
+    const norm = storm => {
+      var _storm$cma;
+      if (((_storm$cma = storm.cma) === null || _storm$cma === void 0 ? void 0 : _storm$cma.wind_mps) != null) return storm.cma.wind_mps;
+      return storm.wind_kt != null ? storm.wind_kt * 0.514444 : 0;
+    };
+    const aw = norm(a);
+    const bw = norm(b);
     return bw - aw || (a.id < b.id ? -1 : 1);
   });
   return {
@@ -611,6 +615,7 @@ function loadPlainImage(image, fallback, url, loading) {
     image.hidden = false;
     fallback.hidden = true;
     setStageLoading(stage, false);
+    if (stage) stage.classList.add("image-ready");
   };
   image.onerror = () => {
     image.hidden = true;
@@ -827,16 +832,23 @@ async function loadModelImage(imageId, fallbackId, sourceId, url) {
   image.hidden = true;
   fallback.hidden = true;
   setStageLoading(stage, true);
+  let settledTimer = null;
+  const settle = showFallback => {
+    clearTimeout(settledTimer);
+    setStageLoading(stage, false);
+    if (showFallback && image.dataset.requestToken === token) fallback.hidden = false;
+  };
+  settledTimer = setTimeout(() => settle(true), 12000);
   if (url) {
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
-      setStageLoading(stage, false);
+      settle(false);
+      if (stage) stage.classList.add("image-ready");
     };
     image.onerror = () => {
       image.hidden = true;
-      fallback.hidden = false;
-      setStageLoading(stage, false);
+      settle(true);
     };
     image.src = url;
     return;
@@ -849,17 +861,16 @@ async function loadModelImage(imageId, fallbackId, sourceId, url) {
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
-      setStageLoading(stage, false);
+      settle(false);
+      if (stage) stage.classList.add("image-ready");
     };
     image.onerror = () => {
       image.hidden = true;
-      fallback.hidden = false;
-      setStageLoading(stage, false);
+      settle(true);
     };
     image.src = found;
   } else {
-    fallback.hidden = false;
-    setStageLoading(stage, false);
+    settle(true);
   }
 }
 async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffix) {
@@ -872,26 +883,32 @@ async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffi
   image.hidden = true;
   fallback.hidden = true;
   setStageLoading(stage, true);
+  let settledTimer = null;
+  const settle = showFallback => {
+    clearTimeout(settledTimer);
+    setStageLoading(stage, false);
+    if (showFallback && image.dataset.requestToken === requestToken) fallback.hidden = false;
+  };
+  settledTimer = setTimeout(() => settle(true), 12000);
   fallback.textContent = "该时次暂无数据";
   const cacheKey = `${stormId}:${date}:${suffix}`;
   const applyUrl = url => {
     if (image.dataset.requestToken !== requestToken) return;
     if (!url) {
       image.hidden = true;
-      fallback.hidden = false;
-      setStageLoading(stage, false);
+      settle(true);
       return;
     }
     weathernerdsHistoryCache[cacheKey] = url;
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
-      setStageLoading(stage, false);
+      settle(false);
+      if (stage) stage.classList.add("image-ready");
     };
     image.onerror = () => {
       image.hidden = true;
-      fallback.hidden = false;
-      setStageLoading(stage, false);
+      settle(true);
     };
     image.src = url;
   };
@@ -1233,15 +1250,34 @@ function renderEnvironmentGrid() {
     fallback.className = "mini-fallback";
     fallback.textContent = "图片暂时无法载入";
     fallback.hidden = true;
-    setStageLoading(stage, true);
+    let io = null;
+    const hideLoading = () => {
+      setStageLoading(stage, false);
+      if (io) io.disconnect();
+    };
+    if (product.id === "sst") {
+      setStageLoading(stage, true);
+    } else if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !image.complete) setStageLoading(stage, true);
+        });
+      }, {
+        rootMargin: "300px"
+      });
+      io.observe(stage);
+    } else {
+      setStageLoading(stage, true);
+    }
     image.onload = () => {
       fallback.hidden = true;
-      setStageLoading(stage, false);
+      hideLoading();
+      stage.classList.add("image-ready");
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
-      setStageLoading(stage, false);
+      hideLoading();
     };
     stage.append(image, fallback);
     link.append(stage);
@@ -1314,7 +1350,7 @@ function setHistoryMode(active, storm, date) {
   }
 }
 function renderWpMedia(storm, selectedDate = null) {
-  var _storm$cma;
+  var _storm$cma2;
   const products = storm.products || {};
   const setMeta = (id, base, extra) => {
     const el = $(id);
@@ -1332,7 +1368,7 @@ function renderWpMedia(storm, selectedDate = null) {
   $("wpGefsSource").href = products.gefs_ensemble || products.page || "#";
   $("wpJtwcSource").href = products.official_forecast || products.tropical_tidbits || "#";
   setHistoryMode(Boolean(selectedDate), storm, selectedDate);
-  renderIntensityChart(((_storm$cma = storm.cma) === null || _storm$cma === void 0 ? void 0 : _storm$cma.track) || [], selectedDate);
+  renderIntensityChart(((_storm$cma2 = storm.cma) === null || _storm$cma2 === void 0 ? void 0 : _storm$cma2.track) || [], selectedDate);
   if (selectedDate) {
     setMeta("wpEcmwfMeta", "EPS · Weathernerds", `${selectedDate.slice(5)} 回看`);
     setMeta("wpGefsMeta", "GEFS · Weathernerds", `${selectedDate.slice(5)} 回看`);
@@ -1513,16 +1549,14 @@ async function loadWpSituation({
   wpLoadInFlight = true;
   $("refreshWpSituation").disabled = true;
   try {
+    const stormsPromise = fetchDapiyaStorms().catch(() => []);
+    const cmaPromise = fetchCmaData().catch(() => ({}));
+    const snapshotsPromise = Promise.allSettled([force ? loadSnapshotStorms(true) : loadSnapshotStorms(), force ? loadSnapshotHimawari(true) : loadSnapshotHimawari(), force ? loadSnapshotSst(true) : loadSnapshotSst()]);
     if (force) {
-      await Promise.allSettled([loadSnapshotStorms(true), loadSnapshotHimawari(true), loadSnapshotSst(true)]);
       const envGrid = $("wpEnvironmentGrid");
       if (envGrid) envGrid.dataset.signature = "";
-    } else if (!snapshotStorms) {
-      await Promise.allSettled([loadSnapshotStorms(), loadSnapshotHimawari(), loadSnapshotSst()]);
     }
-    const [dapiyaStorms, cmaByEnglish] = await Promise.allSettled([fetchDapiyaStorms(), fetchCmaData()]);
-    const storms = dapiyaStorms.status === "fulfilled" ? dapiyaStorms.value : [];
-    const cma = cmaByEnglish.status === "fulfilled" ? cmaByEnglish.value : {};
+    const storms = await stormsPromise;
     if (!storms.length) {
       $("wpLiveState").classList.add("stale");
       $("wpLiveState").lastChild.textContent = " 暂时无法更新";
@@ -1530,7 +1564,8 @@ async function loadWpSituation({
       const scriptError = (window.__webErrors || [])[0];
       $("wpSituationEmpty").querySelector("span").textContent = scriptError ? `脚本提示：${scriptError}` : "请检查网络后稍后自动重试。";
     } else {
-      renderWpDashboard(buildDashboard(storms, cma));
+      await snapshotsPromise;
+      renderWpDashboard(buildDashboard(storms, {}));
       const stormSelect = $("storm");
       if (stormSelect && storms.length) {
         stormSelect.innerHTML = "";
@@ -1547,6 +1582,26 @@ async function loadWpSituation({
           });
           stormSelect.appendChild(group);
         }
+      }
+      const cma = await cmaPromise;
+      wpDashboard = buildDashboard(storms, cma);
+      document.querySelectorAll(".storm-rank-card").forEach(card => {
+        var _storm$cma3;
+        const storm = wpDashboard.storms.find(item => item.id === card.dataset.stormId);
+        if (!storm) return;
+        const meta = card.querySelector("small");
+        if (meta) meta.textContent = `${storm.id} · ${((_storm$cma3 = storm.cma) === null || _storm$cma3 === void 0 ? void 0 : _storm$cma3.level) || storm.level}`;
+        const em = card.querySelector("em");
+        if (em) {
+          var _storm$cma$pressure_h, _storm$wind_kt3, _storm$pressure_hpa2;
+          em.textContent = storm.cma ? `${storm.cma.wind_mps} m/s · ${storm.cma.wind_force_label} · ${(_storm$cma$pressure_h = storm.cma.pressure_hpa) !== null && _storm$cma$pressure_h !== void 0 ? _storm$cma$pressure_h : "—"} hPa` : `${(_storm$wind_kt3 = storm.wind_kt) !== null && _storm$wind_kt3 !== void 0 ? _storm$wind_kt3 : "—"} kt · ${(_storm$pressure_hpa2 = storm.pressure_hpa) !== null && _storm$pressure_hpa2 !== void 0 ? _storm$pressure_hpa2 : "—"} hPa`;
+        }
+      });
+      const current = currentStormObject();
+      if (current) {
+        var _current$cma;
+        renderStormValues(current, wpSelectedDate);
+        renderIntensityChart(((_current$cma = current.cma) === null || _current$cma === void 0 ? void 0 : _current$cma.track) || [], wpSelectedDate);
       }
     }
   } catch (error) {
