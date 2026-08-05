@@ -498,6 +498,18 @@ function renderStormValues(storm, selectedDate = null) {
   $("wpCloudTemp").textContent = temperature(adt?.cloud_region_temp_c);
   $("wpScene").textContent = adt?.scene ? `${adt.scene} · ${sceneLabels[adt.scene] || "云型分析"}` : "—";
   $("wpAdtTime").textContent = adt?.analysis_time || "—";
+
+  const summaryEl = $("wpDataSummary");
+  if (summaryEl) {
+    const location = `${formatCoordinate(latitude, "N", "S")} ${formatCoordinate(longitude, "E", "W")}`;
+    const parts = [];
+    if (windMps != null) parts.push(`CMA ${windMps} m/s`);
+    if (forceLabel) parts.push(forceLabel);
+    if (level) parts.push(level);
+    if (pressure != null) parts.push(`${pressure} hPa`);
+    if (latitude != null) parts.push(location);
+    summaryEl.textContent = parts.length ? parts.join(" · ") : "CMA 数值";
+  }
 }
 
 /* ------------------------- 动图播放器 ------------------------- */
@@ -1739,6 +1751,10 @@ function bindEvents() {
 
 function boot() {
   bindEvents();
+  const dataDetails = $("wpDataDetails");
+  if (dataDetails && window.matchMedia("(max-width: 760px)").matches) {
+    dataDetails.open = false;
+  }
   renderFavorites();
   renderGlossary();
   $("openResource").disabled = true;
