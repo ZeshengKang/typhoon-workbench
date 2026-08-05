@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://tropic.ssec.wisc.edu">
   <link rel="preconnect" href="https://www.weathernerds.org">
   <link rel="preconnect" href="https://www.ospo.noaa.gov">
-  <link rel="stylesheet" href="./style.css?v=web1.11">
+  <link rel="stylesheet" href="./style.css?v=web1.12">
 </head>
 <body>
   <script>
@@ -22,7 +22,7 @@
     (function () {
       if (sessionStorage.getItem("vrel")) return;
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
-        if (v && v.v && v.v !== "web1.11") {
+        if (v && v.v && v.v !== "web1.12") {
           sessionStorage.setItem("vrel", "1");
           location.reload();
         }
@@ -37,7 +37,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.11</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.12</span></div>
       </div>
     </header>
 
@@ -95,7 +95,7 @@
                 <span><b>中心气压</b><em id="msPressure">—</em></span>
                 <span><b>中心位置</b><em id="msLocation">—</em></span>
                 <span><b>JTWC 风速</b><em id="msJtwc">—</em></span>
-                <span class="ms-more"><b>全部数据</b><em></em></span>
+                <span><b>ADT 强度</b><em id="msAdt">—</em></span>
               </span>
             </summary>
             <dl class="storm-data-list">
@@ -355,6 +355,6 @@
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>
-  <script src="./app.js?v=web1.11"></script>
+  <script src="./app.js?v=web1.12"></script>
 </body>
 </html>
