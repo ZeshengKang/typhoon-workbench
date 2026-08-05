@@ -19,13 +19,13 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.23">
+  <link rel="stylesheet" href="./style.css?v=web1.24">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.23";
+      var CURRENT = "web1.24";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -51,7 +51,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.23</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.24</span></div>
       </div>
     </header>
 
@@ -674,6 +674,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.23"></script>
+  <script src="./app.js?v=web1.24"></script>
 </body>
 </html>
