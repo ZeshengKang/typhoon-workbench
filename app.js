@@ -499,17 +499,15 @@ function renderStormValues(storm, selectedDate = null) {
   $("wpScene").textContent = adt?.scene ? `${adt.scene} · ${sceneLabels[adt.scene] || "云型分析"}` : "—";
   $("wpAdtTime").textContent = adt?.analysis_time || "—";
 
-  const summaryEl = $("wpDataSummary");
-  if (summaryEl) {
-    const location = `${formatCoordinate(latitude, "N", "S")} ${formatCoordinate(longitude, "E", "W")}`;
-    const parts = [];
-    if (windMps != null) parts.push(`CMA ${windMps} m/s`);
-    if (forceLabel) parts.push(forceLabel);
-    if (level) parts.push(level);
-    if (pressure != null) parts.push(`${pressure} hPa`);
-    if (latitude != null) parts.push(location);
-    summaryEl.textContent = parts.length ? parts.join(" · ") : "CMA 数值";
-  }
+  const fill = (id, text) => {
+    const el = $(id);
+    if (el) el.textContent = text;
+  };
+  fill("msWind", windMps != null ? `${windMps} m/s` : "—");
+  fill("msLevel", level ? `${forceLabel} ${level}`.trim() : "—");
+  fill("msPressure", pressure != null ? `${pressure} hPa` : "—");
+  fill("msLocation", latitude != null ? `${formatCoordinate(latitude, "N", "S")} ${formatCoordinate(longitude, "E", "W")}` : "—");
+  fill("msJtwc", jtwcWind != null ? `${jtwcWind} kt` : "—");
 }
 
 /* ------------------------- 动图播放器 ------------------------- */
@@ -1417,7 +1415,6 @@ function renderWpDashboard(data) {
       ? `${cma.wind_mps} m/s · ${cma.wind_force_label} · ${cma.pressure_hpa ?? "—"} hPa`
       : `${storm.wind_kt ?? "—"} kt · ${storm.pressure_hpa ?? "—"} hPa`;
     button.append(rank, identity, intensity);
-    button.addEventListener("click", () => renderWpStorm(storm.id));
     tabs.appendChild(button);
   });
   $("wpSituationEmpty").hidden = Boolean(storms.length);
@@ -1733,6 +1730,14 @@ function renderGlossary(query = "") {
 
 function bindEvents() {
   $("refreshWpSituation").addEventListener("click", () => loadWpSituation({ force: true }));
+  const stormTabs = $("wpStormTabs");
+  if (stormTabs) {
+    // 事件委托：按钮无论何时重建，点击都生效
+    stormTabs.addEventListener("click", (event) => {
+      const card = event.target.closest(".storm-rank-card");
+      if (card && card.dataset.stormId) renderWpStorm(card.dataset.stormId);
+    });
+  }
   $("wpTimelineSlider").addEventListener("input", applyTimelineValue);
   $("wpTimelineLatest").addEventListener("click", () => {
     $("wpTimelineSlider").value = $("wpTimelineSlider").max;
