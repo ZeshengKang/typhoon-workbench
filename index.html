@@ -19,13 +19,13 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.27">
+  <link rel="stylesheet" href="./style.css?v=web1.28">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.27";
+      var CURRENT = "web1.28";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -51,7 +51,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.27</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.28</span></div>
       </div>
     </header>
 
@@ -647,7 +647,6 @@
         <input id="glossarySearch" type="search" placeholder="搜索缩写、中文或英文，例如 VWS、风切变、CDG">
       </div>
       <div class="notice warning-note"><strong>定级提醒</strong><span>TD、TS、STS、TY 等等级以持续风速标准为主；中心气压与风速并非固定一一对应，不能仅凭气压区间定级。</span></div>
-      <div id="glossaryGrid" class="glossary-categories"></div>
       <section class="card dvorak-gallery">
         <div class="resource-heading"><span class="category-symbol">D</span><div><h3>德沃夏克卫星分析图解</h3><p>Dvorak Satellite Intensity Analysis</p></div></div>
         <p>图像与说明按分析步骤对应排列；点击图片可查看原尺寸。它们用于学习与辅助判读，正式定强仍须遵循业务机构规则。</p>
@@ -657,6 +656,7 @@
           <article class="wide-lesson"><a href="./assets/dvorak-eir-analysis.jpg" target="_blank"><img src="./assets/dvorak-eir-analysis.jpg" alt="德沃夏克增强红外完整分析流程"></a><div><span>03 · 完整 EIR 流程</span><h4>从定位中心到 DT、MET、PT 与 CI</h4><p>先确定云系中心与主导云型，再求资料 T 数（DT）、模式期望 T 数（MET）和云型 T 数（PT），最后应用变化率约束得到最终 T 数与当前强度（CI）。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info.html" target="_blank" rel="noopener">查看 CIMSS ADT 专业说明 ↗</a></div></article>
         </div>
       </section>
+      <div id="glossaryGrid" class="glossary-categories"></div>
     </section>
 
     <footer>
@@ -687,6 +687,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.27"></script>
+  <script src="./app.js?v=web1.28"></script>
 </body>
 </html>
