@@ -530,3 +530,11 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   padding: 12px;
   text-align: center;
 }
+
+/* 跨浏览器兼容：hidden 属性必须真正隐藏（防止被 display:grid 等覆盖） */
+[hidden] { display: none !important; }
+
+/* 旧版 iOS / 安卓不支持 aspect-ratio 时的高度兜底 */
+.core-observation-grid .media-stage { min-height: 280px; }
+.core-observation-grid .infrared-card .media-stage { min-height: 240px; }
+.full-disk-grid .environment-stage { min-height: 280px; }
