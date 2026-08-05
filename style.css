@@ -441,8 +441,11 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .core-observation-grid .media-stage { height: auto; aspect-ratio: 1 / 1; min-height: 0; background: #0e1c20; }
   .core-observation-grid .infrared-card .media-stage { aspect-ratio: 4 / 3; }
   .core-observation-grid .media-stage img { object-fit: cover; }
-  .environment-stage { background: #0e1c20; }
-  .forecast-mini-stage { min-height: 210px; background: #0e1c20; }
+  /* 环境场 / 模式图：外框贴合图片，不留固定黑边 */
+  .environment-stage { min-height: 0; background: transparent; }
+  .environment-stage img { height: auto; }
+  .forecast-mini-stage { height: auto; aspect-ratio: auto; min-height: 0; background: transparent; }
+  .forecast-mini-stage img { height: auto; object-fit: initial; }
   .forecast-mini-grid { grid-template-columns: 1fr; }
   .full-disk-grid { grid-template-columns: 1fr; }
 
