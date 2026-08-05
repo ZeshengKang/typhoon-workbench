@@ -194,6 +194,17 @@ function showToast(message) {
   clearTimeout(toast._timer);
   toast._timer = setTimeout(() => toast.classList.remove("show"), 3500);
 }
+function setStageLoading(stage, active) {
+  if (!stage) return;
+  let overlay = stage.querySelector(".media-loading");
+  if (active && !overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "media-loading";
+    overlay.innerHTML = "<b>加载中<i></i><i></i><i></i></b>";
+    stage.appendChild(overlay);
+  }
+  if (overlay) overlay.hidden = !active;
+}
 async function loadSnapshotStorms(force = false) {
   try {
     snapshotStorms = await fetchJSON(SNAPSHOT_STORMS + (force ? `?t=${Date.now()}` : ""));
@@ -585,21 +596,26 @@ function createFramePlayer(image, imageId, onReady = null, interval = 400) {
   };
 }
 function loadPlainImage(image, fallback, url, loading) {
+  const stage = image.closest(".media-stage, .environment-stage, .forecast-mini-stage");
   if (loading) loading.hidden = true;
+  setStageLoading(stage, true);
   image.hidden = true;
   fallback.hidden = true;
   if (!url) {
     fallback.hidden = false;
+    setStageLoading(stage, false);
     return;
   }
   image.fetchPriority = "high";
   image.onload = () => {
     image.hidden = false;
     fallback.hidden = true;
+    setStageLoading(stage, false);
   };
   image.onerror = () => {
     image.hidden = true;
     fallback.hidden = false;
+    setStageLoading(stage, false);
   };
   image.src = url;
 }
@@ -614,7 +630,8 @@ async function loadDapiyaAnimated(imageId, fallbackId, stormId, layer, loadingId
   image.hidden = true;
   fallback.hidden = true;
   if (badge) badge.hidden = true;
-  if (loading) loading.hidden = false;
+  if (loading) loading.hidden = true;
+  setStageLoading(image.closest(".media-stage"), true);
   image.fetchPriority = "high";
   const fetchFrames = async () => {
     try {
@@ -664,11 +681,13 @@ async function loadDapiyaAnimated(imageId, fallbackId, stormId, layer, loadingId
     image.onload = () => {
       image.hidden = false;
       if (loading) loading.hidden = true;
+      setStageLoading(image.closest(".media-stage"), false);
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
       if (loading) loading.hidden = true;
+      setStageLoading(image.closest(".media-stage"), false);
     };
     image.src = url;
     if (layer === "BD" && $("wpBdSource")) $("wpBdSource").href = url;
@@ -694,6 +713,7 @@ async function loadDapiyaAnimated(imageId, fallbackId, stormId, layer, loadingId
   if (!frames.length) {
     if (loading) loading.hidden = true;
     fallback.hidden = false;
+    setStageLoading(image.closest(".media-stage"), false);
     return;
   }
   showLatest(frames[frames.length - 1].url);
@@ -800,19 +820,23 @@ function frameTimeFromUrl(url) {
 async function loadModelImage(imageId, fallbackId, sourceId, url) {
   const image = $(imageId);
   const fallback = $(fallbackId);
+  const stage = image.closest(".forecast-mini-stage");
   stopWpAnim(imageId);
   const token = String(Date.now() + Math.random());
   image.dataset.requestToken = token;
   image.hidden = true;
   fallback.hidden = true;
+  setStageLoading(stage, true);
   if (url) {
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
+      setStageLoading(stage, false);
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
+      setStageLoading(stage, false);
     };
     image.src = url;
     return;
@@ -825,24 +849,29 @@ async function loadModelImage(imageId, fallbackId, sourceId, url) {
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
+      setStageLoading(stage, false);
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
+      setStageLoading(stage, false);
     };
     image.src = found;
   } else {
     fallback.hidden = false;
+    setStageLoading(stage, false);
   }
 }
 async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffix) {
   const image = $(imageId);
   const fallback = $(fallbackId);
+  const stage = image.closest(".forecast-mini-stage");
   stopWpAnim(imageId);
   const requestToken = String(Date.now() + Math.random());
   image.dataset.requestToken = requestToken;
   image.hidden = true;
   fallback.hidden = true;
+  setStageLoading(stage, true);
   fallback.textContent = "该时次暂无数据";
   const cacheKey = `${stormId}:${date}:${suffix}`;
   const applyUrl = url => {
@@ -850,16 +879,19 @@ async function loadWeathernerdsHistory(imageId, fallbackId, stormId, date, suffi
     if (!url) {
       image.hidden = true;
       fallback.hidden = false;
+      setStageLoading(stage, false);
       return;
     }
     weathernerdsHistoryCache[cacheKey] = url;
     image.onload = () => {
       image.hidden = false;
       fallback.hidden = true;
+      setStageLoading(stage, false);
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
+      setStageLoading(stage, false);
     };
     image.src = url;
   };
@@ -1038,6 +1070,8 @@ function preloadTiles(tiles, timeIso, kind) {
   return Promise.all([rows[0][0], rows[0][1], rows[1][0], rows[1][1]].map(url => imageExists(url, 15000)));
 }
 async function loadHimawariHistorical(tiles, fallback, kind, date) {
+  const stage = fallback.closest(".environment-stage");
+  setStageLoading(stage, true);
   const timeIso = `${date}T03:00:00Z`;
   let urls = [false, false, false, false];
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -1051,8 +1085,10 @@ async function loadHimawariHistorical(tiles, fallback, kind, date) {
     tiles[2].src = rows[1][0];
     tiles[3].src = rows[1][1];
     fallback.hidden = true;
+    setStageLoading(stage, false);
   } else {
     fallback.hidden = false;
+    setStageLoading(stage, false);
   }
 }
 async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, cardIndex) {
@@ -1061,6 +1097,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
   tiles.forEach(tile => {
     tile.dataset.animToken = token;
   });
+  setStageLoading(stage, true);
   let times = himawariTimes();
   times = times.slice(-6);
   const label = document.createElement("span");
@@ -1069,6 +1106,7 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
   if (!times.length) {
     fallback.hidden = false;
     label.remove();
+    setStageLoading(stage, false);
     return;
   }
   const player = {
@@ -1121,11 +1159,13 @@ async function loadProgressiveHimawari(tiles, fallback, badge, stage, kind, card
   if (!latestOk.every(Boolean)) {
     fallback.hidden = false;
     label.remove();
+    setStageLoading(stage, false);
     return;
   }
   player.add(latestTime);
   player.show(latestTime);
   fallback.hidden = true;
+  setStageLoading(stage, false);
   const queue = times.slice(0, -1).reverse().map(time => ({
     time,
     attempts: 0
@@ -1193,12 +1233,15 @@ function renderEnvironmentGrid() {
     fallback.className = "mini-fallback";
     fallback.textContent = "图片暂时无法载入";
     fallback.hidden = true;
+    setStageLoading(stage, true);
     image.onload = () => {
       fallback.hidden = true;
+      setStageLoading(stage, false);
     };
     image.onerror = () => {
       image.hidden = true;
       fallback.hidden = false;
+      setStageLoading(stage, false);
     };
     stage.append(image, fallback);
     link.append(stage);
@@ -1210,6 +1253,7 @@ function renderEnvironmentGrid() {
         if (attempt >= 5) {
           image.hidden = true;
           fallback.hidden = false;
+          setStageLoading(stage, false);
           return;
         }
         attempt++;
@@ -1227,10 +1271,12 @@ function renderEnvironmentGrid() {
         if (!url) {
           image.hidden = true;
           fallback.hidden = false;
+          setStageLoading(stage, false);
           return;
         }
         image.onload = () => {
           fallback.hidden = true;
+          setStageLoading(stage, false);
         };
         image.onerror = loadSst;
         image.src = url;
