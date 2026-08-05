@@ -334,6 +334,24 @@ function parseCmaDetail(payload) {
       level: CMA_LEVEL_LABELS[level] || level
     });
   }
+  const forecast = [];
+  const forecastDict = latest[11] || {};
+  const babj = Array.isArray(forecastDict.BABJ) ? forecastDict.BABJ : [];
+  for (const item of babj) {
+    if (!Array.isArray(item) || item.length < 8) continue;
+    const itemTime = String(item[1] || "");
+    const itemLon = item[2] != null ? Number(item[2]) : null;
+    const itemLat = item[3] != null ? Number(item[3]) : null;
+    if (itemTime.length !== 12 || itemLat == null || itemLon == null) continue;
+    forecast.push({
+      hour: item[0],
+      time: `${itemTime.slice(4, 6)}-${itemTime.slice(6, 8)} ${itemTime.slice(8, 10)}:00`,
+      longitude: itemLon,
+      latitude: itemLat,
+      pressure: item[4] != null ? Number(item[4]) : null,
+      wind_mps: item[5] != null ? Number(item[5]) : null
+    });
+  }
   const levelCode = String(latest[3] || "");
   const windMps = latest[7] != null ? Number(latest[7]) : null;
   const timeRaw = String(latest[1] || "");
@@ -354,6 +372,7 @@ function parseCmaDetail(payload) {
     longitude: latest[4] != null ? Number(latest[4]) : null,
     observation_time: observationTime,
     track: track,
+    forecast: forecast,
     source: CMA_VIEW_URL(typhoon[0])
   };
 }
@@ -1380,8 +1399,134 @@ function setHistoryMode(active, storm, date) {
     hint.textContent = active ? `回看 ${date} · 无历史接口的数据源已隐藏` : "拖动时间轴回看历史资料 · 只有支持历史的数据源才会显示对应时次";
   }
 }
+let trackMap = null;
+let trackMarker = null;
+let trackLine = null;
+let trackForecastLine = null;
+let trackForecastLayer = null;
+function initTrackMap() {
+  if (trackMap || !window.L || !$("wpTrackMap")) return;
+  trackMap = L.map("wpTrackMap", {
+    zoomControl: true
+  }).setView([20, 130], 4);
+  const layers = {
+    amap: L.tileLayer("https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}", {
+      subdomains: "1234",
+      maxZoom: 18,
+      attribution: "高德地图"
+    }),
+    esri: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 18,
+      attribution: "Esri"
+    }),
+    osm: L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "© OpenStreetMap"
+    })
+  };
+  trackMap._tileLayers = layers;
+  layers.amap.addTo(trackMap);
+  trackLine = L.polyline([], {
+    color: "#4fc3f7",
+    weight: 3,
+    opacity: 0.9
+  });
+  trackForecastLine = L.polyline([], {
+    color: "#ffa726",
+    weight: 2,
+    dashArray: "6 6",
+    opacity: 0.85
+  });
+  trackForecastLayer = L.layerGroup();
+  trackMarker = L.circleMarker([0, 0], {
+    radius: 9,
+    color: "#ff5252",
+    weight: 2,
+    fillColor: "#ff8a80",
+    fillOpacity: 0.85
+  });
+  trackLine.addTo(trackMap);
+  trackForecastLine.addTo(trackMap);
+  trackForecastLayer.addTo(trackMap);
+  trackMarker.addTo(trackMap);
+  document.querySelectorAll(".track-map-layers button").forEach(button => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.layer;
+      document.querySelectorAll(".track-map-layers button").forEach(item => {
+        item.classList.toggle("active", item === button);
+      });
+      Object.keys(layers).forEach(name => {
+        if (trackMap.hasLayer(layers[name])) trackMap.removeLayer(layers[name]);
+      });
+      layers[key].addTo(trackMap);
+    });
+  });
+}
+function updateTrackMap(storm, selectedDate) {
+  var _storm$cma2, _storm$cma3;
+  const bar = $("wpTrackMapBar");
+  if (!bar) return;
+  const track = storm === null || storm === void 0 || (_storm$cma2 = storm.cma) === null || _storm$cma2 === void 0 ? void 0 : _storm$cma2.track;
+  if (!Array.isArray(track) || !track.length) {
+    bar.hidden = true;
+    return;
+  }
+  bar.hidden = false;
+  initTrackMap();
+  if (!trackMap) return;
+  let points = track.filter(p => p && p.latitude != null && p.longitude != null);
+  if (selectedDate) {
+    const monthDay = selectedDate.slice(5);
+    points = points.filter(p => (p.time || "").slice(0, 5) <= monthDay);
+  }
+  if (!points.length) {
+    points = track.filter(p => p && p.latitude != null && p.longitude != null).slice(0, 1);
+  }
+  const latlngs = points.map(p => [Number(p.latitude), Number(p.longitude)]);
+  trackLine.setLatLngs(latlngs);
+  const last = latlngs[latlngs.length - 1];
+  if (last) trackMarker.setLatLng(last);
+  const forecast = ((_storm$cma3 = storm.cma) === null || _storm$cma3 === void 0 ? void 0 : _storm$cma3.forecast) || [];
+  const fLatLngs = forecast.filter(p => p && p.latitude != null && p.longitude != null).map(p => [Number(p.latitude), Number(p.longitude)]);
+  trackForecastLine.setLatLngs(fLatLngs);
+  trackForecastLayer.clearLayers();
+  forecast.forEach(p => {
+    if (p.latitude == null || p.longitude == null) return;
+    L.circleMarker([Number(p.latitude), Number(p.longitude)], {
+      radius: 5,
+      color: "#ffa726",
+      weight: 1.5,
+      fillColor: "#fff",
+      fillOpacity: 0.7
+    }).bindTooltip(`${p.time} · ${p.wind_mps != null ? p.wind_mps + " m/s" : "—"}`).addTo(trackForecastLayer);
+  });
+  const lastPoint = points[points.length - 1];
+  if (lastPoint) {
+    const bubble = [`<strong>${storm.name} · ${storm.id}</strong>`, lastPoint.time ? `时间 ${lastPoint.time}` : "", `风力 ${lastPoint.wind_mps != null ? `${lastPoint.wind_mps} m/s` : "—"}${lastPoint.level ? ` · ${lastPoint.level}` : ""}`, `气压 ${lastPoint.pressure != null ? `${lastPoint.pressure} hPa` : "—"}`, `位置 ${formatCoordinate(lastPoint.latitude, "N", "S")} ${formatCoordinate(lastPoint.longitude, "E", "W")}`].filter(Boolean).join("<br>");
+    trackMarker.bindPopup(bubble).openPopup();
+  }
+  const meta = $("wpTrackMapMeta");
+  if (meta) {
+    meta.textContent = "蓝线 = CMA 实况路径 · 橙虚线 = CMA 官方预报 · 气泡为当前数值";
+  }
+  if (latlngs.length >= 2) {
+    trackMap.fitBounds(L.latLngBounds(latlngs).pad(0.35), {
+      maxZoom: 7
+    });
+  } else if (last) {
+    trackMap.setView(last, 5);
+  }
+  setTimeout(() => {
+    if (trackMap) trackMap.invalidateSize();
+  }, 60);
+  window.__trackDebug = {
+    points: latlngs.length,
+    forecast: fLatLngs.length,
+    marker: last ? [Number(last[0]).toFixed(1), Number(last[1]).toFixed(1)] : null
+  };
+}
 function renderWpMedia(storm, selectedDate = null) {
-  var _storm$cma2;
+  var _storm$cma4;
   const products = storm.products || {};
   const setMeta = (id, base, extra) => {
     const el = $(id);
@@ -1399,7 +1544,8 @@ function renderWpMedia(storm, selectedDate = null) {
   $("wpGefsSource").href = products.gefs_ensemble || products.page || "#";
   $("wpJtwcSource").href = products.official_forecast || products.tropical_tidbits || "#";
   setHistoryMode(Boolean(selectedDate), storm, selectedDate);
-  renderIntensityChart(((_storm$cma2 = storm.cma) === null || _storm$cma2 === void 0 ? void 0 : _storm$cma2.track) || [], selectedDate);
+  renderIntensityChart(((_storm$cma4 = storm.cma) === null || _storm$cma4 === void 0 ? void 0 : _storm$cma4.track) || [], selectedDate);
+  updateTrackMap(storm, selectedDate);
   if (selectedDate) {
     setMeta("wpEcmwfMeta", "EPS · Weathernerds", `${selectedDate.slice(5)} 回看`);
     setMeta("wpGefsMeta", "GEFS · Weathernerds", `${selectedDate.slice(5)} 回看`);
@@ -1617,11 +1763,11 @@ async function loadWpSituation({
       const cma = await cmaPromise;
       wpDashboard = buildDashboard(storms, cma);
       document.querySelectorAll(".storm-rank-card").forEach(card => {
-        var _storm$cma3;
+        var _storm$cma5;
         const storm = wpDashboard.storms.find(item => item.id === card.dataset.stormId);
         if (!storm) return;
         const meta = card.querySelector("small");
-        if (meta) meta.textContent = `${storm.id} · ${((_storm$cma3 = storm.cma) === null || _storm$cma3 === void 0 ? void 0 : _storm$cma3.level) || storm.level}`;
+        if (meta) meta.textContent = `${storm.id} · ${((_storm$cma5 = storm.cma) === null || _storm$cma5 === void 0 ? void 0 : _storm$cma5.level) || storm.level}`;
         const em = card.querySelector("em");
         if (em) {
           var _storm$cma$pressure_h, _storm$wind_kt3, _storm$pressure_hpa2;
@@ -1633,6 +1779,7 @@ async function loadWpSituation({
         var _current$cma;
         renderStormValues(current, wpSelectedDate);
         renderIntensityChart(((_current$cma = current.cma) === null || _current$cma === void 0 ? void 0 : _current$cma.track) || [], wpSelectedDate);
+        updateTrackMap(current, wpSelectedDate);
       }
     }
   } catch (error) {
