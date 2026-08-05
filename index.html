@@ -17,6 +17,18 @@
   <link rel="stylesheet" href="./style.css?v=web1.10">
 </head>
 <body>
+  <script>
+    // 版本自检：发现线上有新版本时自动重载一次，避免浏览器一直用旧缓存
+    (function () {
+      if (sessionStorage.getItem("vrel")) return;
+      fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
+        if (v && v.v && v.v !== "web1.10") {
+          sessionStorage.setItem("vrel", "1");
+          location.reload();
+        }
+      }).catch(function () {});
+    })();
+  </script>
   <main class="shell">
     <header class="hero">
       <div>
