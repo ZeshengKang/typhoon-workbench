@@ -49,6 +49,7 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 
 .app-tabs { position: sticky; top: 10px; z-index: 50; display: flex; gap: 7px; margin-bottom: 20px; padding: 7px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,253,250,.92); box-shadow: 0 9px 30px rgba(33,47,54,.08); backdrop-filter: blur(12px); }
 .app-tab { flex: 1; min-height: 52px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); font-size: 16px; font-weight: 750; cursor: pointer; }
+.app-tab .tab-short { display: none; }
 .app-tab.active { background: var(--ink); color: white; }
 .page-panel[hidden] { display: none !important; }
 
@@ -379,10 +380,11 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .owner-badge { font-size: 11px; padding: 5px 9px; }
   .version-badge { font-size: 11px; padding: 4px 9px; }
 
-  /* 顶部标签改为横向滚动的小药丸，避免撑满整屏 */
-  .app-tabs { position: static; display: flex; gap: 6px; overflow-x: auto; margin: 0 0 12px; padding: 2px 2px 8px; scrollbar-width: none; }
-  .app-tabs::-webkit-scrollbar { display: none; }
-  .app-tab { flex: 0 0 auto; min-height: 34px; padding: 0 14px; font-size: 13px; border-radius: 999px; white-space: nowrap; }
+  /* 顶部标签等宽一行展示，不需要滑动 */
+  .app-tabs { position: static; display: flex; gap: 6px; overflow: hidden; margin: 0 0 12px; padding: 2px 0 8px; }
+  .app-tab { flex: 1 1 0; min-width: 0; min-height: 34px; padding: 0 4px; font-size: 12px; border-radius: 999px; white-space: nowrap; }
+  .app-tab .tab-long { display: none; }
+  .app-tab .tab-short { display: inline; }
 
   /* 标题行右侧放“立即更新” */
   .situation-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 10px 10px; }
