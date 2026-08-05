@@ -19,13 +19,13 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.26">
+  <link rel="stylesheet" href="./style.css?v=web1.27">
 </head>
 <body>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.26";
+      var CURRENT = "web1.27";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -51,7 +51,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.26</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.27</span></div>
       </div>
     </header>
 
@@ -197,7 +197,7 @@
                 </a>
               </article>
               <article class="media-card pmr-card">
-                <header><div><strong>PMR 降水测量雷达</strong><span id="wpPmrMeta">FY-3G · Dapiya</span></div></header>
+                <header><div><strong>PMR 雷达</strong><span id="wpPmrMeta">FY-3G · Dapiya</span></div></header>
                 <a id="wpPmrSource" class="forecast-image-link" href="#" target="_blank" rel="noopener" title="点击查看原图">
                   <div class="media-stage media-stage-wide">
                     <div id="wpPmrLoading" class="forecast-loading">正在载入 PMR…</div>
@@ -306,7 +306,10 @@
           <span>▶</span>
           <div><h2>功能演示</h2><p>台风云图分析工具 · 网页版演示动图</p></div>
         </div>
-        <img id="demoGif" class="demo-gif" src="./assets/videos/demo.gif" alt="台风云图分析工具演示动图" loading="lazy">
+        <picture>
+          <source srcset="./assets/videos/demo.webp" type="image/webp">
+          <img id="demoGif" class="demo-gif" src="./assets/videos/demo.gif" alt="台风云图分析工具演示动图" decoding="async">
+        </picture>
       </div>
 
       <div class="inert-demo">
@@ -649,8 +652,8 @@
         <div class="resource-heading"><span class="category-symbol">D</span><div><h3>德沃夏克卫星分析图解</h3><p>Dvorak Satellite Intensity Analysis</p></div></div>
         <p>图像与说明按分析步骤对应排列；点击图片可查看原尺寸。它们用于学习与辅助判读，正式定强仍须遵循业务机构规则。</p>
         <div class="dvorak-lessons">
-          <article><a href="./assets/bd-curve-temperature.jpg" target="_blank"><img src="./assets/bd-curve-temperature.jpg" alt="BD 色阶与温度范围"></a><div><span>01 · IR-BD 色阶</span><h4>先读懂云顶温度增强</h4><p>WMG 至 CDG 表示不同亮温区间。CMG、CDG 对应极低云顶温度和很强的深对流，但单凭某一色阶不能直接确定强度。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info-goespg.html" target="_blank" rel="noopener">查看 CIMSS EIR 色阶与分析教程 ↗</a></div></article>
           <article><a href="./assets/dvorak-t-patterns.jpg" target="_blank"><img src="./assets/dvorak-t-patterns.jpg" alt="德沃夏克 T1.5 到 T8 云型"></a><div><span>02 · 云型组织度</span><h4>对照云带、中心密集云区与风眼</h4><p>T 数随系统中心清晰度、弯曲云带包卷程度、中心密集云区和风眼结构演变。真实分析还要结合时间约束与趋势。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info.html" target="_blank" rel="noopener">查看 CIMSS 德沃夏克技术说明 ↗</a></div></article>
+          <article><a href="./assets/bd-curve-temperature.jpg" target="_blank"><img src="./assets/bd-curve-temperature.jpg" alt="BD 色阶与温度范围"></a><div><span>01 · IR-BD 色阶</span><h4>先读懂云顶温度增强</h4><p>WMG 至 CDG 表示不同亮温区间。CMG、CDG 对应极低云顶温度和很强的深对流，但单凭某一色阶不能直接确定强度。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info-goespg.html" target="_blank" rel="noopener">查看 CIMSS EIR 色阶与分析教程 ↗</a></div></article>
           <article class="wide-lesson"><a href="./assets/dvorak-eir-analysis.jpg" target="_blank"><img src="./assets/dvorak-eir-analysis.jpg" alt="德沃夏克增强红外完整分析流程"></a><div><span>03 · 完整 EIR 流程</span><h4>从定位中心到 DT、MET、PT 与 CI</h4><p>先确定云系中心与主导云型，再求资料 T 数（DT）、模式期望 T 数（MET）和云型 T 数（PT），最后应用变化率约束得到最终 T 数与当前强度（CI）。</p><a class="reference-link" href="https://tropic.ssec.wisc.edu/misc/adt/info.html" target="_blank" rel="noopener">查看 CIMSS ADT 专业说明 ↗</a></div></article>
         </div>
       </section>
@@ -684,6 +687,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.26"></script>
+  <script src="./app.js?v=web1.27"></script>
 </body>
 </html>
