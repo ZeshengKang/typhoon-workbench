@@ -127,7 +127,7 @@ h1 { margin: 0; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spa
 .forecast-mini-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
 .forecast-mini-card { min-width: 0; padding: 10px; border: 1px solid #e2e7e4; border-radius: 12px; background: rgba(255,255,255,.86); }
 .forecast-mini-card header strong { font-size: 15px; }
-.forecast-mini-stage { display: grid; place-items: center; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid #e6eae8; border-radius: 9px; background: #fff; }
+.forecast-mini-stage { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid #e6eae8; border-radius: 9px; background: #fff; }
 .forecast-mini-stage img { display: block; grid-area: 1 / 1; width: 100%; height: 100%; object-fit: contain; background: #fff; }
 .mini-fallback { display: grid; grid-area: 1 / 1; place-items: center; width: 100%; height: 100%; padding: 20px; color: var(--muted); font-size: 13px; text-align: center; }
 .media-section { min-width: 0; }
@@ -451,9 +451,11 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .core-observation-grid .infrared-card .media-stage { aspect-ratio: 4 / 3; }
   .core-observation-grid .media-stage img { object-fit: cover; }
   /* 环境场 / 模式图：外框贴合图片，不留固定黑边 */
-  .environment-stage { min-height: 0; background: transparent; }
+  .environment-stage { min-height: 200px; background: #0e1c20; }
+  .environment-stage.image-ready { min-height: 0; background: transparent; }
   .environment-stage img { height: auto; }
-  .forecast-mini-stage { height: auto; aspect-ratio: auto; min-height: 0; background: transparent; }
+  .forecast-mini-stage { height: auto; aspect-ratio: auto; min-height: 200px; background: #0e1c20; }
+  .forecast-mini-stage.image-ready { min-height: 0; background: transparent; }
   .forecast-mini-stage img { height: auto; object-fit: initial; }
   .forecast-mini-grid { grid-template-columns: 1fr; }
   .full-disk-grid { grid-template-columns: 1fr; }
