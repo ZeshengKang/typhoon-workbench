@@ -461,6 +461,9 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   .source-links { flex-wrap: wrap; }
 
   /* 资料中心 / 术语页 */
+  .banner-download { padding: 16px; }
+  .banner-download h2 { font-size: 20px; }
+  .banner-download .download-link { padding: 12px 13px; }
   .resource-hero, .viewer-toolbar, .resource-grid, .glossary-head, .glossary-grid, .favorite-form, .favorite-row, .site-grid, .dvorak-lessons article { grid-template-columns: 1fr; }
   .resource-hero { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 16px; align-items: stretch; }
   .resource-hero h2 { font-size: 22px; }
@@ -549,3 +552,22 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .core-observation-grid .media-stage { min-height: 280px; }
 .core-observation-grid .infrared-card .media-stage { min-height: 240px; }
 .full-disk-grid .environment-stage { min-height: 280px; }
+
+/* 本地软件页：公告横幅 */
+.banner-download { padding: 24px 26px; background: linear-gradient(135deg, #0f2e36, #16424a); border-color: rgba(130,221,197,.35); color: #e8f3f0; }
+.banner-download h2 { margin: 0; font-size: 24px; color: #fff; letter-spacing: -.01em; }
+.banner-download p { margin: 8px 0 0; color: #bcd6d0; line-height: 1.6; }
+.banner-download .download-link { display: grid; gap: 6px; margin-top: 14px; padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.07); }
+.banner-download .download-link strong { color: #fff; font-size: 15px; line-height: 1.5; }
+.banner-download .download-link a { color: #7fd6c3; word-break: break-all; text-decoration: none; }
+.banner-download .download-link a:hover { text-decoration: underline; }
+.banner-download .download-link span { color: #bcd6d0; font-size: 13px; }
+.banner-download .download-link b { color: #ffe08a; font-size: 15px; }
+
+/* 本地软件页：按钮呈禁用样式，但仍可点击触发提示 */
+.inert-demo .button { opacity: .55; cursor: not-allowed; filter: saturate(.7); }
+.inert-demo .button:hover:not(:disabled) { transform: none; }
+
+/* Toast 提示 */
+#toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); z-index: 9999; max-width: min(90vw, 480px); padding: 12px 18px; border-radius: 12px; background: rgba(15,46,54,.96); color: #fff; font-size: 14px; line-height: 1.5; box-shadow: 0 10px 30px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
