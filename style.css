@@ -647,13 +647,13 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
   top: 14px;
   left: 14px;
   z-index: 300;
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   border: 0;
   border-radius: 11px;
   background: rgba(15, 46, 54, .92);
   color: #fff;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
@@ -713,6 +713,54 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 }
 .side-menu a:hover, .side-menu a.active { background: rgba(130, 221, 197, .14); color: #fff; }
 .side-menu a span { width: 22px; text-align: center; color: #82ddc5; font-size: 15px; }
+.side-menu-group { display: flex; flex-direction: column; gap: 4px; }
+.side-menu-sub-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #e8f3f0;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.side-menu-sub-toggle span { width: 22px; text-align: center; color: #82ddc5; }
+.side-menu-sub-toggle i { margin-left: auto; font-style: normal; color: #82ddc5; font-size: 12px; transition: transform .2s ease; }
+.side-menu-group.collapsed .side-menu-sub-toggle i { transform: rotate(-90deg); }
+.side-menu-sub { display: grid; gap: 3px; padding: 2px 0 6px 26px; }
+.side-menu-group.collapsed .side-menu-sub { display: none; }
+.side-menu-sub a { padding: 9px 12px; font-size: 14px; font-weight: 600; }
+
+/* 主页（博客） */
+.home-hero { padding: 34px 30px; background: linear-gradient(135deg, #0f2e36, #16424a); border-color: rgba(130,221,197,.35); color: #e8f3f0; }
+.home-hero h2 { margin: 0; font-size: clamp(26px, 4vw, 40px); color: #fff; letter-spacing: -.02em; }
+.home-hero p { margin: 10px 0 0; color: #bcd6d0; line-height: 1.6; }
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.home-card { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 20px; text-decoration: none; color: inherit; transition: transform .18s ease, border-color .18s ease; }
+.home-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+.home-card > span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #e8f3ef; color: var(--teal-dark); font-size: 22px; }
+.home-card div { display: grid; gap: 4px; min-width: 0; }
+.home-card strong { font-size: 17px; }
+.home-card em { color: var(--muted); font-size: 13px; font-style: normal; }
+.home-card i { color: var(--muted); }
+.home-posts { margin-top: 18px; padding: 22px 24px; }
+.home-post-list { display: grid; gap: 8px; margin-top: 12px; }
+.home-post { display: flex; align-items: baseline; gap: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.6); text-decoration: none; color: var(--ink); }
+.home-post:hover { background: #e9f4f0; }
+.home-post span { color: var(--teal-dark); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.home-post strong { font-size: 14px; font-weight: 700; }
+
+@media (max-width: 760px) {
+  .home-grid { grid-template-columns: 1fr; }
+  .home-posts { padding: 16px; }
+  .home-hero { padding: 24px 20px; }
+}
 
 /* 气象卫星接收指南页 */
 .guide-head { padding: 24px 26px; }
