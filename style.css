@@ -38,6 +38,7 @@ body {
   .shell { width: min(2630px, calc(100% - 42px)); }
 }
 .hero { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 24px; }
+.hero { padding-left: 54px; }
 .owner-stack { display: grid; justify-items: end; gap: 8px; }
 .version-badge { padding: 6px 11px; border-radius: 99px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: .04em; }
 .eyebrow { margin: 0 0 8px; color: var(--teal); font-weight: 800; letter-spacing: .16em; font-size: 12px; }
@@ -637,4 +638,84 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 /* 手机端地图高度（放最后确保覆盖基础规则） */
 @media (max-width: 760px) {
   #wpTrackMap { height: 260px; min-height: 260px; }
+  .hero { padding-left: 46px; }
 }
+
+/* 左上角三横菜单 */
+.menu-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 300;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 11px;
+  background: rgba(15, 46, 54, .92);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
+  touch-action: manipulation;
+}
+.side-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 310;
+  background: rgba(10, 18, 21, .45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+.side-menu-overlay.open { opacity: 1; pointer-events: auto; }
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 320;
+  width: min(300px, 82vw);
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #0f2e36;
+  transform: translateX(-105%);
+  transition: transform .25s ease;
+  box-shadow: 0 0 40px rgba(0, 0, 0, .35);
+  overflow-y: auto;
+}
+.side-menu.open { transform: translateX(0); }
+.side-menu-close {
+  align-self: flex-end;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.side-menu-title { margin: 4px 6px 10px; color: #82ddc5; font-size: 13px; letter-spacing: .06em; }
+.side-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  color: #e8f3f0;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.side-menu a:hover, .side-menu a.active { background: rgba(130, 221, 197, .14); color: #fff; }
+.side-menu a span { width: 22px; text-align: center; color: #82ddc5; font-size: 15px; }
+
+/* 气象卫星接收指南页 */
+.guide-head { padding: 24px 26px; }
+.guide-head h2 { margin: 0; font-size: 28px; }
+.guide-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
+.guide-content { display: grid; gap: 16px; margin-top: 18px; }
