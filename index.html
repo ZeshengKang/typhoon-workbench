@@ -19,13 +19,25 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.30">
+  <link rel="stylesheet" href="./style.css?v=web1.31">
 </head>
 <body>
+  <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
+  <div id="sideMenuOverlay" class="side-menu-overlay"></div>
+  <nav id="sideMenu" class="side-menu" aria-label="站点导航">
+    <button id="menuClose" class="side-menu-close" type="button" aria-label="关闭菜单">✕</button>
+    <strong class="side-menu-title">路人王老康 BG5VJM</strong>
+    <a id="menuHome" href="#" target="_blank" rel="noopener"><span>⌂</span>主页 · 我的博客</a>
+    <a href="#" data-page="analysis"><span>☁</span>台风云图实时分析</a>
+    <a href="#" data-page="resources"><span>◉</span>台风资料中心</a>
+    <a href="#" data-page="glossary"><span>D</span>术语与德沃夏克</a>
+    <a href="#" data-page="download"><span>⬇</span>本地软件</a>
+    <a href="#" data-page="guide"><span>◎</span>气象卫星接收指南</a>
+  </nav>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.30";
+      var CURRENT = "web1.31";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -51,7 +63,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.30</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.31</span></div>
       </div>
     </header>
 
@@ -659,6 +671,19 @@
       <div id="glossaryGrid" class="glossary-categories"></div>
     </section>
 
+    <section id="guidePage" class="page-panel page-guide" hidden>
+      <div class="card guide-head">
+        <div>
+          <p class="eyebrow">SATELLITE RECEIVING GUIDE</p>
+          <h2>气象卫星接收指南</h2>
+          <p>作者整理的气象卫星接收与解码指南，内容持续补充中。</p>
+        </div>
+      </div>
+      <div id="guideContent" class="guide-content">
+        <div class="notice warning-note"><strong>待补充</strong><span>指南正文将在这里展示（作者整理的 Word 文档内容）。</span></div>
+      </div>
+    </section>
+
     <footer>
       网页版仅展示公开来源站的实时与快照资料，不做本地下载。图像版权与再发布规则以 Dapiya、原始卫星数据提供方及当地法律为准。
     </footer>
@@ -687,6 +712,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.30"></script>
+  <script src="./app.js?v=web1.31"></script>
 </body>
 </html>
