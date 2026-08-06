@@ -742,24 +742,16 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .home-hero { padding: 34px 30px; background: linear-gradient(135deg, #0f2e36, #16424a); border-color: rgba(130,221,197,.35); color: #e8f3f0; }
 .home-hero h2 { margin: 0; font-size: clamp(26px, 4vw, 40px); color: #fff; letter-spacing: -.02em; }
 .home-hero p { margin: 10px 0 0; color: #bcd6d0; line-height: 1.6; }
-.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
-.home-card { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 20px; text-decoration: none; color: inherit; transition: transform .18s ease, border-color .18s ease; }
+.home-list { display: grid; gap: 12px; margin-top: 18px; }
+.home-card { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 18px 20px; text-decoration: none; color: inherit; transition: transform .18s ease, border-color .18s ease; }
 .home-card:hover { transform: translateY(-2px); border-color: var(--teal); }
-.home-card > span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #e8f3ef; color: var(--teal-dark); font-size: 22px; }
+.home-card > span { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: #e8f3ef; color: var(--teal-dark); font-size: 22px; }
 .home-card div { display: grid; gap: 4px; min-width: 0; }
 .home-card strong { font-size: 17px; }
 .home-card em { color: var(--muted); font-size: 13px; font-style: normal; }
 .home-card i { color: var(--muted); }
-.home-posts { margin-top: 18px; padding: 22px 24px; }
-.home-post-list { display: grid; gap: 8px; margin-top: 12px; }
-.home-post { display: flex; align-items: baseline; gap: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.6); text-decoration: none; color: var(--ink); }
-.home-post:hover { background: #e9f4f0; }
-.home-post span { color: var(--teal-dark); font-size: 12px; font-weight: 800; white-space: nowrap; }
-.home-post strong { font-size: 14px; font-weight: 700; }
 
 @media (max-width: 760px) {
-  .home-grid { grid-template-columns: 1fr; }
-  .home-posts { padding: 16px; }
   .home-hero { padding: 24px 20px; }
 }
 
@@ -775,13 +767,22 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .guide-family-title b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 11px; }
 .guide-family-title strong { font-size: 17px; }
 .guide-sat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-.guide-sat-card { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.9); text-align: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform .18s ease, border-color .18s ease; }
+.guide-sat-card { display: grid; gap: 7px; padding: 9px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.9); text-align: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform .18s ease, border-color .18s ease; }
 .guide-sat-card:hover { transform: translateY(-2px); border-color: var(--teal); }
-.guide-sat-icon { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 9px; background: #0e1c20; }
+.guide-sat-icon { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 9px; background: #0e1c20; }
 .guide-sat-card strong { font-size: 15px; }
-.guide-sat-card small { color: var(--muted); font-size: 11px; line-height: 1.4; }
 .guide-band-chips { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
 .guide-band-chip { padding: 3px 8px; border-radius: 99px; background: #e8f3ef; color: var(--teal-dark); font-size: 11px; font-weight: 800; }
+
+/* 指南：频率总表 */
+.guide-tables { display: grid; gap: 14px; }
+.guide-table-wrap { display: grid; gap: 8px; padding: 14px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.88); }
+.guide-table-wrap h4 { margin: 0; font-size: 15px; }
+.guide-table-scroll { overflow-x: auto; }
+.guide-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+.guide-table th, .guide-table td { padding: 7px 9px; border: 1px solid #dfe5e2; text-align: left; white-space: nowrap; }
+.guide-table thead th { background: #e8f3ef; color: var(--teal-dark); font-weight: 800; }
+.guide-table tbody tr:nth-child(even) { background: rgba(255,255,255,.55); }
 
 /* 指南：卫星详情 */
 .guide-back { justify-self: start; min-height: 34px; padding: 0 14px; border: 1px solid var(--line); border-radius: 99px; background: #fff; color: var(--teal-dark); font-size: 13px; font-weight: 800; cursor: pointer; }
