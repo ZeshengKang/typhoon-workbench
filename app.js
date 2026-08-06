@@ -1646,6 +1646,172 @@ function updateTrackMap(storm, selectedDate) {
     marker: last ? [Number(last[0]).toFixed(1), Number(last[1]).toFixed(1)] : null
   };
 }
+let guideData = null;
+let guideView = {
+  name: "index"
+};
+async function loadGuideData() {
+  if (guideData) return guideData;
+  try {
+    guideData = await fetchJSON("./data/guide.json", 20000, "no-cache");
+  } catch (error) {
+    guideData = null;
+  }
+  return guideData;
+}
+function guideSatKey(title) {
+  const m = String(title).match(/^(HINODE|Metop-\w|Meteor\s*M2-?\d|Fengyun\s*\d\w|FY-?3\w|NOAA\d+|GK2A|Elektro\s*L\d|ELektro\s*L\d|GOES-?\d*)/i);
+  if (m) return m[1].toUpperCase().replace(/\s+/g, "");
+  return String(title).split(/\s/)[0].replace(/[^A-Za-z0-9]/g, "");
+}
+function parseSatelliteName(title) {
+  const t = String(title).replace(/（[^）]*）\s*$/, "").trim();
+  const fm = t.match(/^(HINODE|Metop-\w|Meteor\s*M2-?\d|Fengyun\s*\d\w|FY-?3\w|NOAA\d+|GK2A|Elektro\s*L\d|ELektro\s*L\d|GOES-?\d*)/i);
+  return fm ? fm[1] : t.split(/\s/)[0];
+}
+function parseBand(title) {
+  const known = ["AHRPT", "HRPT", "HRIT", "LRIT", "UHRIT", "S-VISSR", "S-band", "X-band", "APT", "KMSS", "RDAS", "CDAS", "HRD"];
+  for (const band of known) {
+    if (title.toUpperCase().includes(band.toUpperCase())) return band.toUpperCase();
+  }
+  if (/HINODE/i.test(title)) return "S-band";
+  return "下传";
+}
+function guideFamilies() {
+  const families = [];
+  if (!guideData || !guideData.sections) return families;
+  for (const [section, items] of Object.entries(guideData.sections)) {
+    if (/X\s*band|X波段/i.test(section)) continue;
+    const cards = items.filter(it => it && it.title);
+    if (!cards.length) continue;
+    const groups = {};
+    cards.forEach(card => {
+      const key = guideSatKey(card.title);
+      (groups[key] = groups[key] || []).push(card);
+    });
+    families.push({
+      name: section.replace(/:$/, ""),
+      sats: Object.keys(groups).map(key => {
+        const cards2 = groups[key];
+        const first = cards2[0].title;
+        return {
+          key,
+          name: parseSatelliteName(first),
+          country: (String(first).match(/（([^）]*)）/) || [])[1] || "",
+          cards: cards2
+        };
+      })
+    });
+  }
+  return families;
+}
+function guideImg(file) {
+  return `./assets/guide/img/${encodeURIComponent(file)}`;
+}
+function renderGuideIndex() {
+  const families = guideFamilies();
+  let html = `<p style="margin:0 2px;color:var(--muted);line-height:1.7">点击任一卫星图标查看它的下传波段、频率与接收参数。</p>`;
+  families.forEach((family, fi) => {
+    html += `<section class="guide-family"><div class="guide-family-title"><b>${String(fi + 1).padStart(2, "0")}</b><strong>${family.name}</strong></div><div class="guide-sat-grid">`;
+    family.sats.forEach((sat, si) => {
+      const icon = sat.cards[0].imgs[0];
+      const chips = sat.cards.map(c => `<span class="guide-band-chip">${parseBand(c.title)}</span>`).join("");
+      const meta = sat.cards.map(c => {
+        const fm = String(c.title).match(/([\d.]+)\s*Mhz/i);
+        return fm ? fm[1] + " MHz" : "";
+      }).filter(Boolean).join(" · ");
+      html += `<button type="button" class="guide-sat-card" data-guide="sat" data-fam="${fi}" data-sat="${si}">` + (icon ? `<img class="guide-sat-icon" src="${guideImg(icon)}" alt="${sat.name}" loading="lazy">` : `<div class="guide-sat-icon"></div>`) + `<strong>${sat.name}</strong>` + `<small>${sat.country}${meta ? " · " + meta : ""}</small>` + `<div class="guide-band-chips">${chips}</div></button>`;
+    });
+    html += `</div></section>`;
+  });
+  $("guideContent").innerHTML = html;
+}
+function renderGuideSatellite(famIdx, satIdx) {
+  const families = guideFamilies();
+  const family = families[Number(famIdx)];
+  const sat = family && family.sats[Number(satIdx)];
+  if (!sat) {
+    renderGuideIndex();
+    return;
+  }
+  let html = `<button type="button" class="guide-back" data-guide="index">← 返回指南首页</button>`;
+  html += `<section class="guide-sat-detail">`;
+  sat.cards.forEach(card => {
+    const band = parseBand(card.title);
+    const fm = String(card.title).match(/([\d.]+)\s*Mhz/i);
+    const note = (String(card.title).match(/（([^）]*)）/) || [])[1] || "";
+    html += `<div class="guide-band-block"><h3>${sat.name} · ${band}${fm ? " · " + fm[1] + " MHz" : ""}</h3>`;
+    if (note) html += `<p style="margin:4px 0 0;color:var(--orange);font-weight:700">${note}</p>`;
+    if (card.lines && card.lines.length) html += `<div class="guide-band-meta">${card.lines.map(l => `<span>${l}</span>`).join("")}</div>`;
+    if (card.imgs && card.imgs.length) {
+      html += `<div class="guide-img-grid">${card.imgs.map(im => `<figure><img src="${guideImg(im)}" alt="${sat.name} ${band}" loading="lazy"></figure>`).join("")}</div>`;
+    }
+    html += `</div>`;
+  });
+  html += `</section>`;
+  $("guideContent").innerHTML = html;
+}
+function isGuideHeading(text) {
+  if (!text) return false;
+  if (text.length > 22) return false;
+  if (/[。！？：]$/.test(text) && !/：$/.test(text)) return false;
+  return !/^http|^【淘宝】|^https/.test(text);
+}
+function renderGuideXband() {
+  let items = [];
+  if (guideData && guideData.sections) {
+    for (const [section, list] of Object.entries(guideData.sections)) {
+      if (/X\s*band|X波段/i.test(section)) {
+        items = list;
+        break;
+      }
+    }
+  }
+  let html = `<div class="guide-article">`;
+  items.forEach(item => {
+    const text = (item.text || "").trim();
+    const imgs = item.imgs || [];
+    if (text) {
+      if (isGuideHeading(text) && text.length <= 18) {
+        html += `<h3>${text}</h3>`;
+      } else if (/bladeRF-cli|^#|^\$\s|set frequency|set samplerate|set gain|set correction|rx config|tx config|rx start|tx start/.test(text)) {
+        html += `<pre>${text.replace(/</g, "&lt;")}</pre>`;
+      } else {
+        html += `<p>${text}</p>`;
+      }
+    }
+    imgs.forEach(im => {
+      html += `<img src="${guideImg(im)}" alt="" loading="lazy">`;
+    });
+  });
+  html += `</div>`;
+  $("guideContent").innerHTML = html;
+}
+function renderGuide() {
+  if (!guideData) {
+    $("guideContent").innerHTML = `<div class="notice warning-note"><strong>加载失败</strong><span>指南数据未能加载，请稍后重试。</span></div>`;
+    return;
+  }
+  if (guideView.name === "sat") renderGuideSatellite(guideView.fam, guideView.sat);else if (guideView.name === "xband") renderGuideXband();else renderGuideIndex();
+  const heading = guideView.name === "sat" ? "气象卫星接收指南 · 卫星详情" : guideView.name === "xband" ? "气象卫星接收指南 · X波段教程" : "气象卫星接收指南";
+  const h = document.querySelector(".guide-head h2");
+  if (h) h.textContent = heading;
+}
+function buildGuideMenu() {
+  const menu = $("guideSubMenu");
+  if (!menu || menu.dataset.built || !guideData) return;
+  menu.dataset.built = "1";
+  const families = guideFamilies();
+  let html = `<a href="#" data-guide="index" class="active">指南首页</a>`;
+  families.forEach((family, fi) => {
+    html += `<span class="guide-menu-label">${family.name}</span>`;
+    family.sats.forEach((sat, si) => {
+      html += `<a href="#" data-guide="sat" data-fam="${fi}" data-sat="${si}">${sat.name}</a>`;
+    });
+  });
+  html += `<a href="#" data-guide="xband">X波段接收教程</a>`;
+  menu.innerHTML = html;
+}
 function renderWpMedia(storm, selectedDate = null) {
   var _storm$cma4;
   const products = storm.products || {};
@@ -1947,6 +2113,10 @@ function showPage(page) {
       if (storm) updateTrackMap(storm, wpSelectedDate);
     }, 100);
   }
+  if (page === "guide") {
+    renderGuide();
+    buildGuideMenu();
+  }
   window.scrollTo({
     top: 0,
     behavior: "smooth"
@@ -2188,20 +2358,73 @@ function bindEvents() {
       if (card && card.dataset.page) showPage(card.dataset.page);
     });
   }
+  const guideContent = $("guideContent");
+  if (guideContent) {
+    guideContent.addEventListener("click", event => {
+      const target = event.target.closest("[data-guide]");
+      if (!target) return;
+      if (target.dataset.guide === "sat") {
+        guideView = {
+          name: "sat",
+          fam: target.dataset.fam,
+          sat: target.dataset.sat
+        };
+      } else {
+        guideView = {
+          name: "index"
+        };
+      }
+      renderGuide();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+  const guideSubMenu = $("guideSubMenu");
+  if (guideSubMenu) {
+    guideSubMenu.addEventListener("click", event => {
+      const target = event.target.closest("[data-guide]");
+      if (!target) return;
+      if (target.dataset.guide === "sat") {
+        guideView = {
+          name: "sat",
+          fam: target.dataset.fam,
+          sat: target.dataset.sat
+        };
+      } else if (target.dataset.guide === "xband") {
+        guideView = {
+          name: "xband"
+        };
+      } else {
+        guideView = {
+          name: "index"
+        };
+      }
+      document.querySelectorAll("#guideSubMenu [data-guide]").forEach(a => {
+        a.classList.toggle("active", a === target);
+      });
+      renderGuide();
+      closeMenu();
+      showPage("guide");
+    });
+  }
   const menuToggle = $("menuToggle");
   const sideMenu = $("sideMenu");
   const overlay = $("sideMenuOverlay");
+  const openMenu = () => {
+    if (!sideMenu) return;
+    sideMenu.classList.add("open");
+    if (overlay) overlay.classList.add("open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+  };
+  const closeMenu = () => {
+    if (!sideMenu) return;
+    sideMenu.classList.remove("open");
+    if (overlay) overlay.classList.remove("open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+  };
   if (menuToggle && sideMenu && overlay) {
-    const openMenu = () => {
-      sideMenu.classList.add("open");
-      overlay.classList.add("open");
-      menuToggle.setAttribute("aria-expanded", "true");
-    };
-    const closeMenu = () => {
-      sideMenu.classList.remove("open");
-      overlay.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-    };
     menuToggle.addEventListener("click", () => {
       if (sideMenu.classList.contains("open")) closeMenu();else openMenu();
     });
@@ -2285,6 +2508,10 @@ function boot() {
   $("openResource").disabled = true;
   showPage("home");
   loadWpSituation();
+  loadGuideData().then(() => {
+    buildGuideMenu();
+    if ($("guidePage") && !$("guidePage").hidden) renderGuide();
+  });
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) loadWpSituation();
   });
