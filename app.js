@@ -1647,6 +1647,7 @@ function updateTrackMap(storm, selectedDate) {
   };
 }
 let guideData = null;
+let xbandData = null;
 let guideView = {
   name: "index"
 };
@@ -1661,6 +1662,16 @@ async function loadGuideData() {
     guideData = null;
   }
   return guideData;
+}
+async function loadXbandData() {
+  if (xbandData) return xbandData;
+  try {
+    xbandData = await fetchJSON("./data/xband.json", 20000, "no-cache");
+  } catch (error) {
+    console.error("xband.json 加载失败", error);
+    xbandData = null;
+  }
+  return xbandData;
 }
 function guideSatKey(title) {
   const m = String(title).match(/^(HINODE|Metop-\w|Meteor\s*M2-?\d|Fengyun\s*\d\w|FY-?3\w|NOAA\d+|GK2A|Elektro\s*L\d|ELektro\s*L\d|GOES-?\d*)/i);
@@ -1721,7 +1732,7 @@ function guideImg(file) {
 }
 function renderGuideIndex() {
   const families = guideFamilies();
-  let html = `<p style="margin:0 2px;color:var(--muted);line-height:1.7">点击任一卫星图标查看它的下传波段、频率与接收图像；页面底部附完整频率总表。</p>`;
+  let html = `<p style="margin:0 2px;color:var(--muted);line-height:1.8">点击任一卫星图标查看它的下传波段、频率与接收图像；<a href="#guide-tables" data-guide="tables">气象卫星频率表</a>独立成类，位于页面底部。</p>`;
   families.forEach((family, fi) => {
     html += `<section class="guide-family"><div class="guide-family-title"><b>${String(fi + 1).padStart(2, "0")}</b><strong>${family.name}</strong></div><div class="guide-sat-grid">`;
     family.sats.forEach((sat, si) => {
@@ -1732,9 +1743,9 @@ function renderGuideIndex() {
     html += `</div></section>`;
   });
   if (guideData && Array.isArray(guideData.tables)) {
-    html += `<section class="guide-family"><div class="guide-family-title"><b>✚</b><strong>卫星频率总表</strong></div><div class="guide-tables">`;
+    html += `<section id="guide-tables" class="guide-family guide-family-tables"><div class="guide-family-title"><b>✚</b><strong>气象卫星频率表</strong></div><p style="margin:2px 4px 0;color:var(--muted);line-height:1.8">按 L / S 波段与 X 波段分表：频率、极化、推荐带宽、天线口径与附加说明。</p><div class="guide-tables">`;
     guideData.tables.forEach((rows, ti) => {
-      html += `<div class="guide-table-wrap"><h4>${ti === 0 ? "L 波段 / S 波段" : "X 波段"}</h4><div class="guide-table-scroll"><table class="guide-table"><thead>`;
+      html += `<div class="guide-table-wrap"><h4>${ti === 0 ? "L 波段 / S 波段频率表" : "X 波段频率表"}</h4><div class="guide-table-scroll"><table class="guide-table"><thead>`;
       let headerDone = false;
       rows.forEach(row => {
         const first = (row[0] || "").trim();
@@ -1778,48 +1789,59 @@ function renderGuideSatellite(famIdx, satIdx) {
   html += `</section>`;
   $("guideContent").innerHTML = html;
 }
-function isGuideHeading(text) {
-  if (!text) return false;
-  if (text.length > 22) return false;
-  if (/[。！？：]$/.test(text) && !/：$/.test(text)) return false;
-  return !/^http|^【淘宝】|^https/.test(text);
+const TUT_CODE_RE = /^(#|set frequency|set samplerate|set gain|set correction|rx config|tx config|rx start|tx start|bladeRF-cli|print|info$)/;
+function tutEscape(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-function renderGuideXbandTo(container) {
-  let items = [];
-  if (guideData && guideData.sections) {
-    for (const [section, list] of Object.entries(guideData.sections)) {
-      if (/X\s*band|X波段/i.test(section)) {
-        items = list;
-        break;
-      }
-    }
-  }
-  let html = `<div class="guide-article">`;
-  items.forEach(item => {
+function tutImgRow(imgs) {
+  if (!imgs || !imgs.length) return "";
+  return `<div class="xband-imgs">${imgs.map(im => `<figure><img src="${guideImg(im)}" alt="" loading="lazy"></figure>`).join("")}</div>`;
+}
+function tutParagraphs(paras) {
+  let html = "";
+  let codeBuf = [];
+  const flushCode = () => {
+    if (!codeBuf.length) return;
+    html += `<pre>${codeBuf.map(tutEscape).join("\n")}</pre>`;
+    codeBuf = [];
+  };
+  paras.forEach(item => {
     const text = (item.text || "").trim();
     const imgs = item.imgs || [];
+    if (text && TUT_CODE_RE.test(text)) {
+      codeBuf.push(text);
+      return;
+    }
+    flushCode();
     if (text) {
-      if (isGuideHeading(text) && text.length <= 18) {
-        html += `<h3>${text}</h3>`;
-      } else if (/bladeRF-cli|^#|^\$\s|set frequency|set samplerate|set gain|set correction|rx config|tx config|rx start|tx start/.test(text)) {
-        html += `<pre>${text.replace(/</g, "&lt;")}</pre>`;
+      if (/^https?:\/\//.test(text) || /^【淘宝】/.test(text)) {
+        html += `<p class="xband-link">${tutEscape(text)}</p>`;
       } else {
-        html += `<p>${text}</p>`;
+        html += `<p>${tutEscape(text)}</p>`;
       }
     }
-    imgs.forEach(im => {
-      html += `<img src="${guideImg(im)}" alt="" loading="lazy">`;
-    });
+    html += tutImgRow(imgs);
   });
-  html += `</div>`;
-  container.innerHTML = html;
+  flushCode();
+  return html;
 }
 function renderTutorial() {
-  if (!guideData) {
-    $("tutorialContent").innerHTML = `<div class="notice warning-note"><strong>加载失败</strong><span>教程数据未能加载。</span></div>`;
+  const container = $("tutorialContent");
+  if (!container) return;
+  if (!xbandData || !Array.isArray(xbandData.chapters) || !xbandData.chapters.length) {
+    container.innerHTML = `<div class="notice warning-note"><strong>加载失败</strong><span>教程数据未能加载，请稍后刷新重试。</span></div>`;
     return;
   }
-  renderGuideXbandTo($("tutorialContent"));
+  let html = `<div class="tutorial-index"><p>点击左侧菜单可跳转到对应章节。全部内容为 <b>BG5VJM 本人实测路线</b>，包含 LNA、滤波、下变频、SDR、馈线与馈源。</p></div>`;
+  xbandData.chapters.forEach((ch, ci) => {
+    html += `<section id="xband-ch-${ci}" class="xband-chapter"><h2>${ci + 1}. ${tutEscape(ch.title)}</h2>`;
+    ch.subs.forEach(sub => {
+      if (sub.title) html += `<h3>${tutEscape(sub.title)}</h3>`;
+      html += tutParagraphs(sub.paras || []);
+    });
+    html += `</section>`;
+  });
+  container.innerHTML = html;
 }
 function renderGuide() {
   if (!guideData) {
@@ -1843,13 +1865,21 @@ function buildGuideMenu() {
       html += `<a href="#" data-guide="sat" data-fam="${fi}" data-sat="${si}">${sat.name}</a>`;
     });
   });
+  html += `<span class="guide-menu-label">气象卫星频率表</span>`;
+  html += `<a href="#" data-guide="tables">L/S 与 X 波段频率表</a>`;
   menu.innerHTML = html;
 }
 function buildTutorialMenu() {
   const menu = $("tutorialSubMenu");
   if (!menu || menu.dataset.built) return;
   menu.dataset.built = "1";
-  menu.innerHTML = `<a href="#" data-tutorial="xband" class="active">X波段接收教程</a>`;
+  let html = `<a href="#" data-tutorial="xband" data-ch="0" class="active">教程总览</a>`;
+  if (xbandData && Array.isArray(xbandData.chapters)) {
+    xbandData.chapters.forEach((ch, ci) => {
+      html += `<a href="#" data-tutorial="xband" data-ch="${ci}">${ch.title}</a>`;
+    });
+  }
+  menu.innerHTML = html;
 }
 function renderWpMedia(storm, selectedDate = null) {
   var _storm$cma4;
@@ -2163,10 +2193,7 @@ function showPage(page) {
     renderTutorial();
     buildTutorialMenu();
   }
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  window.scrollTo(0, 0);
 }
 function updateResourceStorm() {
   const storm = currentStormObject();
@@ -2210,6 +2237,62 @@ function openSelectedResource() {
   const siteUrl = (button === null || button === void 0 ? void 0 : button.dataset.siteUrl) || "";
   if (!/^https:\/\//i.test(siteUrl)) return alert("当前没有可打开的官方网站");
   window.open(siteUrl, "_blank", "noopener");
+}
+function setupLightbox() {
+  const box = $("lightbox");
+  const img = $("lightboxImg");
+  const count = $("lightboxCount");
+  if (!box || !img) return;
+  let images = [];
+  let index = 0;
+  const collect = () => {
+    images = Array.from(document.querySelectorAll(".page-panel:not([hidden]) img")).filter(el => el.closest(".guide-img-grid, .xband-imgs, .dvorak-lessons, .guide-article"));
+  };
+  const show = i => {
+    if (!images.length) return;
+    index = (i + images.length) % images.length;
+    img.src = images[index].src;
+    if (count) count.textContent = `${index + 1} / ${images.length}`;
+  };
+  const open = el => {
+    collect();
+    const idx = images.indexOf(el);
+    if (idx === -1) return;
+    box.hidden = false;
+    document.body.style.overflow = "hidden";
+    show(idx);
+  };
+  const close = () => {
+    box.hidden = true;
+    document.body.style.overflow = "";
+    img.src = "";
+  };
+  document.addEventListener("click", event => {
+    const el = event.target.closest(".guide-img-grid img, .xband-imgs img, .dvorak-lessons img, .guide-article img");
+    if (el) {
+      event.preventDefault();
+      open(el);
+    }
+  });
+  box.addEventListener("click", event => {
+    if (event.target === box) close();
+  });
+  const closeBtn = box.querySelector(".lightbox-close");
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  const prevBtn = box.querySelector(".lightbox-prev");
+  if (prevBtn) prevBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    show(index - 1);
+  });
+  const nextBtn = box.querySelector(".lightbox-next");
+  if (nextBtn) nextBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    show(index + 1);
+  });
+  document.addEventListener("keydown", event => {
+    if (box.hidden) return;
+    if (event.key === "Escape") close();else if (event.key === "ArrowLeft") show(index - 1);else if (event.key === "ArrowRight") show(index + 1);
+  });
 }
 function getFavorites() {
   try {
@@ -2414,6 +2497,17 @@ function bindEvents() {
           fam: target.dataset.fam,
           sat: target.dataset.sat
         };
+      } else if (target.dataset.guide === "tables") {
+        guideView = {
+          name: "index"
+        };
+        renderGuide();
+        const tables = document.getElementById("guide-tables");
+        if (tables) tables.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+        return;
       } else {
         guideView = {
           name: "index"
@@ -2437,6 +2531,10 @@ function bindEvents() {
           fam: target.dataset.fam,
           sat: target.dataset.sat
         };
+      } else if (target.dataset.guide === "tables") {
+        guideView = {
+          name: "index"
+        };
       } else {
         guideView = {
           name: "index"
@@ -2448,6 +2546,13 @@ function bindEvents() {
       renderGuide();
       closeMenu();
       showPage("guide");
+      if (target.dataset.guide === "tables") {
+        const tables = document.getElementById("guide-tables");
+        if (tables) tables.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
     });
   }
   const tutorialSubMenu = $("tutorialSubMenu");
@@ -2455,15 +2560,19 @@ function bindEvents() {
     tutorialSubMenu.addEventListener("click", event => {
       const target = event.target.closest("[data-tutorial]");
       if (!target) return;
-      tutorialView = {
-        name: target.dataset.tutorial || "xband"
-      };
+      const ch = Number(target.dataset.ch || "0");
       document.querySelectorAll("#tutorialSubMenu [data-tutorial]").forEach(a => {
         a.classList.toggle("active", a === target);
       });
-      renderTutorial();
       closeMenu();
       showPage("tutorial");
+      const anchor = document.getElementById(`xband-ch-${ch}`);
+      if (anchor) {
+        setTimeout(() => anchor.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        }), 120);
+      }
     });
   }
   const menuToggle = $("menuToggle");
@@ -2556,6 +2665,7 @@ function boot() {
     }
   });
   bindEvents();
+  setupLightbox();
   const dataDetails = $("wpDataDetails");
   if (dataDetails && window.matchMedia("(max-width: 760px)").matches) {
     dataDetails.open = false;
@@ -2565,7 +2675,7 @@ function boot() {
   $("openResource").disabled = true;
   showPage("home");
   loadWpSituation();
-  loadGuideData().then(() => {
+  Promise.all([loadGuideData(), loadXbandData()]).then(() => {
     buildGuideMenu();
     buildTutorialMenu();
     if ($("guidePage") && !$("guidePage").hidden) renderGuide();

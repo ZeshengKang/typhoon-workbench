@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>路人王老康 BG5VJM 台风云图分析工具 · 网页版</title>
-  <meta name="description" content="西太平洋热带气旋实时云图、CMA 数值、环境场与模式预报分析工作台">
+  <title>路人王老康 BG5VJM · 博客 / 台风云图 / 卫星接收</title>
+  <meta name="description" content="路人王老康 BG5VJM 的博客：西太平洋热带气旋云图分析、气象卫星接收数据与 X 波段接收教程">
   <link rel="icon" href="./assets/icon-dapiya.ico">
   <link rel="preconnect" href="https://api.dapiya.top">
   <link rel="preconnect" href="https://data.dapiya.top">
@@ -19,10 +19,14 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.34">
+  <link rel="stylesheet" href="./style.css?v=web1.35">
 </head>
 <body>
-  <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
+  <header id="siteTop" class="site-top">
+    <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
+    <span class="site-top-brand">BG5VJM · 路人王老康</span>
+    <span class="site-top-version">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages</span></span>
+  </header>
   <div id="sideMenuOverlay" class="side-menu-overlay"></div>
   <nav id="sideMenu" class="side-menu" aria-label="站点导航">
     <button id="menuClose" class="side-menu-close" type="button" aria-label="关闭菜单">✕</button>
@@ -49,7 +53,7 @@
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.34";
+      var CURRENT = "web1.35";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -68,17 +72,6 @@
     })();
   </script>
   <main class="shell">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">TROPICAL CYCLONE ANALYSIS WORKBENCH · WEB</p>
-        <h1>路人王老康 BG5VJM<br>台风云图分析工具</h1>
-      </div>
-      <div class="owner-stack">
-        <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.34</span></div>
-      </div>
-    </header>
-
     <nav class="app-tabs" aria-label="主要功能">
       <button class="app-tab active" type="button" data-page="analysis"><span class="tab-long">台风云图实时分析</span><span class="tab-short">实时分析</span></button>
       <button class="app-tab" type="button" data-page="resources"><span class="tab-long">台风资料中心</span><span class="tab-short">资料中心</span></button>
@@ -738,6 +731,13 @@
       网页版仅展示公开来源站的实时与快照资料，不做本地下载。图像版权与再发布规则以 Dapiya、原始卫星数据提供方及当地法律为准。
     </footer>
   </main>
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="关闭">✕</button>
+    <button class="lightbox-prev" type="button" aria-label="上一张">‹</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-next" type="button" aria-label="下一张">›</button>
+    <span id="lightboxCount" class="lightbox-count"></span>
+  </div>
   <script>
     document.getElementById("appVersion").textContent = "3.8";
   </script>

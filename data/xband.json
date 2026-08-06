@@ -1,0 +1,998 @@
+{
+ "title": "气象卫星接收教程",
+ "chapters": [
+  {
+   "title": "方案演进（本人实测路线）",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image102.jpg"
+       ]
+      },
+      {
+       "text": "传统的X波段接收方案都采用一个放大器一个LNC就可以接收，因为频率高，同口径下增益高，并且干扰低。但在年头我就开始接触X波段接收，也是1放一滤，发现IF输出正好就在GSM附近，干扰极大，而且snr也没多高。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image103.jpg"
+       ]
+      },
+      {
+       "text": "1个LNA的方案，成功接收FY-3G",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image104.jpg"
+       ]
+      },
+      {
+       "text": "过了6个月，尝试了3放1滤＋2衰减器（6db+10db）",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image105.jpg"
+       ]
+      },
+      {
+       "text": "最后舍弃到一个lna，达到2放1滤的最终方案。",
+       "imgs": []
+      },
+      {
+       "text": "这是我在国庆节测试了3天3夜都失败后，推出的新方案（Xband采用2放1滤），全网找了几百个LNA，BPF做对比最后选出来的，具体怎么样还需后续实测结果",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image106.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "放大器 LNA",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "LNA是最令我头疼的一个硬件，老外用的大部分都是MITEQ的低噪放，并且我给德国爱好者看了我用的国产lna参数，他们都表示怀疑参数作假或者测试出错，坚持miteq，我也是在ebay和各大网上找了很久。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "MITEQ 命名规则",
+     "paras": [
+      {
+       "text": "1.AMF为低噪放系列，AFS3/4是宽带lna，噪声通常较高",
+       "imgs": []
+      },
+      {
+       "text": "2.AFS3-08500960-15-10P-TC-4",
+       "imgs": []
+      },
+      {
+       "text": "-08500960——8.5G-9.6G",
+       "imgs": []
+      },
+      {
+       "text": "-15 ——NF为1.5db",
+       "imgs": []
+      },
+      {
+       "text": "-10p——输出功率10dbm",
+       "imgs": []
+      },
+      {
+       "text": "TC (Temperature Compensation) ——带有温度补偿电路。自动调整偏置，使得增益漂移最小化，噪声系数保持稳定。",
+       "imgs": []
+      },
+      {
+       "text": "没有 TC 的版本在极端温度下可能出现增益下降或 NF 上升。",
+       "imgs": []
+      },
+      {
+       "text": "-4 ——封装/外形编号。MITEQ 的 LNA 有不同的机械外壳标准，每个编号对应一种尺寸和接口布局。",
+       "imgs": []
+      },
+      {
+       "text": "eg：-1：最小型模块，适合紧凑系统",
+       "imgs": []
+      },
+      {
+       "text": "-2：标准模块，带 SMA 接口",
+       "imgs": []
+      },
+      {
+       "text": "-4：较大封装，通常带更好的散热和稳固的连接器",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image107.jpg",
+        "image108.jpg"
+       ]
+      },
+      {
+       "text": "这两个型号是老外推荐过的，但实际上AFS4的NF高达4-5db，这作为后级放大可能还行，前级几乎不可用，必须要前者AMF系列低噪放。因此AFS4-08001200-20P-MP目前是我的后级放大。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image109.jpg",
+        "image110.jpg",
+        "image111.jpg",
+        "image112.jpg"
+       ]
+      },
+      {
+       "text": "AFS2-0300-1200-TRR     该款作为宽频放大，增益20db以下并且NF较高",
+       "imgs": []
+      },
+      {
+       "text": "AMF-2D-005200-65-10P   5-20G宽频lna，65为NF6.5db，较高",
+       "imgs": []
+      },
+      {
+       "text": "AMFK-3F-040080-12-10P-L 该款比较合适，但是注意商家经常标错频率，8-12G是错误的，该款是4-8G，nf1.2db，增益通常在28db",
+       "imgs": []
+      },
+      {
+       "text": "AFS3-08500960-15-10P-TC-4 频率范围过窄，在7790左右的极轨信号可能无法达到足够的增益。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "国产 LNA",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image113.jpg",
+        "image114.jpg"
+       ]
+      },
+      {
+       "text": "这是成都西科的，很多卖家标美国的是错误的。价格便宜，8-18G增益客观，但是NF未知，可以一试。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image115.jpg",
+        "image116.jpg"
+       ]
+      },
+      {
+       "text": "启源微波的宽频lna，参数非常牛逼，是我第一个购买的lna，实际测试在单lna可用，2放1滤时，单放40db增益过高，容易过载",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image117.jpg",
+        "image118.jpg",
+        "image119.jpg"
+       ]
+      },
+      {
+       "text": "深圳胜海威的，6-20G，28db，出厂带实测报告，参数确实也很好，但准确度未知，目前作为我的前级lna在使用。",
+       "imgs": []
+      },
+      {
+       "text": "Tip：如果采用2放1滤的方案，前级的NF会直接影响整个系统，所以前级lna必须为低噪放，后级可以为宽带高噪放，整体系统NF不会上升太大。感兴趣的可以自己去计算一下。此外miteq由于结构原因发热量惊人，所以我加上了散热铜块和风扇（就像cpu一样）。",
+       "imgs": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "滤波",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "滤波分为Xband滤波和IF滤波，滤波器有带通滤波器BPF，低通滤波器，高通滤波和带阻。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "X 波段滤波",
+     "paras": [
+      {
+       "text": "通常采用BPF，由频率表可知，7500-7900mhz为极轨气象的的大多数下传频率，mini-circuits则是首选的高性价比方案。",
+       "imgs": []
+      },
+      {
+       "text": "VBF-7700+ 和VBF-8000+可直接覆盖极轨和同步卫星的频段，参数也非常好，价格低廉。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image120.jpg",
+        "image121.jpg",
+        "image122.jpg",
+        "image123.jpg",
+        "image124.jpg",
+        "image125.jpg"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "IF 滤波",
+     "paras": [
+      {
+       "text": "结论:目前还没有很好的解决办法。",
+       "imgs": []
+      },
+      {
+       "text": "GNSS频段，用于避开IF（lnc下变频的频率）",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image126.jpg",
+        "image127.jpg"
+       ]
+      },
+      {
+       "text": "由于SAW芯片在BW大带宽上有点困难最大带宽也只有44M，目标转向高通低通的腔体滤波器",
+       "imgs": [
+        "image128.jpg"
+       ]
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image129.jpg",
+        "image130.jpg",
+        "image131.jpg"
+       ]
+      },
+      {
+       "text": "这个SHP-1000+高通在1G比较合适，但是对于950mhz的GSM截止不够",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "陶瓷滤波器",
+     "paras": [
+      {
+       "text": "【淘宝】7天无理由退货 https://e.tb.cn/h.Shx3nZ5T7K2nNK8?tk=3KBPf0gAA7Z MF937 「全新 HFCN-1000+ 1080-4000MHz 50Ω 中心频率2.54GHz 陶瓷滤波器」",
+       "imgs": []
+      },
+      {
+       "text": "点击链接直接打开 或者 淘宝搜索直接打开",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image132.jpg"
+       ]
+      },
+      {
+       "text": "https://item.szlcsc.com/datasheet/HFCN-880D%252B/5564631.html?spm=sc.gbn.xds.a___sc.bidn.hd.ss&lcsc_vid=ElFbVgJVQAQIUlMFFQdeBlwFQ1ENVl0CEwMKAQYET1AxVlNQR1BeXlxURVlYVTsOAxUeFF5JWBIBSRccGwIdBEoFGAxBAAgJFQACSQwSGg0%3D",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image133.jpg"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "带阻滤波器",
+     "paras": [
+      {
+       "text": "有GSM陷波器，但是由于截止范围太大，有的甚至能到1.8G，无法使用pass",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image134.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "下变频 LNC / LNB",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "我用的是德国佬的LNC：可通过本地开关或远程 UART 进行控制。内部高品质温补晶体振荡器 （TCXO）可确保本振频率的高稳定性。使用外部参考信号 （10 兆赫至 250 兆赫）可进一步提高性能。得益于基于整数 N 的锁相环（PLL）设计，该设备具有良好的杂散抑制和低 本振相位噪声。 通过bias-T 连接器供电时， VCC 引脚可配置为输出，为GPSDO 或 LNA 等外部配件供电，无需额外铺设直流电缆。",
+       "imgs": []
+      },
+      {
+       "text": "下变频结构比较复杂，自制难度较大，通常都是直接购买成品。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image135.jpg",
+        "image136.jpg",
+        "image137.jpg",
+        "image138.jpg",
+        "image139.jpg"
+       ]
+      },
+      {
+       "text": "赵老师那存有的早期Shine tek国内卫星研究所留存的设备",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image140.jpg",
+        "image141.jpg",
+        "image142.jpg"
+       ]
+      },
+      {
+       "text": "赵老师的这个LNC采用OCXO 恒温晶体震荡，精度很好，但是需要提前预热20分钟以上以保证本振稳定不飘。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image143.jpg"
+       ]
+      },
+      {
+       "text": "这是介质震荡，稳定性较tcxo更低一些。当然前面是波导馈源（没图），这是波导高频头（波导馈源一体式下变频）",
+       "imgs": []
+      },
+      {
+       "text": "这种结构在C波段很常见，Norsat有很多这种一体式的波段高频头，但是是pll型的通常是tcxo，性能优异。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image144.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "接收机（SDR / TBS）",
+   "subs": [
+    {
+     "title": "常见 SDR 选择",
+     "paras": [
+      {
+       "text": "BladeRF，老牌X波段爱好者都在用，好评如潮。缺点就是采样率最大只有122.88Msps，无法接收Metop-SGA1",
+       "imgs": []
+      },
+      {
+       "text": "并且12bit最大只有64msps的采样，再大就是8bit",
+       "imgs": []
+      },
+      {
+       "text": "RFNM，新生sdr的代表，非常强大而且价格实惠",
+       "imgs": []
+      },
+      {
+       "text": "USRP B210等等，预算不足可去二手网站寻找，注意辨别假货次货不少。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "TBS 接收卡",
+     "paras": [
+      {
+       "text": "需要支持BBFrames，比如TBS6903X，接收同步卫星",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "SDR 与 TBS 如何选择？",
+     "paras": [
+      {
+       "text": "在接收GK2A UHRIT时，使用SDR和TBS接收卡的区别主要在于处理链路和稳定性。",
+       "imgs": []
+      },
+      {
+       "text": "SDR如bladeRF输出的是原始IQ基带采样，所有的符号同步、QPSK解调、LDPC+BCH纠错都要在电脑端实时完成，算力和存储压力极大，长时间录制容易出现丢包或时钟漂移，数据量也非常庞大。（比如解码FY-3E的一次过境数据就需40分钟到1小时之久）",
+       "imgs": []
+      },
+      {
+       "text": "TBS6903X等DVB-S2专用卡则在硬件里完成了解调和FEC纠错，直接输出标准化的BBFrames，体积小、稳定性高，BBFrames还需要转换为CADU才能用satdump解码，因此在GEO接收，通常选择TBS卡来实现全天候稳定接收，而SDR更适合极轨卫星。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "Tip：USB 3.0",
+     "paras": [
+      {
+       "text": "在使用sdr时注意一定要保证usb输入为3.0接口。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "bladeRF-cli 常用命令",
+     "paras": [
+      {
+       "text": "1.启动交互模式bladeRF-cli -i",
+       "imgs": []
+      },
+      {
+       "text": "2.基本信息查询",
+       "imgs": []
+      },
+      {
+       "text": "# 查看设备信息",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"info\"",
+       "imgs": []
+      },
+      {
+       "text": "# 查看当前配置",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"print\"",
+       "imgs": []
+      },
+      {
+       "text": "3.频率与采样率设置# 设置接收频率为 137.1 MHz",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set frequency rx 137100000\"",
+       "imgs": []
+      },
+      {
+       "text": "# 设置发射频率为 437.5 MHz",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set frequency tx 437500000\"",
+       "imgs": []
+      },
+      {
+       "text": "# 设置采样率为 2.4 MS/s",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set samplerate rx 2400000\"",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set samplerate tx 2400000\"",
+       "imgs": []
+      },
+      {
+       "text": "4.增益控制",
+       "imgs": []
+      },
+      {
+       "text": "# 设置接收增益为 30 dB",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set gain rx 30\"",
+       "imgs": []
+      },
+      {
+       "text": "# 设置发射增益为 -10 dB",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set gain tx -10\"",
+       "imgs": []
+      },
+      {
+       "text": "5.DC/IQ 校正# 手动调整直流偏移",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set correction rx dc_i 50\"",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set correction rx dc_q -30\"",
+       "imgs": []
+      },
+      {
+       "text": "# 手动调整 IQ 失衡",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set correction rx gain -10\"",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set correction rx phase 5\"",
+       "imgs": []
+      },
+      {
+       "text": "6.采集与回放",
+       "imgs": []
+      },
+      {
+       "text": "# 接收 IQ 数据并保存到文件",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"rx config file=rx_samples.sc16q11 format=bin n=1000000\"",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"rx start; rx wait\"",
+       "imgs": []
+      },
+      {
+       "text": "# 从文件回放 IQ 数据到发射端",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"tx config file=tx_samples.sc16q11 format=bin repeat=1\"",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"tx start; tx wait\"",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "频率偏置（避开 DC 峰值）",
+     "paras": [
+      {
+       "text": "# 接收时偏移 +50 kHz",
+       "imgs": []
+      },
+      {
+       "text": "bladeRF-cli -i -e \"set frequency rx 137150000\"",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image145.jpg"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "注意 SDR 插入模式",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image146.jpg"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "SDR 架构差异导致的 DC 问题",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image147.jpg",
+        "image148.jpg"
+       ]
+      },
+      {
+       "text": "实测发现BladeRF Micro2.0 xA4在satdump1.2.2时会出现诡异的似乎是DC直流信号抑制没有开启，并且我测试了该版本接收GK LRIT，实际情况为环路不稳，无法正常锁定，换成低版本时问题即可解决，更换了dll文件和升级固件和fpga问题依旧。",
+       "imgs": []
+      },
+      {
+       "text": "看星座图，中间有绿色的圈，环路不稳。并且通过偏移信号解码时修正回来，以及打开DC blocking后依旧无法锁定。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image149.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "馈线连接与防干扰措施",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image150.jpg"
+       ]
+      },
+      {
+       "text": "馈线最好采用半柔RG402或者半钢RG402，8G损耗低，再加一个磁环，抗干扰较好。但是无论如何，馈线仅作为跳线使用，长度不能太长而且只能用于lna到lnc之间或者其他地方的过渡用。馈源与lna应用sma连接器",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image151.jpg",
+        "image152.jpg"
+       ]
+      },
+      {
+       "text": "馈线请选择半柔/半钢RG402。",
+       "imgs": []
+      },
+      {
+       "text": "注意！便宜的馈线和sma连接器接头为纯铜镀镍，最高到6Ghz，在Xband可能会有高VSWR，所以，替换掉全部的馈线和sma转接器，买纯铜镀金或者不锈钢的，sma转接器大概在15rmb，rg402半柔+纯铜镀金接头大概在20-30rmb，若太便宜请问清商家细节。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "防干扰措施",
+     "paras": [
+      {
+       "text": "铁氧体磁环在每个给LNA，LNC供电的DC线都加上，并且在馈线上也加上一个磁环。",
+       "imgs": []
+      },
+      {
+       "text": "在sma转接头的部位，用金属套管套住，后用金属卡箍固定",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image153.jpg",
+        "image154.jpg",
+        "image155.jpg"
+       ]
+      },
+      {
+       "text": "像BladeRF有2个RX，2个TX，虽然大概率不会影响，但为了保险起见全都用50欧的sma内纹针负载拧上，屏蔽干扰。",
+       "imgs": []
+      },
+      {
+       "text": "在lnc的有外接时钟接口，可以接OCXO但每次开启需要预热半小时或者直接接GPSDO（价格较贵），也可以套上负载，虽然这个接口影响不大，但是长期裸露接口会变黑。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image156.jpg"
+       ]
+      },
+      {
+       "text": "对于LNC,LNA的供电电源需要低波纹的，优选明伟医疗级的，或者可以用铅电池供电。",
+       "imgs": [
+        "image157.jpg",
+        "image158.jpg"
+       ]
+      },
+      {
+       "text": "实测GSM在有无金属套筒情况下的干扰大小",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image159.jpg",
+        "image160.jpg"
+       ]
+      },
+      {
+       "text": "对于是否在sdr的其他端口加上50欧负载，实测差别不大。",
+       "imgs": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "测试过程小剧场与注意事项",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image161.jpg"
+       ]
+      },
+      {
+       "text": "国庆测试的放着新的1.2m偏馈上，经过测试发现问题在馈源上，这个馈源直径竟然有31.8，远远低于8Ghz的波段。",
+       "imgs": []
+      },
+      {
+       "text": "于是重新制作一个，注意探针直径应为1.27mm",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image162.jpg",
+        "image163.jpg",
+        "image164.jpg",
+        "image165.jpg",
+        "image166.jpg",
+        "image167.jpg",
+        "image168.jpg"
+       ]
+      },
+      {
+       "text": "廉价的sma探针，其介质内部的探针直径与裸露的不统一，不可使用该种类探针。这个馈源内部直径是28mm，虽然是我定错了规格，但是接收下来稳定性很好，除了snr有点低以外其他没有异常。低snr会导致手持跟踪十分困难。该馈源也是让我成功接收了8个卫星（NOAA20信号非常弱，没成功）",
+       "imgs": []
+      },
+      {
+       "text": "于是重新了26mm内径的馈源，先用简易的扎带固定，接收的时候明显感觉到环路不稳，后续增加了金属卡箍，并且把探针到后端截面的尺寸打磨到了14.5mm。（理论上是19mm差不多，但是图纸上14.5应该是考虑了介质片插入的影响）",
+       "imgs": [
+        "image169.jpg",
+        "image170.jpg"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "新馈源实测（AQUA / FY-3H）",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image171.jpg",
+        "image172.jpg"
+       ]
+      },
+      {
+       "text": "AQUA和FY-3H  可以看出snr确实有2db的提升（与旧馈源相比），但是在大带宽下，环路负载压力明显锅大，导致snr虽然可以达到10-11db，但Viterbi会有很多的尖刺，以及纠错码连续报错。结果就是有大量的线。（下图分别为FY-3H,FY-3G,AQUA）",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image173.jpg",
+        "image174.jpg",
+        "image175.jpg"
+       ]
+      },
+      {
+       "text": "“新波导在FY-3G达到了18db，非常高，​但是环路明显不稳，低带宽没啥影响，在FY-3H上出现大量line，类似sample drops，解调时Pll_bw提高到0.01-0.02,RRC α微调0.5提高定时容差，Viterbi尖刺依旧多。FY-3G星座图不成正交化，右边略高IQ不平衡。但FY-3H带宽大，环路压力过大。只能猜测可能是开孔歪了一点，探针不垂直导致的交叉极化。”",
+       "imgs": []
+      },
+      {
+       "text": "这是我初步判断的问题所在。",
+       "imgs": []
+      },
+      {
+       "text": "此外我也购买了铜箔胶带，用于平滑过渡异径直通的单圈扼流圈到波导的那段缝隙。",
+       "imgs": []
+      },
+      {
+       "text": "多圈扼流圈也考虑过制作，但设备有限。可再套一圈异径直通，并在收窄区域用金属片，铜箔胶带连接缝隙，或者pvc管内贴铜箔胶带等等，但担心多圈扼流由于精度有限并非车床加工，可能恶化环路，还是放弃了。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "难点",
+     "paras": [
+      {
+       "text": "1没有网分综测，",
+       "imgs": []
+      },
+      {
+       "text": "2没有稳定的卫星信号源来测试，GK UHRIT虽然信号强大，但没找到可以解码出snr的processing，以至于馈源没法准确校准位置，微调内部结构信号波动也不明显。",
+       "imgs": []
+      }
+     ]
+    },
+    {
+     "title": "Tip：单模馈源极化片",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image176.jpg"
+       ]
+      },
+      {
+       "text": "对于单模简易波导需要用介质片装入前面喇叭口形成圆极化信号，可以买铁氟龙板5mm厚度的来切割",
+       "imgs": []
+      },
+      {
+       "text": "半钢的RG402虽然好，但是相比半柔的来说，灵活度较低，适合稳定设备或者自动云台时再使用。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image177.jpg",
+        "image178.jpg"
+       ]
+      },
+      {
+       "text": "介质片使用方法和剪裁大小。",
+       "imgs": []
+      },
+      {
+       "text": "由于没办法实时解码，接收时注意观察Debug，但如果只做测试，可以直接开解码器调试增益或者其他用途，但是注意分辨样本掉落情况，因为低性能的电脑开实时解码器可能无法解码这么大的采用率",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image179.jpg"
+       ]
+      },
+      {
+       "text": "注意看老外的设备，把馈源喇叭头直接卡在夹具，这会大大降低馈源位置校准难度。并且在lna到lnb之间加上了磁环。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image180.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "馈源升级版（双模）",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "采用3D打印的后电镀的方式",
+       "imgs": []
+      },
+      {
+       "text": "参考SV1CAL的教程：https://sv1cal.com/x-band-wx-satellite-reception/#feed",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image181.jpg",
+        "image182.jpg",
+        "image183.jpg"
+       ]
+      },
+      {
+       "text": "注意这种铜导电膏与电镀专用的铜导电漆并非一种东西，前者无法用于电镀。",
+       "imgs": []
+      },
+      {
+       "text": "",
+       "imgs": [
+        "image184.jpg",
+        "image185.jpg",
+        "image186.jpg",
+        "image187.jpg"
+       ]
+      },
+      {
+       "text": "用于正馈天线使用的双模馈源",
+       "imgs": []
+      },
+      {
+       "text": "stl文件：https://www.thingiverse.com/thing:4793665",
+       "imgs": []
+      },
+      {
+       "text": "由于我的正馈天线被台风吹坏了，而这个正馈用的焦比太快，不适合偏馈天线使用，所以暂时搁置。",
+       "imgs": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "制作与测试图片",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "",
+       "imgs": [
+        "image188.jpg",
+        "image189.jpg",
+        "image190.jpg",
+        "image191.jpg",
+        "image192.jpg",
+        "image193.jpg",
+        "image194.jpg",
+        "image195.jpg",
+        "image196.jpg",
+        "image197.jpg",
+        "image198.jpg",
+        "image199.jpg",
+        "image200.jpg",
+        "image201.jpg",
+        "image202.jpg"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "修改记录",
+   "subs": [
+    {
+     "title": "",
+     "paras": [
+      {
+       "text": "2025.4.28 更新表单部分卫星图像",
+       "imgs": []
+      },
+      {
+       "text": "2025.6.23新增了三哥波段的卫星频率表，包含频率极化，推荐带宽，天线口径和附加说明。",
+       "imgs": []
+      },
+      {
+       "text": "2025.8.10 修改NOAA S-band 频率错误，新增NOAA15/19 关闭时间，并对补充说明的描述进行优化和增添。",
+       "imgs": []
+      },
+      {
+       "text": "2025.8.19 NOAA-POES 退役",
+       "imgs": []
+      },
+      {
+       "text": "2025.8.20 新增NOAA15 S-band数据，metop-C数据",
+       "imgs": []
+      },
+      {
+       "text": "2025.10.10 新增Xband进度报告",
+       "imgs": []
+      },
+      {
+       "text": "2025.10.12 新增Xband报告",
+       "imgs": []
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
