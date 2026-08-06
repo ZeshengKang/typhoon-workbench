@@ -1650,6 +1650,9 @@ let guideData = null;
 let guideView = {
   name: "index"
 };
+let tutorialView = {
+  name: "xband"
+};
 async function loadGuideData() {
   if (guideData) return guideData;
   try {
@@ -1689,41 +1692,65 @@ function guideFamilies() {
       const key = guideSatKey(card.title);
       (groups[key] = groups[key] || []).push(card);
     });
+    const sats = Object.keys(groups).map(key => {
+      const cards2 = groups[key];
+      const first = cards2[0].title;
+      return {
+        key,
+        name: parseSatelliteName(first),
+        country: (String(first).match(/（([^）]*)）/) || [])[1] || "",
+        cards: cards2
+      };
+    }).sort((a, b) => satOrder(a.key) - satOrder(b.key));
     families.push({
       name: section.replace(/:$/, ""),
-      sats: Object.keys(groups).map(key => {
-        const cards2 = groups[key];
-        const first = cards2[0].title;
-        return {
-          key,
-          name: parseSatelliteName(first),
-          country: (String(first).match(/（([^）]*)）/) || [])[1] || "",
-          cards: cards2
-        };
-      })
+      sats
     });
   }
   return families;
+}
+function satOrder(key) {
+  if (/^NOAA/.test(key)) return 0;
+  if (/^METOP/.test(key)) return 1;
+  if (/^METEOR/.test(key)) return 2;
+  if (/^(FY|FENGYUN)/.test(key)) return 3;
+  return 4;
 }
 function guideImg(file) {
   return `./assets/guide/img/${encodeURIComponent(file)}`;
 }
 function renderGuideIndex() {
   const families = guideFamilies();
-  let html = `<p style="margin:0 2px;color:var(--muted);line-height:1.7">点击任一卫星图标查看它的下传波段、频率与接收参数。</p>`;
+  let html = `<p style="margin:0 2px;color:var(--muted);line-height:1.7">点击任一卫星图标查看它的下传波段、频率与接收图像；页面底部附完整频率总表。</p>`;
   families.forEach((family, fi) => {
     html += `<section class="guide-family"><div class="guide-family-title"><b>${String(fi + 1).padStart(2, "0")}</b><strong>${family.name}</strong></div><div class="guide-sat-grid">`;
     family.sats.forEach((sat, si) => {
       const icon = sat.cards[0].imgs[0];
       const chips = sat.cards.map(c => `<span class="guide-band-chip">${parseBand(c.title)}</span>`).join("");
-      const meta = sat.cards.map(c => {
-        const fm = String(c.title).match(/([\d.]+)\s*Mhz/i);
-        return fm ? fm[1] + " MHz" : "";
-      }).filter(Boolean).join(" · ");
-      html += `<button type="button" class="guide-sat-card" data-guide="sat" data-fam="${fi}" data-sat="${si}">` + (icon ? `<img class="guide-sat-icon" src="${guideImg(icon)}" alt="${sat.name}" loading="lazy">` : `<div class="guide-sat-icon"></div>`) + `<strong>${sat.name}</strong>` + `<small>${sat.country}${meta ? " · " + meta : ""}</small>` + `<div class="guide-band-chips">${chips}</div></button>`;
+      html += `<button type="button" class="guide-sat-card" data-guide="sat" data-fam="${fi}" data-sat="${si}">` + (icon ? `<img class="guide-sat-icon" src="${guideImg(icon)}" alt="${sat.name}" loading="lazy">` : `<div class="guide-sat-icon"></div>`) + `<strong>${sat.name}</strong>` + `<div class="guide-band-chips">${chips}</div></button>`;
     });
     html += `</div></section>`;
   });
+  if (guideData && Array.isArray(guideData.tables)) {
+    html += `<section class="guide-family"><div class="guide-family-title"><b>✚</b><strong>卫星频率总表</strong></div><div class="guide-tables">`;
+    guideData.tables.forEach((rows, ti) => {
+      html += `<div class="guide-table-wrap"><h4>${ti === 0 ? "L 波段 / S 波段" : "X 波段"}</h4><div class="guide-table-scroll"><table class="guide-table"><thead>`;
+      let headerDone = false;
+      rows.forEach(row => {
+        const first = (row[0] || "").trim();
+        const allSame = row.every(c => c === first);
+        if (allSame) return;
+        if (!headerDone) {
+          html += `<tr>${row.map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>`;
+          headerDone = true;
+        } else {
+          html += `<tr>${row.map(c => `<td>${c}</td>`).join("")}</tr>`;
+        }
+      });
+      html += `</tbody></table></div></div>`;
+    });
+    html += `</div></section>`;
+  }
   $("guideContent").innerHTML = html;
 }
 function renderGuideSatellite(famIdx, satIdx) {
@@ -1757,7 +1784,7 @@ function isGuideHeading(text) {
   if (/[。！？：]$/.test(text) && !/：$/.test(text)) return false;
   return !/^http|^【淘宝】|^https/.test(text);
 }
-function renderGuideXband() {
+function renderGuideXbandTo(container) {
   let items = [];
   if (guideData && guideData.sections) {
     for (const [section, list] of Object.entries(guideData.sections)) {
@@ -1785,15 +1812,22 @@ function renderGuideXband() {
     });
   });
   html += `</div>`;
-  $("guideContent").innerHTML = html;
+  container.innerHTML = html;
+}
+function renderTutorial() {
+  if (!guideData) {
+    $("tutorialContent").innerHTML = `<div class="notice warning-note"><strong>加载失败</strong><span>教程数据未能加载。</span></div>`;
+    return;
+  }
+  renderGuideXbandTo($("tutorialContent"));
 }
 function renderGuide() {
   if (!guideData) {
     $("guideContent").innerHTML = `<div class="notice warning-note"><strong>加载失败</strong><span>指南数据未能加载，请稍后重试。</span></div>`;
     return;
   }
-  if (guideView.name === "sat") renderGuideSatellite(guideView.fam, guideView.sat);else if (guideView.name === "xband") renderGuideXband();else renderGuideIndex();
-  const heading = guideView.name === "sat" ? "气象卫星接收指南 · 卫星详情" : guideView.name === "xband" ? "气象卫星接收指南 · X波段教程" : "气象卫星接收指南";
+  if (guideView.name === "sat") renderGuideSatellite(guideView.fam, guideView.sat);else renderGuideIndex();
+  const heading = guideView.name === "sat" ? "气象卫星接收数据 · 卫星详情" : "气象卫星接收数据";
   const h = document.querySelector(".guide-head h2");
   if (h) h.textContent = heading;
 }
@@ -1802,15 +1836,20 @@ function buildGuideMenu() {
   if (!menu || menu.dataset.built || !guideData) return;
   menu.dataset.built = "1";
   const families = guideFamilies();
-  let html = `<a href="#" data-guide="index" class="active">指南首页</a>`;
+  let html = `<a href="#" data-guide="index" class="active">数据总览</a>`;
   families.forEach((family, fi) => {
     html += `<span class="guide-menu-label">${family.name}</span>`;
     family.sats.forEach((sat, si) => {
       html += `<a href="#" data-guide="sat" data-fam="${fi}" data-sat="${si}">${sat.name}</a>`;
     });
   });
-  html += `<a href="#" data-guide="xband">X波段接收教程</a>`;
   menu.innerHTML = html;
+}
+function buildTutorialMenu() {
+  const menu = $("tutorialSubMenu");
+  if (!menu || menu.dataset.built) return;
+  menu.dataset.built = "1";
+  menu.innerHTML = `<a href="#" data-tutorial="xband" class="active">X波段接收教程</a>`;
 }
 function renderWpMedia(storm, selectedDate = null) {
   var _storm$cma4;
@@ -2088,9 +2127,12 @@ function showPage(page) {
     resources: "台风资料中心 · BG5VJM",
     glossary: "术语与德沃夏克 · BG5VJM",
     download: "本地软件 · BG5VJM",
-    guide: "气象卫星接收指南 · BG5VJM"
+    guide: "气象卫星接收数据 · BG5VJM",
+    tutorial: "气象卫星接收教程 · BG5VJM"
   };
   if (pageTitles[page]) document.title = pageTitles[page];
+  const toolTabs = document.querySelector(".app-tabs");
+  if (toolTabs) toolTabs.hidden = !["analysis", "resources", "glossary", "download"].includes(page);
   document.querySelectorAll(".page-panel").forEach(panel => {
     panel.hidden = !panel.classList.contains(`page-${page}`);
   });
@@ -2116,6 +2158,10 @@ function showPage(page) {
   if (page === "guide") {
     renderGuide();
     buildGuideMenu();
+  }
+  if (page === "tutorial") {
+    renderTutorial();
+    buildTutorialMenu();
   }
   window.scrollTo({
     top: 0,
@@ -2343,14 +2389,13 @@ function renderGlossary(query = "") {
   if (!container.children.length) container.innerHTML = "<p class='empty-result'>没有匹配的术语。</p>";
 }
 function bindEvents() {
-  const subToggle = document.querySelector(".side-menu-sub-toggle");
-  if (subToggle) {
+  document.querySelectorAll(".side-menu-sub-toggle").forEach(subToggle => {
     subToggle.addEventListener("click", () => {
       const group = subToggle.closest(".side-menu-group");
       const collapsed = group.classList.toggle("collapsed");
       subToggle.setAttribute("aria-expanded", String(!collapsed));
     });
-  }
+  });
   const homePage = $("homePage");
   if (homePage) {
     homePage.addEventListener("click", event => {
@@ -2392,10 +2437,6 @@ function bindEvents() {
           fam: target.dataset.fam,
           sat: target.dataset.sat
         };
-      } else if (target.dataset.guide === "xband") {
-        guideView = {
-          name: "xband"
-        };
       } else {
         guideView = {
           name: "index"
@@ -2407,6 +2448,22 @@ function bindEvents() {
       renderGuide();
       closeMenu();
       showPage("guide");
+    });
+  }
+  const tutorialSubMenu = $("tutorialSubMenu");
+  if (tutorialSubMenu) {
+    tutorialSubMenu.addEventListener("click", event => {
+      const target = event.target.closest("[data-tutorial]");
+      if (!target) return;
+      tutorialView = {
+        name: target.dataset.tutorial || "xband"
+      };
+      document.querySelectorAll("#tutorialSubMenu [data-tutorial]").forEach(a => {
+        a.classList.toggle("active", a === target);
+      });
+      renderTutorial();
+      closeMenu();
+      showPage("tutorial");
     });
   }
   const menuToggle = $("menuToggle");
@@ -2510,7 +2567,9 @@ function boot() {
   loadWpSituation();
   loadGuideData().then(() => {
     buildGuideMenu();
+    buildTutorialMenu();
     if ($("guidePage") && !$("guidePage").hidden) renderGuide();
+    if ($("tutorialPage") && !$("tutorialPage").hidden) renderTutorial();
   });
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) loadWpSituation();
