@@ -1916,6 +1916,15 @@ async function loadWpSituation({
   }
 }
 function showPage(page) {
+  const pageTitles = {
+    home: "路人王老康 BG5VJM 的博客",
+    analysis: "台风云图实时分析 · BG5VJM",
+    resources: "台风资料中心 · BG5VJM",
+    glossary: "术语与德沃夏克 · BG5VJM",
+    download: "本地软件 · BG5VJM",
+    guide: "气象卫星接收指南 · BG5VJM"
+  };
+  if (pageTitles[page]) document.title = pageTitles[page];
   document.querySelectorAll(".page-panel").forEach(panel => {
     panel.hidden = !panel.classList.contains(`page-${page}`);
   });
@@ -2164,6 +2173,21 @@ function renderGlossary(query = "") {
   if (!container.children.length) container.innerHTML = "<p class='empty-result'>没有匹配的术语。</p>";
 }
 function bindEvents() {
+  const subToggle = document.querySelector(".side-menu-sub-toggle");
+  if (subToggle) {
+    subToggle.addEventListener("click", () => {
+      const group = subToggle.closest(".side-menu-group");
+      const collapsed = group.classList.toggle("collapsed");
+      subToggle.setAttribute("aria-expanded", String(!collapsed));
+    });
+  }
+  const homePage = $("homePage");
+  if (homePage) {
+    homePage.addEventListener("click", event => {
+      const card = event.target.closest("[data-page]");
+      if (card && card.dataset.page) showPage(card.dataset.page);
+    });
+  }
   const menuToggle = $("menuToggle");
   const sideMenu = $("sideMenu");
   const overlay = $("sideMenuOverlay");
@@ -2259,6 +2283,7 @@ function boot() {
   renderFavorites();
   renderGlossary();
   $("openResource").disabled = true;
+  showPage("home");
   loadWpSituation();
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) loadWpSituation();
