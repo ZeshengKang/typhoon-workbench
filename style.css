@@ -736,6 +736,7 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .side-menu-sub { display: grid; gap: 3px; padding: 2px 0 6px 26px; }
 .side-menu-group.collapsed .side-menu-sub { display: none; }
 .side-menu-sub a { padding: 9px 12px; font-size: 14px; font-weight: 600; }
+.guide-menu-label { display: block; margin: 10px 6px 4px 8px; color: #82ddc5; font-size: 11px; font-weight: 800; letter-spacing: .05em; }
 
 /* 主页（博客） */
 .home-hero { padding: 34px 30px; background: linear-gradient(135deg, #0f2e36, #16424a); border-color: rgba(130,221,197,.35); color: #e8f3f0; }
@@ -767,3 +768,40 @@ footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 1
 .guide-head h2 { margin: 0; font-size: 28px; }
 .guide-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
 .guide-content { display: grid; gap: 16px; margin-top: 18px; }
+
+/* 指南：卫星图标网格 */
+.guide-family { display: grid; gap: 12px; }
+.guide-family-title { display: flex; align-items: center; gap: 10px; margin: 4px 2px 2px; }
+.guide-family-title b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 11px; }
+.guide-family-title strong { font-size: 17px; }
+.guide-sat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.guide-sat-card { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.9); text-align: center; text-decoration: none; color: inherit; cursor: pointer; transition: transform .18s ease, border-color .18s ease; }
+.guide-sat-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+.guide-sat-icon { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 9px; background: #0e1c20; }
+.guide-sat-card strong { font-size: 15px; }
+.guide-sat-card small { color: var(--muted); font-size: 11px; line-height: 1.4; }
+.guide-band-chips { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+.guide-band-chip { padding: 3px 8px; border-radius: 99px; background: #e8f3ef; color: var(--teal-dark); font-size: 11px; font-weight: 800; }
+
+/* 指南：卫星详情 */
+.guide-back { justify-self: start; min-height: 34px; padding: 0 14px; border: 1px solid var(--line); border-radius: 99px; background: #fff; color: var(--teal-dark); font-size: 13px; font-weight: 800; cursor: pointer; }
+.guide-sat-detail { display: grid; gap: 16px; }
+.guide-band-block { display: grid; gap: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.88); }
+.guide-band-block h3 { margin: 0; font-size: 17px; }
+.guide-band-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: 13px; }
+.guide-img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.guide-img-grid figure { margin: 0; }
+.guide-img-grid img { width: 100%; border-radius: 9px; background: #0e1c20; }
+
+/* 指南：X波段教程 */
+.guide-article { display: grid; gap: 10px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.88); line-height: 1.75; font-size: 14px; }
+.guide-article h3 { margin: 16px 0 2px; font-size: 18px; border-left: 4px solid var(--teal); padding-left: 10px; }
+.guide-article h3:first-child { margin-top: 0; }
+.guide-article p { margin: 4px 0; }
+.guide-article pre { overflow-x: auto; padding: 12px; border-radius: 9px; background: #10272d; color: #cdeae3; font-size: 12px; line-height: 1.5; }
+.guide-article img { display: block; max-width: 100%; max-height: 520px; margin: 6px auto; border-radius: 9px; background: #0e1c20; }
+
+@media (max-width: 760px) {
+  .guide-sat-grid { grid-template-columns: repeat(2, 1fr); }
+  .guide-article { padding: 14px; }
+}
