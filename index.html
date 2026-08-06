@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.33">
+  <link rel="stylesheet" href="./style.css?v=web1.34">
 </head>
 <body>
   <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
@@ -38,14 +38,18 @@
       </div>
     </div>
     <div class="side-menu-group">
-      <button type="button" class="side-menu-sub-toggle" aria-expanded="true"><span>◎</span>气象卫星接收指南 <i>▾</i></button>
-      <div class="side-menu-sub" id="guideSubMenu"><a href="#" data-guide="index">指南首页</a></div>
+      <button type="button" class="side-menu-sub-toggle" aria-expanded="true"><span>◎</span>气象卫星接收数据 <i>▾</i></button>
+      <div class="side-menu-sub" id="guideSubMenu"><a href="#" data-guide="index">数据总览</a></div>
+    </div>
+    <div class="side-menu-group">
+      <button type="button" class="side-menu-sub-toggle" aria-expanded="true"><span>✎</span>气象卫星接收教程 <i>▾</i></button>
+      <div class="side-menu-sub" id="tutorialSubMenu"><a href="#" data-tutorial="xband">X波段接收教程</a></div>
     </div>
   </nav>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.33";
+      var CURRENT = "web1.34";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -71,7 +75,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.33</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.34</span></div>
       </div>
     </header>
 
@@ -88,7 +92,7 @@
         <h2>路人王老康 BG5VJM 的博客</h2>
         <p>台风云图分析 · 气象卫星接收 · 业余无线电 · 学习笔记</p>
       </div>
-      <div class="home-grid">
+      <div class="home-list">
         <a class="home-card card" href="#" data-page="analysis">
           <span>☁</span>
           <div><strong>台风云图分析工具</strong><em>实时云图 · CMA 数值 · 路径地图 · 环境场</em></div>
@@ -96,18 +100,14 @@
         </a>
         <a class="home-card card" href="#" data-page="guide">
           <span>◎</span>
-          <div><strong>气象卫星接收指南</strong><em>接收与解码指南 · 整理中</em></div>
+          <div><strong>气象卫星接收数据</strong><em>各卫星下传波段、频率与接收图像</em></div>
           <i>→</i>
         </a>
-      </div>
-      <div class="card home-posts">
-        <div class="resource-heading"><span class="category-symbol">✎</span><div><h3>最新文章</h3><p>Blog Posts · 建设中</p></div></div>
-        <div class="notice warning-note"><strong>占位</strong><span>文章内容将在后续更新，这里先展示博客框架。</span></div>
-        <div class="home-post-list">
-          <a href="#" class="home-post"><span>2026-08</span><strong>待发布：台风云图分析工具网页版上线说明</strong></a>
-          <a href="#" class="home-post"><span>2026-08</span><strong>待发布：气象卫星接收指南（一）</strong></a>
-          <a href="#" class="home-post"><span>规划中</span><strong>更多内容敬请期待…</strong></a>
-        </div>
+        <a class="home-card card" href="#" data-page="tutorial">
+          <span>✎</span>
+          <div><strong>气象卫星接收指南</strong><em>X波段接收教程 · LNA / 滤波 / 馈源 / 接收机</em></div>
+          <i>→</i>
+        </a>
       </div>
     </section>
 
@@ -712,12 +712,25 @@
       <div class="card guide-head">
         <div>
           <p class="eyebrow">SATELLITE RECEIVING GUIDE</p>
-          <h2>气象卫星接收指南</h2>
-          <p>作者整理的气象卫星接收与解码指南，内容持续补充中。</p>
+          <h2>气象卫星接收数据</h2>
+          <p>各卫星的下传波段、频率、轨道参数与接收图像。</p>
         </div>
       </div>
       <div id="guideContent" class="guide-content">
-        <div class="notice warning-note"><strong>待补充</strong><span>指南正文将在这里展示（作者整理的 Word 文档内容）。</span></div>
+        <div class="notice warning-note"><strong>加载中</strong><span>正在读取卫星数据…</span></div>
+      </div>
+    </section>
+
+    <section id="tutorialPage" class="page-panel page-tutorial" hidden>
+      <div class="card guide-head">
+        <div>
+          <p class="eyebrow">SATELLITE RECEIVING TUTORIAL</p>
+          <h2>气象卫星接收教程</h2>
+          <p>X波段接收实战教程：方案、LNA、滤波、LNC、接收机与馈源。</p>
+        </div>
+      </div>
+      <div id="tutorialContent" class="guide-content">
+        <div class="notice warning-note"><strong>加载中</strong><span>正在读取教程…</span></div>
       </div>
     </section>
 
@@ -749,6 +762,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.33"></script>
+  <script src="./app.js?v=web1.34"></script>
 </body>
 </html>
