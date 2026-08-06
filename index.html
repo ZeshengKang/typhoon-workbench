@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.32">
+  <link rel="stylesheet" href="./style.css?v=web1.33">
 </head>
 <body>
   <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
@@ -37,12 +37,15 @@
         <a href="#" data-page="download">本地软件</a>
       </div>
     </div>
-    <a href="#" data-page="guide"><span>◎</span>气象卫星接收指南</a>
+    <div class="side-menu-group">
+      <button type="button" class="side-menu-sub-toggle" aria-expanded="true"><span>◎</span>气象卫星接收指南 <i>▾</i></button>
+      <div class="side-menu-sub" id="guideSubMenu"><a href="#" data-guide="index">指南首页</a></div>
+    </div>
   </nav>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.32";
+      var CURRENT = "web1.33";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -68,7 +71,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.32</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.33</span></div>
       </div>
     </header>
 
@@ -746,6 +749,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.32"></script>
+  <script src="./app.js?v=web1.33"></script>
 </body>
 </html>
