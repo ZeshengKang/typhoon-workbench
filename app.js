@@ -1922,6 +1922,9 @@ function showPage(page) {
   document.querySelectorAll(".app-tab").forEach(button => {
     button.classList.toggle("active", button.dataset.page === page);
   });
+  document.querySelectorAll(".side-menu a[data-page]").forEach(link => {
+    link.classList.toggle("active", link.dataset.page === page);
+  });
   if (page === "resources") {
     updateResourceStorm();
     const selectedTool = document.querySelector(".resource-tool.active");
@@ -2161,6 +2164,33 @@ function renderGlossary(query = "") {
   if (!container.children.length) container.innerHTML = "<p class='empty-result'>没有匹配的术语。</p>";
 }
 function bindEvents() {
+  const menuToggle = $("menuToggle");
+  const sideMenu = $("sideMenu");
+  const overlay = $("sideMenuOverlay");
+  if (menuToggle && sideMenu && overlay) {
+    const openMenu = () => {
+      sideMenu.classList.add("open");
+      overlay.classList.add("open");
+      menuToggle.setAttribute("aria-expanded", "true");
+    };
+    const closeMenu = () => {
+      sideMenu.classList.remove("open");
+      overlay.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    };
+    menuToggle.addEventListener("click", () => {
+      if (sideMenu.classList.contains("open")) closeMenu();else openMenu();
+    });
+    overlay.addEventListener("click", closeMenu);
+    if ($("menuClose")) $("menuClose").addEventListener("click", closeMenu);
+    sideMenu.addEventListener("click", event => {
+      const link = event.target.closest("a[data-page]");
+      if (link) {
+        showPage(link.dataset.page);
+        closeMenu();
+      }
+    });
+  }
   const downloadPage = $("downloadPage");
   if (downloadPage) {
     downloadPage.addEventListener("click", event => {
