@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://webst01.is.autonavi.com">
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="stylesheet" href="./assets/leaflet/leaflet.min.css">
-  <link rel="stylesheet" href="./style.css?v=web1.31">
+  <link rel="stylesheet" href="./style.css?v=web1.32">
 </head>
 <body>
   <button id="menuToggle" class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">☰</button>
@@ -27,17 +27,22 @@
   <nav id="sideMenu" class="side-menu" aria-label="站点导航">
     <button id="menuClose" class="side-menu-close" type="button" aria-label="关闭菜单">✕</button>
     <strong class="side-menu-title">路人王老康 BG5VJM</strong>
-    <a id="menuHome" href="#" target="_blank" rel="noopener"><span>⌂</span>主页 · 我的博客</a>
-    <a href="#" data-page="analysis"><span>☁</span>台风云图实时分析</a>
-    <a href="#" data-page="resources"><span>◉</span>台风资料中心</a>
-    <a href="#" data-page="glossary"><span>D</span>术语与德沃夏克</a>
-    <a href="#" data-page="download"><span>⬇</span>本地软件</a>
+    <a id="menuHome" href="#" data-page="home"><span>⌂</span>主页 · 博客</a>
+    <div class="side-menu-group">
+      <button type="button" class="side-menu-sub-toggle" aria-expanded="true"><span>☁</span>台风云图分析工具 <i>▾</i></button>
+      <div class="side-menu-sub">
+        <a href="#" data-page="analysis">台风云图实时分析</a>
+        <a href="#" data-page="resources">台风资料中心</a>
+        <a href="#" data-page="glossary">术语与德沃夏克</a>
+        <a href="#" data-page="download">本地软件</a>
+      </div>
+    </div>
     <a href="#" data-page="guide"><span>◎</span>气象卫星接收指南</a>
   </nav>
   <script>
     // 版本自检：发现线上有新版本时，用带时间戳的新地址强制绕过缓存加载；成功后清理地址栏
     (function () {
-      var CURRENT = "web1.31";
+      var CURRENT = "web1.32";
       var attempts = parseInt(sessionStorage.getItem("vrel") || "0", 10);
       fetch("./version.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
         if (v && v.v && v.v !== CURRENT) {
@@ -63,7 +68,7 @@
       </div>
       <div class="owner-stack">
         <div class="owner-badge">@ZESHENG KANG / 路人王老康 BG5VJM</div>
-        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.31</span></div>
+        <div class="version-badge">v<span id="appVersion">…</span> · <span id="appPort">GitHub Pages · web1.32</span></div>
       </div>
     </header>
 
@@ -73,6 +78,35 @@
       <button class="app-tab" type="button" data-page="glossary"><span class="tab-long">术语与德沃夏克</span><span class="tab-short">术语速查</span></button>
       <button class="app-tab" type="button" data-page="download"><span class="tab-long">本地软件</span><span class="tab-short">本地软件</span></button>
     </nav>
+
+    <section id="homePage" class="page-panel page-home" hidden>
+      <div class="card home-hero">
+        <p class="eyebrow">ZESHENG KANG · BG5VJM</p>
+        <h2>路人王老康 BG5VJM 的博客</h2>
+        <p>台风云图分析 · 气象卫星接收 · 业余无线电 · 学习笔记</p>
+      </div>
+      <div class="home-grid">
+        <a class="home-card card" href="#" data-page="analysis">
+          <span>☁</span>
+          <div><strong>台风云图分析工具</strong><em>实时云图 · CMA 数值 · 路径地图 · 环境场</em></div>
+          <i>→</i>
+        </a>
+        <a class="home-card card" href="#" data-page="guide">
+          <span>◎</span>
+          <div><strong>气象卫星接收指南</strong><em>接收与解码指南 · 整理中</em></div>
+          <i>→</i>
+        </a>
+      </div>
+      <div class="card home-posts">
+        <div class="resource-heading"><span class="category-symbol">✎</span><div><h3>最新文章</h3><p>Blog Posts · 建设中</p></div></div>
+        <div class="notice warning-note"><strong>占位</strong><span>文章内容将在后续更新，这里先展示博客框架。</span></div>
+        <div class="home-post-list">
+          <a href="#" class="home-post"><span>2026-08</span><strong>待发布：台风云图分析工具网页版上线说明</strong></a>
+          <a href="#" class="home-post"><span>2026-08</span><strong>待发布：气象卫星接收指南（一）</strong></a>
+          <a href="#" class="home-post"><span>规划中</span><strong>更多内容敬请期待…</strong></a>
+        </div>
+      </div>
+    </section>
 
     <section id="wpSituation" class="wp-situation page-panel page-analysis" aria-labelledby="wpSituationTitle">
       <header class="situation-head">
@@ -712,6 +746,6 @@
       }
     });
   </script>
-  <script src="./app.js?v=web1.31"></script>
+  <script src="./app.js?v=web1.32"></script>
 </body>
 </html>
