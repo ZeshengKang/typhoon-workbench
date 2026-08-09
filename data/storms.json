@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-09T10:59:56.053678Z",
+ "generated_at": "2026-08-09T11:33:34.453478Z",
  "storms": {
   "12W": {
    "id": "12W",
@@ -14,13 +14,13 @@
    "is_invest": false,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP12.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_12W_202608091020_lat28.1-lon121.9.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_12W_202608091110_lat28.1-lon121.9.jpg",
     "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp1226.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#12W",
     "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP12_2026080900_ECENS.png",
     "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP12_2026080900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/12W/BD/12W_BD_20260809105000.png",
-    "bw": "https://data.dapiya.top/history/12W/BW/12W_BW_20260809103032.png"
+    "bd": "https://data.dapiya.top/history/12W/BD/12W_BD_20260809112230.png",
+    "bw": "https://data.dapiya.top/history/12W/BW/12W_BW_20260809110032.png"
    },
    "adt": {
     "ci": 3.4,
@@ -30,24 +30,12 @@
     "adjusted_t": 3.6,
     "raw_t": 3.6,
     "scene": "UNIFORM",
-    "center_temp_c": -63.5,
-    "cloud_region_temp_c": -63.5,
-    "analysis_time": "09 AUG 2026 100000 UTC",
+    "center_temp_c": -65.7,
+    "cloud_region_temp_c": -63.8,
+    "analysis_time": "09 AUG 2026 103000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt12W.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260808222000.png",
-     "time": "2026-08-08T22:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260808223000.png",
-     "time": "2026-08-08T22:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260808224000.png",
-     "time": "2026-08-08T22:40:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260808225000.png",
      "time": "2026-08-08T22:50:00Z"
@@ -323,6 +311,18 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260809104000.png",
      "time": "2026-08-09T10:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260809105000.png",
+     "time": "2026-08-09T10:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260809110000.png",
+     "time": "2026-08-09T11:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/12W/AI_VIS/12W_AI_VIS_20260809111000.png",
+     "time": "2026-08-09T11:10:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=12W",
@@ -341,27 +341,15 @@
    "is_invest": true,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP99.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_99W_202608091020_lat24.3-lon166.8.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_99W_202608091110_lat24.3-lon166.8.jpg",
     "official_forecast": "",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#99W",
     "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP99_2026080900_ECENS.png",
     "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP99_2026080900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/99W/BD/99W_BD_20260809104000.png",
-    "bw": "https://data.dapiya.top/history/99W/BW/99W_BW_20260809104000.png"
+    "bd": "https://data.dapiya.top/history/99W/BD/99W_BD_20260809111000.png",
+    "bw": "https://data.dapiya.top/history/99W/BW/99W_BW_20260809111000.png"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260808222000.png",
-     "time": "2026-08-08T22:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260808223000.png",
-     "time": "2026-08-08T22:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260808224000.png",
-     "time": "2026-08-08T22:40:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260808225000.png",
      "time": "2026-08-08T22:50:00Z"
@@ -637,6 +625,18 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260809104000.png",
      "time": "2026-08-09T10:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260809105000.png",
+     "time": "2026-08-09T10:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260809110000.png",
+     "time": "2026-08-09T11:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/99W/AI_VIS/99W_AI_VIS_20260809111000.png",
+     "time": "2026-08-09T11:10:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=99W",
@@ -655,13 +655,13 @@
    "is_invest": false,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP14.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_14W_202608091020_lat32.3-lon150.7.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_14W_202608091110_lat32.3-lon150.7.jpg",
     "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp1426.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#14W",
     "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP14_2026080900_ECENS.png",
     "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP14_2026080900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/14W/BD/14W_BD_20260809104000.png",
-    "bw": "https://data.dapiya.top/history/14W/BW/14W_BW_20260809104000.png"
+    "bd": "https://data.dapiya.top/history/14W/BD/14W_BD_20260809111000.png",
+    "bw": "https://data.dapiya.top/history/14W/BW/14W_BW_20260809111000.png"
    },
    "adt": {
     "ci": 1.5,
@@ -672,23 +672,11 @@
     "raw_t": 1.5,
     "scene": "SHEAR",
     "center_temp_c": 17.8,
-    "cloud_region_temp_c": 11.8,
-    "analysis_time": "09 AUG 2026 101000 UTC",
+    "cloud_region_temp_c": 13.0,
+    "analysis_time": "09 AUG 2026 104000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt14W.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260808215000.png",
-     "time": "2026-08-08T21:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260808220000.png",
-     "time": "2026-08-08T22:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260808221000.png",
-     "time": "2026-08-08T22:10:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260808222000.png",
      "time": "2026-08-08T22:20:00Z"
@@ -964,6 +952,18 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260809104000.png",
      "time": "2026-08-09T10:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260809105000.png",
+     "time": "2026-08-09T10:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260809110000.png",
+     "time": "2026-08-09T11:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/14W/AI_VIS/14W_AI_VIS_20260809111000.png",
+     "time": "2026-08-09T11:10:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=14W",
@@ -982,27 +982,15 @@
    "is_invest": true,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP98.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_98W_202608091020_lat23.4-lon157.4.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_98W_202608091110_lat23.4-lon157.4.jpg",
     "official_forecast": "",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#98W",
     "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP98_2026080900_ECENS.png",
     "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP98_2026080900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/98W/BD/98W_BD_20260809104000.png",
-    "bw": "https://data.dapiya.top/history/98W/BW/98W_BW_20260809104000.png"
+    "bd": "https://data.dapiya.top/history/98W/BD/98W_BD_20260809111000.png",
+    "bw": "https://data.dapiya.top/history/98W/BW/98W_BW_20260809111000.png"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260808222000.png",
-     "time": "2026-08-08T22:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260808223000.png",
-     "time": "2026-08-08T22:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260808224000.png",
-     "time": "2026-08-08T22:40:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260808225000.png",
      "time": "2026-08-08T22:50:00Z"
@@ -1278,6 +1266,18 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260809104000.png",
      "time": "2026-08-09T10:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260809105000.png",
+     "time": "2026-08-09T10:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260809110000.png",
+     "time": "2026-08-09T11:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/98W/AI_VIS/98W_AI_VIS_20260809111000.png",
+     "time": "2026-08-09T11:10:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=98W",
@@ -1296,40 +1296,28 @@
    "is_invest": false,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP13.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_13W_202608091020_lat21.2-lon142.7.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_13W_202608091110_lat21.2-lon142.7.jpg",
     "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp1326.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#13W",
     "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP13_2026080900_ECENS.png",
     "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP13_2026080900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/13W/BD/13W_BD_20260809104000.png",
-    "bw": "https://data.dapiya.top/history/13W/BW/13W_BW_20260809104000.png"
+    "bd": "https://data.dapiya.top/history/13W/BD/13W_BD_20260809111000.png",
+    "bw": "https://data.dapiya.top/history/13W/BW/13W_BW_20260809111000.png"
    },
    "adt": {
     "ci": 2.1,
     "pressure_hpa": 1000.5,
     "vmax_kt": 31.0,
     "final_t": 2.1,
-    "adjusted_t": 2.0,
-    "raw_t": 2.0,
+    "adjusted_t": 2.3,
+    "raw_t": 2.3,
     "scene": "CURVED",
-    "center_temp_c": -10.1,
-    "cloud_region_temp_c": -39.0,
-    "analysis_time": "09 AUG 2026 101000 UTC",
+    "center_temp_c": -17.4,
+    "cloud_region_temp_c": -40.1,
+    "analysis_time": "09 AUG 2026 104000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt13W.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260808222000.png",
-     "time": "2026-08-08T22:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260808223000.png",
-     "time": "2026-08-08T22:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260808224000.png",
-     "time": "2026-08-08T22:40:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260808225000.png",
      "time": "2026-08-08T22:50:00Z"
@@ -1605,6 +1593,18 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260809104000.png",
      "time": "2026-08-09T10:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260809105000.png",
+     "time": "2026-08-09T10:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260809110000.png",
+     "time": "2026-08-09T11:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/13W/AI_VIS/13W_AI_VIS_20260809111000.png",
+     "time": "2026-08-09T11:10:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=13W",
