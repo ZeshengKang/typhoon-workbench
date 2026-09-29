@@ -1,137 +1,41 @@
 {
- "generated_at": "2026-09-29T15:46:32.241626Z",
+ "generated_at": "2026-09-29T20:20:40.973286Z",
  "storms": {
   "25W": {
    "id": "25W",
    "name": "SURIGAE",
-   "display_name": "Tropical Cyclone SURIGAE",
-   "timestamp": "As of 12:00 UTC Sep 29, 2026:",
-   "wind_kt": 45,
-   "pressure_hpa": 994,
+   "display_name": "Tropical Storm SURIGAE",
+   "timestamp": "As of 18:00 UTC Sep 29, 2026:",
+   "wind_kt": 40,
+   "pressure_hpa": 997,
    "rmw_nm": 125,
-   "latitude": 29.2,
-   "longitude": 136.3,
+   "latitude": 29.6,
+   "longitude": 136.7,
    "is_invest": false,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP25.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_25W_202609291520_lat29.2-lon136.3.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_25W_202609291830_lat29.6-lon136.7.jpg",
     "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#25W",
-    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP25_2026092906_ECENS.png",
-    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP25_2026092906_GEFS.png",
-    "bd": "https://data.dapiya.top/history/25W/BD/25W_BD_20260929151000.png",
-    "bw": "https://data.dapiya.top/history/25W/BW/25W_BW_20260929151000.png"
+    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP25_2026092912_ECENS.png",
+    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP25_2026092912_GEFS.png",
+    "bd": "https://data.dapiya.top/history/25W/BD/25W_BD_20260929201000.png",
+    "bw": "https://data.dapiya.top/history/25W/BW/25W_BW_20260929200000.png"
    },
    "adt": {
-    "ci": 2.8,
-    "pressure_hpa": 997.5,
-    "vmax_kt": 41.0,
-    "final_t": 2.2,
-    "adjusted_t": 2.2,
-    "raw_t": 2.2,
+    "ci": 2.2,
+    "pressure_hpa": 1002.5,
+    "vmax_kt": 32.0,
+    "final_t": 1.5,
+    "adjusted_t": 1.5,
+    "raw_t": 1.5,
     "scene": "SHEAR",
-    "center_temp_c": 20.0,
-    "cloud_region_temp_c": -2.5,
-    "analysis_time": "29 SEP 2026 145000 UTC",
+    "center_temp_c": 18.6,
+    "cloud_region_temp_c": 14.5,
+    "analysis_time": "29 SEP 2026 194000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt25W.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929002000.png",
-     "time": "2026-09-29T00:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929003000.png",
-     "time": "2026-09-29T00:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929004000.png",
-     "time": "2026-09-29T00:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929005000.png",
-     "time": "2026-09-29T00:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929010000.png",
-     "time": "2026-09-29T01:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929011000.png",
-     "time": "2026-09-29T01:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929012000.png",
-     "time": "2026-09-29T01:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929013000.png",
-     "time": "2026-09-29T01:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929014000.png",
-     "time": "2026-09-29T01:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929015000.png",
-     "time": "2026-09-29T01:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929020000.png",
-     "time": "2026-09-29T02:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929021000.png",
-     "time": "2026-09-29T02:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929022000.png",
-     "time": "2026-09-29T02:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929023000.png",
-     "time": "2026-09-29T02:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929025000.png",
-     "time": "2026-09-29T02:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929030000.png",
-     "time": "2026-09-29T03:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929031000.png",
-     "time": "2026-09-29T03:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929032000.png",
-     "time": "2026-09-29T03:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929033000.png",
-     "time": "2026-09-29T03:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929034000.png",
-     "time": "2026-09-29T03:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929035000.png",
-     "time": "2026-09-29T03:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929040000.png",
-     "time": "2026-09-29T04:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929041000.png",
-     "time": "2026-09-29T04:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929042000.png",
-     "time": "2026-09-29T04:20:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929043000.png",
      "time": "2026-09-29T04:30:00Z"
@@ -323,6 +227,102 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929133000.png",
      "time": "2026-09-29T13:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929154000.png",
+     "time": "2026-09-29T15:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929155000.png",
+     "time": "2026-09-29T15:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929160000.png",
+     "time": "2026-09-29T16:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929164000.png",
+     "time": "2026-09-29T16:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929165000.png",
+     "time": "2026-09-29T16:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929170000.png",
+     "time": "2026-09-29T17:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929171000.png",
+     "time": "2026-09-29T17:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929172000.png",
+     "time": "2026-09-29T17:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929173000.png",
+     "time": "2026-09-29T17:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929174000.png",
+     "time": "2026-09-29T17:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929175000.png",
+     "time": "2026-09-29T17:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929180000.png",
+     "time": "2026-09-29T18:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929181000.png",
+     "time": "2026-09-29T18:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929182000.png",
+     "time": "2026-09-29T18:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929183000.png",
+     "time": "2026-09-29T18:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929184000.png",
+     "time": "2026-09-29T18:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929185000.png",
+     "time": "2026-09-29T18:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929190000.png",
+     "time": "2026-09-29T19:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929191000.png",
+     "time": "2026-09-29T19:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929192000.png",
+     "time": "2026-09-29T19:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929193000.png",
+     "time": "2026-09-29T19:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929194000.png",
+     "time": "2026-09-29T19:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929195000.png",
+     "time": "2026-09-29T19:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/25W/AI_VIS/25W_AI_VIS_20260929200000.png",
+     "time": "2026-09-29T20:00:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=25W",
@@ -334,103 +334,23 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP18.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#18E",
-    "bd": "https://data.dapiya.top/history/18E/BD/18E_BD_20260929140155.png",
-    "bw": "https://data.dapiya.top/history/18E/BW/18E_BW_20260929131020.png"
+    "bd": "https://data.dapiya.top/history/18E/BD/18E_BD_20260929201755.png",
+    "bw": "https://data.dapiya.top/history/18E/BW/18E_BW_20260929200020.png"
    },
    "adt": {
-    "ci": 2.9,
-    "pressure_hpa": 995.2,
-    "vmax_kt": 43.0,
-    "final_t": 2.9,
-    "adjusted_t": 2.9,
-    "raw_t": 3.4,
-    "scene": "IRREGULAR",
-    "center_temp_c": -71.2,
-    "cloud_region_temp_c": -67.2,
-    "analysis_time": "29 SEP 2026 145020 UTC",
+    "ci": 3.2,
+    "pressure_hpa": 990.8,
+    "vmax_kt": 49.0,
+    "final_t": 3.2,
+    "adjusted_t": 3.5,
+    "raw_t": 3.5,
+    "scene": "UNIFORM",
+    "center_temp_c": -80.1,
+    "cloud_region_temp_c": -72.2,
+    "analysis_time": "29 SEP 2026 194020 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt18E.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928195020.png",
-     "time": "2026-09-28T19:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928200020.png",
-     "time": "2026-09-28T20:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928202020.png",
-     "time": "2026-09-28T20:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928203020.png",
-     "time": "2026-09-28T20:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928204020.png",
-     "time": "2026-09-28T20:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928205020.png",
-     "time": "2026-09-28T20:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928210020.png",
-     "time": "2026-09-28T21:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928211020.png",
-     "time": "2026-09-28T21:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928212020.png",
-     "time": "2026-09-28T21:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928213020.png",
-     "time": "2026-09-28T21:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928214020.png",
-     "time": "2026-09-28T21:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928215020.png",
-     "time": "2026-09-28T21:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928222020.png",
-     "time": "2026-09-28T22:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928224020.png",
-     "time": "2026-09-28T22:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928225020.png",
-     "time": "2026-09-28T22:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928231020.png",
-     "time": "2026-09-28T23:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260928235020.png",
-     "time": "2026-09-28T23:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929000020.png",
-     "time": "2026-09-29T00:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929001020.png",
-     "time": "2026-09-29T00:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929004020.png",
-     "time": "2026-09-29T00:40:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929005020.png",
      "time": "2026-09-29T00:50:20Z"
@@ -638,6 +558,86 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929133020.png",
      "time": "2026-09-29T13:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/18E/AI_VIS/18E_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=18E",
@@ -647,124 +647,24 @@
    "id": "93W",
    "name": "93W",
    "display_name": "Invest 93W",
-   "timestamp": "As of 12:00 UTC Sep 29, 2026:",
+   "timestamp": "As of 18:00 UTC Sep 29, 2026:",
    "wind_kt": 20,
-   "pressure_hpa": 1007,
+   "pressure_hpa": 1005,
    "rmw_nm": 215,
-   "latitude": 15.9,
-   "longitude": 153.0,
+   "latitude": 16.0,
+   "longitude": 152.4,
    "is_invest": true,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP93.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_93W_202609291520_lat15.9-lon153.0.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_93W_202609291830_lat16.0-lon152.4.jpg",
     "official_forecast": "",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#93W",
-    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP93_2026092906_ECENS.png",
-    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP93_2026092900_GEFS.png",
-    "bd": "https://data.dapiya.top/history/93W/BD/93W_BD_20260929142000.png",
-    "bw": "https://data.dapiya.top/history/93W/BW/93W_BW_20260929152000.png"
+    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP93_2026092912_ECENS.png",
+    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP93_2026092912_GEFS.png",
+    "bd": "https://data.dapiya.top/history/93W/BD/93W_BD_20260929200000.png",
+    "bw": "https://data.dapiya.top/history/93W/BW/93W_BW_20260929200000.png"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929002000.png",
-     "time": "2026-09-29T00:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929003000.png",
-     "time": "2026-09-29T00:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929004000.png",
-     "time": "2026-09-29T00:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929005000.png",
-     "time": "2026-09-29T00:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929010000.png",
-     "time": "2026-09-29T01:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929011000.png",
-     "time": "2026-09-29T01:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929012000.png",
-     "time": "2026-09-29T01:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929013000.png",
-     "time": "2026-09-29T01:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929014000.png",
-     "time": "2026-09-29T01:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929015000.png",
-     "time": "2026-09-29T01:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929020000.png",
-     "time": "2026-09-29T02:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929021000.png",
-     "time": "2026-09-29T02:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929022000.png",
-     "time": "2026-09-29T02:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929023000.png",
-     "time": "2026-09-29T02:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929025000.png",
-     "time": "2026-09-29T02:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929030000.png",
-     "time": "2026-09-29T03:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929031000.png",
-     "time": "2026-09-29T03:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929032000.png",
-     "time": "2026-09-29T03:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929033000.png",
-     "time": "2026-09-29T03:30:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929034000.png",
-     "time": "2026-09-29T03:40:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929035000.png",
-     "time": "2026-09-29T03:50:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929040000.png",
-     "time": "2026-09-29T04:00:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929041000.png",
-     "time": "2026-09-29T04:10:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929042000.png",
-     "time": "2026-09-29T04:20:00Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929043000.png",
-     "time": "2026-09-29T04:30:00Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929044000.png",
      "time": "2026-09-29T04:40:00Z"
@@ -952,6 +852,106 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929143000.png",
      "time": "2026-09-29T14:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929155000.png",
+     "time": "2026-09-29T15:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929160000.png",
+     "time": "2026-09-29T16:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929161000.png",
+     "time": "2026-09-29T16:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929163000.png",
+     "time": "2026-09-29T16:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929164000.png",
+     "time": "2026-09-29T16:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929165000.png",
+     "time": "2026-09-29T16:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929170000.png",
+     "time": "2026-09-29T17:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929171000.png",
+     "time": "2026-09-29T17:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929172000.png",
+     "time": "2026-09-29T17:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929173000.png",
+     "time": "2026-09-29T17:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929174000.png",
+     "time": "2026-09-29T17:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929175000.png",
+     "time": "2026-09-29T17:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929180000.png",
+     "time": "2026-09-29T18:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929181000.png",
+     "time": "2026-09-29T18:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929182000.png",
+     "time": "2026-09-29T18:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929183000.png",
+     "time": "2026-09-29T18:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929184000.png",
+     "time": "2026-09-29T18:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929185000.png",
+     "time": "2026-09-29T18:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929190000.png",
+     "time": "2026-09-29T19:00:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929191000.png",
+     "time": "2026-09-29T19:10:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929192000.png",
+     "time": "2026-09-29T19:20:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929193000.png",
+     "time": "2026-09-29T19:30:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929194000.png",
+     "time": "2026-09-29T19:40:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929195000.png",
+     "time": "2026-09-29T19:50:00Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/93W/AI_VIS/93W_AI_VIS_20260929200000.png",
+     "time": "2026-09-29T20:00:00Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=93W",
@@ -963,119 +963,10 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP17.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#17E",
-    "bd": "https://data.dapiya.top/history/17E/BD/17E_BD_20260929144525.png",
-    "bw": "https://data.dapiya.top/history/17E/BW/17E_BW_20260929150020.png"
-   },
-   "adt": {
-    "ci": 4.2,
-    "pressure_hpa": 972.7,
-    "vmax_kt": 69.8,
-    "final_t": 4.1,
-    "adjusted_t": 4.0,
-    "raw_t": 3.9,
-    "scene": "UNIFORM",
-    "center_temp_c": -74.0,
-    "cloud_region_temp_c": -68.4,
-    "analysis_time": "29 SEP 2026 144020 UTC",
-    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt17E.html"
+    "bd": "https://data.dapiya.top/history/17E/BD/17E_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/17E/BW/17E_BW_20260929200020.png"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929005020.png",
-     "time": "2026-09-29T00:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929010020.png",
-     "time": "2026-09-29T01:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929011020.png",
-     "time": "2026-09-29T01:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929012020.png",
-     "time": "2026-09-29T01:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929013020.png",
-     "time": "2026-09-29T01:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929014020.png",
-     "time": "2026-09-29T01:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929015020.png",
-     "time": "2026-09-29T01:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929020020.png",
-     "time": "2026-09-29T02:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929021020.png",
-     "time": "2026-09-29T02:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929022020.png",
-     "time": "2026-09-29T02:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929023020.png",
-     "time": "2026-09-29T02:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929024020.png",
-     "time": "2026-09-29T02:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929025020.png",
-     "time": "2026-09-29T02:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929030020.png",
-     "time": "2026-09-29T03:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929031020.png",
-     "time": "2026-09-29T03:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929032020.png",
-     "time": "2026-09-29T03:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929033020.png",
-     "time": "2026-09-29T03:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929034020.png",
-     "time": "2026-09-29T03:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929035020.png",
-     "time": "2026-09-29T03:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929040020.png",
-     "time": "2026-09-29T04:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929041020.png",
-     "time": "2026-09-29T04:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929042020.png",
-     "time": "2026-09-29T04:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929043020.png",
-     "time": "2026-09-29T04:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929044020.png",
-     "time": "2026-09-29T04:40:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929045020.png",
      "time": "2026-09-29T04:50:20Z"
@@ -1267,6 +1158,102 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929134020.png",
      "time": "2026-09-29T13:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929154020.png",
+     "time": "2026-09-29T15:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929160020.png",
+     "time": "2026-09-29T16:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929163020.png",
+     "time": "2026-09-29T16:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/17E/AI_VIS/17E_AI_VIS_20260929200020.png",
+     "time": "2026-09-29T20:00:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=17E",
@@ -1278,115 +1265,23 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP08.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#08L",
-    "bd": "https://data.dapiya.top/history/08L/BD/08L_BD_20260929124224.png",
-    "bw": "https://data.dapiya.top/history/08L/BW/08L_BW_20260929131020.png"
+    "bd": "https://data.dapiya.top/history/08L/BD/08L_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/08L/BW/08L_BW_20260929200020.png"
    },
    "adt": {
     "ci": 3.0,
-    "pressure_hpa": 993.4,
-    "vmax_kt": 47.0,
-    "final_t": 2.3,
-    "adjusted_t": 1.9,
+    "pressure_hpa": 994.8,
+    "vmax_kt": 45.0,
+    "final_t": 1.6,
+    "adjusted_t": 1.5,
     "raw_t": 1.5,
     "scene": "SHEAR",
-    "center_temp_c": 10.3,
-    "cloud_region_temp_c": -7.4,
-    "analysis_time": "29 SEP 2026 150020 UTC",
+    "center_temp_c": 15.0,
+    "cloud_region_temp_c": -9.2,
+    "analysis_time": "29 SEP 2026 195020 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt08L.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929004020.png",
-     "time": "2026-09-29T00:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929005020.png",
-     "time": "2026-09-29T00:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929010020.png",
-     "time": "2026-09-29T01:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929011020.png",
-     "time": "2026-09-29T01:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929012020.png",
-     "time": "2026-09-29T01:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929013020.png",
-     "time": "2026-09-29T01:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929014020.png",
-     "time": "2026-09-29T01:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929015020.png",
-     "time": "2026-09-29T01:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929020020.png",
-     "time": "2026-09-29T02:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929021020.png",
-     "time": "2026-09-29T02:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929022020.png",
-     "time": "2026-09-29T02:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929023020.png",
-     "time": "2026-09-29T02:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929024020.png",
-     "time": "2026-09-29T02:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929025020.png",
-     "time": "2026-09-29T02:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929030020.png",
-     "time": "2026-09-29T03:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929031020.png",
-     "time": "2026-09-29T03:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929032020.png",
-     "time": "2026-09-29T03:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929033020.png",
-     "time": "2026-09-29T03:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929034020.png",
-     "time": "2026-09-29T03:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929035020.png",
-     "time": "2026-09-29T03:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929040020.png",
-     "time": "2026-09-29T04:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929041020.png",
-     "time": "2026-09-29T04:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929042020.png",
-     "time": "2026-09-29T04:20:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929043020.png",
      "time": "2026-09-29T04:30:20Z"
@@ -1582,6 +1477,98 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929134020.png",
      "time": "2026-09-29T13:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929160020.png",
+     "time": "2026-09-29T16:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929163020.png",
+     "time": "2026-09-29T16:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/08L/AI_VIS/08L_AI_VIS_20260929200020.png",
+     "time": "2026-09-29T20:00:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=08L",
@@ -1593,119 +1580,23 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP15.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#15E",
-    "bd": "https://data.dapiya.top/history/15E/BD/15E_BD_20260929131020.png",
-    "bw": "https://data.dapiya.top/history/15E/BW/15E_BW_20260929150020.png"
+    "bd": "https://data.dapiya.top/history/15E/BD/15E_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/15E/BW/15E_BW_20260929200020.png"
    },
    "adt": {
-    "ci": 5.2,
-    "pressure_hpa": 961.7,
-    "vmax_kt": 94.8,
-    "final_t": 4.7,
-    "adjusted_t": 4.7,
-    "raw_t": 4.7,
-    "scene": "EYE",
-    "center_temp_c": -31.1,
-    "cloud_region_temp_c": -53.3,
-    "analysis_time": "29 SEP 2026 144020 UTC",
+    "ci": 4.8,
+    "pressure_hpa": 968.9,
+    "vmax_kt": 84.8,
+    "final_t": 4.5,
+    "adjusted_t": 4.1,
+    "raw_t": 3.9,
+    "scene": "UNIFORM",
+    "center_temp_c": -50.0,
+    "cloud_region_temp_c": -60.2,
+    "analysis_time": "29 SEP 2026 194020 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt15E.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929000020.png",
-     "time": "2026-09-29T00:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929001020.png",
-     "time": "2026-09-29T00:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929002020.png",
-     "time": "2026-09-29T00:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929003020.png",
-     "time": "2026-09-29T00:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929004020.png",
-     "time": "2026-09-29T00:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929005020.png",
-     "time": "2026-09-29T00:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929010020.png",
-     "time": "2026-09-29T01:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929011020.png",
-     "time": "2026-09-29T01:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929012020.png",
-     "time": "2026-09-29T01:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929013020.png",
-     "time": "2026-09-29T01:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929014020.png",
-     "time": "2026-09-29T01:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929015020.png",
-     "time": "2026-09-29T01:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929020020.png",
-     "time": "2026-09-29T02:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929021020.png",
-     "time": "2026-09-29T02:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929022020.png",
-     "time": "2026-09-29T02:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929023020.png",
-     "time": "2026-09-29T02:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929025020.png",
-     "time": "2026-09-29T02:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929030020.png",
-     "time": "2026-09-29T03:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929031020.png",
-     "time": "2026-09-29T03:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929032020.png",
-     "time": "2026-09-29T03:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929033020.png",
-     "time": "2026-09-29T03:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929034020.png",
-     "time": "2026-09-29T03:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929035020.png",
-     "time": "2026-09-29T03:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929040020.png",
-     "time": "2026-09-29T04:00:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929041020.png",
      "time": "2026-09-29T04:10:20Z"
@@ -1897,6 +1788,102 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929133020.png",
      "time": "2026-09-29T13:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929154020.png",
+     "time": "2026-09-29T15:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929160020.png",
+     "time": "2026-09-29T16:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929181020.png",
+     "time": "2026-09-29T18:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/15E/AI_VIS/15E_AI_VIS_20260929200020.png",
+     "time": "2026-09-29T20:00:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=15E",
@@ -1908,111 +1895,23 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP06.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#06L",
-    "bd": "https://data.dapiya.top/history/06L/BD/06L_BD_20260929122020.png",
-    "bw": "https://data.dapiya.top/history/06L/BW/06L_BW_20260929131020.png"
+    "bd": "https://data.dapiya.top/history/06L/BD/06L_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/06L/BW/06L_BW_20260929200020.png"
    },
    "adt": {
-    "ci": 1.8,
-    "pressure_hpa": 1012.6,
-    "vmax_kt": 28.0,
+    "ci": 1.5,
+    "pressure_hpa": 1011.4,
+    "vmax_kt": 25.0,
     "final_t": 1.5,
     "adjusted_t": 1.5,
     "raw_t": 1.5,
     "scene": "SHEAR",
-    "center_temp_c": 22.2,
-    "cloud_region_temp_c": 5.9,
-    "analysis_time": "29 SEP 2026 150020 UTC",
+    "center_temp_c": 21.7,
+    "cloud_region_temp_c": 18.5,
+    "analysis_time": "29 SEP 2026 182020 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt06L.html"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260928225020.png",
-     "time": "2026-09-28T22:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260928230020.png",
-     "time": "2026-09-28T23:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260928231020.png",
-     "time": "2026-09-28T23:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260928234020.png",
-     "time": "2026-09-28T23:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260928235020.png",
-     "time": "2026-09-28T23:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929000020.png",
-     "time": "2026-09-29T00:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929001020.png",
-     "time": "2026-09-29T00:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929003020.png",
-     "time": "2026-09-29T00:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929004020.png",
-     "time": "2026-09-29T00:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929005020.png",
-     "time": "2026-09-29T00:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929010020.png",
-     "time": "2026-09-29T01:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929011020.png",
-     "time": "2026-09-29T01:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929012020.png",
-     "time": "2026-09-29T01:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929013020.png",
-     "time": "2026-09-29T01:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929014020.png",
-     "time": "2026-09-29T01:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929015020.png",
-     "time": "2026-09-29T01:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929020020.png",
-     "time": "2026-09-29T02:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929021020.png",
-     "time": "2026-09-29T02:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929022020.png",
-     "time": "2026-09-29T02:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929025020.png",
-     "time": "2026-09-29T02:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929030020.png",
-     "time": "2026-09-29T03:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929031020.png",
-     "time": "2026-09-29T03:10:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929032020.png",
      "time": "2026-09-29T03:20:20Z"
@@ -2212,10 +2111,205 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929133020.png",
      "time": "2026-09-29T13:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929160020.png",
+     "time": "2026-09-29T16:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS_20260929200020.png",
+     "time": "2026-09-29T20:00:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=06L",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/06L/AI_VIS/06L_AI_VIS.png"
+  },
+  "19E": {
+   "id": "19E",
+   "name": "19E",
+   "products": {
+    "page": "https://www.weathernerds.org/tc_guidance/WP19.html",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#19E",
+    "bd": "https://data.dapiya.top/history/19E/BD/19E_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/19E/BW/19E_BW_20260929200020.png"
+   },
+   "adt": {
+    "ci": 2.2,
+    "pressure_hpa": 1008.1,
+    "vmax_kt": 32.0,
+    "final_t": 2.1,
+    "adjusted_t": 1.9,
+    "raw_t": 1.5,
+    "scene": "SHEAR",
+    "center_temp_c": 21.0,
+    "cloud_region_temp_c": 17.2,
+    "analysis_time": "29 SEP 2026 195020 UTC",
+    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt19E.html"
+   },
+   "ai_vis": [
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
+    }
+   ],
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=19E",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/19E/AI_VIS/19E_AI_VIS.png"
   },
   "91E": {
    "id": "91E",
@@ -2223,90 +2317,10 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP91.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#91E",
-    "bd": "https://data.dapiya.top/history/91E/BD/91E_BD_20260929131020.png",
-    "bw": "https://data.dapiya.top/history/91E/BW/91E_BW_20260929150020.png"
+    "bd": "https://data.dapiya.top/history/91E/BD/91E_BD_20260929200020.png",
+    "bw": "https://data.dapiya.top/history/91E/BW/91E_BW_20260929200020.png"
    },
    "ai_vis": [
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928202020.png",
-     "time": "2026-09-28T20:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928203020.png",
-     "time": "2026-09-28T20:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928204020.png",
-     "time": "2026-09-28T20:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928205020.png",
-     "time": "2026-09-28T20:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928210020.png",
-     "time": "2026-09-28T21:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928211020.png",
-     "time": "2026-09-28T21:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928212020.png",
-     "time": "2026-09-28T21:20:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928213020.png",
-     "time": "2026-09-28T21:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928214020.png",
-     "time": "2026-09-28T21:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928215020.png",
-     "time": "2026-09-28T21:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928223020.png",
-     "time": "2026-09-28T22:30:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928224020.png",
-     "time": "2026-09-28T22:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928225020.png",
-     "time": "2026-09-28T22:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928231020.png",
-     "time": "2026-09-28T23:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260928235020.png",
-     "time": "2026-09-28T23:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929000020.png",
-     "time": "2026-09-29T00:00:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929001020.png",
-     "time": "2026-09-29T00:10:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929004020.png",
-     "time": "2026-09-29T00:40:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929005020.png",
-     "time": "2026-09-29T00:50:20Z"
-    },
-    {
-     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929010020.png",
-     "time": "2026-09-29T01:00:20Z"
-    },
     {
      "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929011020.png",
      "time": "2026-09-29T01:10:20Z"
@@ -2514,6 +2528,86 @@
     {
      "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929133020.png",
      "time": "2026-09-29T13:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929155020.png",
+     "time": "2026-09-29T15:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929164020.png",
+     "time": "2026-09-29T16:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929165020.png",
+     "time": "2026-09-29T16:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929170020.png",
+     "time": "2026-09-29T17:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929171020.png",
+     "time": "2026-09-29T17:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929172020.png",
+     "time": "2026-09-29T17:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929173020.png",
+     "time": "2026-09-29T17:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929174020.png",
+     "time": "2026-09-29T17:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929175020.png",
+     "time": "2026-09-29T17:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929180020.png",
+     "time": "2026-09-29T18:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929182020.png",
+     "time": "2026-09-29T18:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929183020.png",
+     "time": "2026-09-29T18:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929184020.png",
+     "time": "2026-09-29T18:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929185020.png",
+     "time": "2026-09-29T18:50:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929190020.png",
+     "time": "2026-09-29T19:00:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929191020.png",
+     "time": "2026-09-29T19:10:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929192020.png",
+     "time": "2026-09-29T19:20:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929193020.png",
+     "time": "2026-09-29T19:30:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929194020.png",
+     "time": "2026-09-29T19:40:20Z"
+    },
+    {
+     "url": "https://data.dapiya.cn/AI-VIS/91E/AI_VIS/91E_AI_VIS_20260929195020.png",
+     "time": "2026-09-29T19:50:20Z"
     }
    ],
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=91E",
