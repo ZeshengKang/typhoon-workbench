@@ -1,38 +1,38 @@
 {
- "generated_at": "2026-10-30T22:44:06.320164Z",
+ "generated_at": "2026-10-31T01:51:16.396690Z",
  "storms": {
   "30W": {
    "id": "30W",
    "name": "IN-FA",
    "display_name": "Typhoon IN-FA",
-   "timestamp": "As of 18:00 UTC Oct 30, 2026:",
+   "timestamp": "As of 00:00 UTC Oct 31, 2026:",
    "wind_kt": 115,
-   "pressure_hpa": 951,
-   "rmw_nm": 90,
-   "latitude": 20.5,
-   "longitude": 143.4,
+   "pressure_hpa": 952,
+   "rmw_nm": null,
+   "latitude": 21.5,
+   "longitude": 142.8,
    "is_invest": false,
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP30.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_30W_202610302210_lat20.5-lon143.4.jpg",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_30W_202610310130_lat20.5-lon143.4.jpg",
     "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#30W",
-    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP30_2026103012_ECENS.png",
-    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP30_2026103012_GEFS.png",
-    "bd": "https://data.dapiya.top/history/30W/BD/30W_BD_20261030223230.png",
-    "bw": "https://data.dapiya.top/history/30W/BW/30W_BW_20261030222000.png"
+    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP30_2026103018_ECENS.png",
+    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP30_2026103018_GEFS.png",
+    "bd": "https://data.dapiya.top/history/30W/BD/30W_BD_20261031014000.png",
+    "bw": "https://data.dapiya.top/history/30W/BW/30W_BW_20261031013000.png"
    },
    "adt": {
     "ci": 5.3,
-    "pressure_hpa": 963.8,
+    "pressure_hpa": 964.9,
     "vmax_kt": 97.2,
     "final_t": 5.3,
-    "adjusted_t": 5.2,
-    "raw_t": 5.2,
+    "adjusted_t": 5.3,
+    "raw_t": 5.3,
     "scene": "LARGE",
-    "center_temp_c": 19.5,
-    "cloud_region_temp_c": -59.7,
-    "analysis_time": "30 OCT 2026 220000 UTC",
+    "center_temp_c": 19.3,
+    "cloud_region_temp_c": -63.3,
+    "analysis_time": "31 OCT 2026 010000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt30W.html"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=30W",
@@ -44,8 +44,8 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP91.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#91B",
-    "bd": "https://data.dapiya.top/history/91B/BD/91B_BD_20261030221032.png",
-    "bw": "https://data.dapiya.top/history/91B/BW/91B_BW_20261030221032.png"
+    "bd": "https://data.dapiya.top/history/91B/BD/91B_BD_20261031012032.png",
+    "bw": "https://data.dapiya.top/history/91B/BW/91B_BW_20261031012032.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=91B",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/91B/AI_VIS/91B_AI_VIS.png"
