@@ -1,103 +1,104 @@
 {
- "generated_at": "2026-11-08T15:34:26.202001Z",
+ "generated_at": "2026-11-08T19:56:40.418817Z",
  "storms": {
-  "31W": {
-   "id": "31W",
-   "name": "CEMPAKA",
-   "display_name": "Tropical Cyclone CEMPAKA",
-   "timestamp": "As of 12:00 UTC Nov 08, 2026:",
-   "wind_kt": 65,
-   "pressure_hpa": 989,
-   "rmw_nm": 50,
-   "latitude": 22.4,
-   "longitude": 136.5,
-   "is_invest": false,
-   "products": {
-    "page": "https://www.weathernerds.org/tc_guidance/WP31.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_31W_202611081510_lat22.4-lon136.5.jpg",
-    "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#31W",
-    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026110806_ECENS.png",
-    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026110806_GEFS.png",
-    "bd": "https://data.dapiya.top/history/31W/BD/31W_BD_20261108152230.png",
-    "bw": "https://data.dapiya.top/history/31W/BW/31W_BW_20261108151000.png"
-   },
-   "adt": {
-    "ci": 3.2,
-    "pressure_hpa": 999.9,
-    "vmax_kt": 49.0,
-    "final_t": 2.7,
-    "adjusted_t": 3.1,
-    "raw_t": 3.2,
-    "scene": "CURVED",
-    "center_temp_c": -61.7,
-    "cloud_region_temp_c": -47.2,
-    "analysis_time": "08 NOV 2026 142000 UTC",
-    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt31W.html"
-   },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=31W",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/31W/AI_VIS/31W_AI_VIS.png"
-  },
   "04C": {
    "id": "04C",
    "name": "04C",
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP04.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#04C",
-    "bd": "https://data.dapiya.top/history/04C/BD/04C_BD_20261108153227.png",
-    "bw": "https://data.dapiya.top/history/04C/BW/04C_BW_20261108151022.png"
+    "bd": "https://data.dapiya.top/history/04C/BD/04C_BD_20261108195427.png",
+    "bw": "https://data.dapiya.top/history/04C/BW/04C_BW_20261108194022.png"
    },
    "adt": {
-    "ci": 2.4,
-    "pressure_hpa": 1006.2,
-    "vmax_kt": 34.0,
-    "final_t": 2.4,
-    "adjusted_t": 2.7,
-    "raw_t": 2.7,
-    "scene": "CURVED",
-    "center_temp_c": -16.5,
-    "cloud_region_temp_c": -43.9,
-    "analysis_time": "08 NOV 2026 144022 UTC",
+    "ci": 2.6,
+    "pressure_hpa": 1004.5,
+    "vmax_kt": 37.0,
+    "final_t": 2.6,
+    "adjusted_t": 2.8,
+    "raw_t": 3.6,
+    "scene": "UNIFORM",
+    "center_temp_c": -75.2,
+    "cloud_region_temp_c": -67.3,
+    "analysis_time": "08 NOV 2026 191022 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt04C.html"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=04C",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/04C/AI_VIS/04C_AI_VIS.png"
   },
-  "94S": {
-   "id": "94S",
-   "name": "94S",
+  "31W": {
+   "id": "31W",
+   "name": "CEMPAKA",
+   "display_name": "Tropical Cyclone CEMPAKA",
+   "timestamp": "As of 18:00 UTC Nov 08, 2026:",
+   "wind_kt": 65,
+   "pressure_hpa": 989,
+   "rmw_nm": 50,
+   "latitude": 22.9,
+   "longitude": 135.7,
+   "is_invest": false,
    "products": {
-    "page": "https://www.weathernerds.org/tc_guidance/WP94.html",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#94S",
-    "bd": "https://data.dapiya.top/history/94S/BD/94S_BD_20261108150000.png",
-    "bw": "https://data.dapiya.top/history/94S/BW/94S_BW_20261108150000.png"
+    "page": "https://www.weathernerds.org/tc_guidance/WP31.html",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_31W_202611081910_lat22.9-lon135.7.jpg",
+    "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#31W",
+    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026110812_ECENS.png",
+    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026110812_GEFS.png",
+    "bd": "https://data.dapiya.top/history/31W/BD/31W_BD_20261108194500.png",
+    "bw": "https://data.dapiya.top/history/31W/BW/31W_BW_20261108194000.png"
    },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=94S",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/94S/AI_VIS/94S_AI_VIS.png"
+   "adt": {
+    "ci": 2.9,
+    "pressure_hpa": 1002.5,
+    "vmax_kt": 43.0,
+    "final_t": 2.8,
+    "adjusted_t": 3.0,
+    "raw_t": 3.0,
+    "scene": "UNIFORM",
+    "center_temp_c": -55.4,
+    "cloud_region_temp_c": -44.4,
+    "analysis_time": "08 NOV 2026 190000 UTC",
+    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt31W.html"
+   },
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=31W",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/31W/AI_VIS/31W_AI_VIS.png"
   },
-  "94L": {
-   "id": "94L",
-   "name": "94L",
+  "03S": {
+   "id": "03S",
+   "name": "03S",
    "products": {
-    "page": "https://www.weathernerds.org/tc_guidance/WP94.html",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#94L",
-    "bd": "https://data.dapiya.top/history/94L/BD/94L_BD_20261108151021.png",
-    "bw": "https://data.dapiya.top/history/94L/BW/94L_BW_20261108151021.png"
+    "page": "https://www.weathernerds.org/tc_guidance/WP03.html",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#03S",
+    "bd": "https://data.dapiya.top/history/03S/BD/03S_BD_20261108193000.png",
+    "bw": "https://data.dapiya.top/history/03S/BW/03S_BW_20261108193000.png"
    },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=94L",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/94L/AI_VIS/94L_AI_VIS.png"
+   "adt": {
+    "ci": 2.0,
+    "pressure_hpa": 1015.0,
+    "vmax_kt": 30.0,
+    "final_t": 2.0,
+    "adjusted_t": 2.0,
+    "raw_t": 2.0,
+    "scene": "SHEAR",
+    "center_temp_c": 19.5,
+    "cloud_region_temp_c": 6.5,
+    "analysis_time": "08 NOV 2026 183000 UTC",
+    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt03S.html"
+   },
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=03S",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/03S/AI_VIS/03S_AI_VIS.png"
   },
-  "95C": {
-   "id": "95C",
-   "name": "95C",
+  "96E": {
+   "id": "96E",
+   "name": "96E",
    "products": {
-    "page": "https://www.weathernerds.org/tc_guidance/WP95.html",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#95C",
-    "bd": "https://data.dapiya.top/history/95C/BD/95C_BD_20261108151022.png",
-    "bw": "https://data.dapiya.top/history/95C/BW/95C_BW_20261108151022.png"
+    "page": "https://www.weathernerds.org/tc_guidance/WP96.html",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#96E",
+    "bd": "https://data.dapiya.top/history/96E/BD/96E_BD_20261108194021.png",
+    "bw": "https://data.dapiya.top/history/96E/BW/96E_BW_20261108194021.png"
    },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=95C",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/95C/AI_VIS/95C_AI_VIS.png"
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=96E",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/96E/AI_VIS/96E_AI_VIS.png"
   }
  }
 }
