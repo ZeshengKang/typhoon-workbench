@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T19:58:20.045802Z",
+ "generated_at": "2026-11-12T01:48:15.640878Z",
  "storms": {
   "04C": {
    "id": "04C",
@@ -7,20 +7,20 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP04.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#04C",
-    "bd": "https://data.dapiya.top/history/04C/BD/04C_BD_20261111195625.png",
-    "bw": "https://data.dapiya.top/history/04C/BW/04C_BW_20261111194020.png"
+    "bd": "https://data.dapiya.top/history/04C/BD/04C_BD_20261112014625.png",
+    "bw": "https://data.dapiya.top/history/04C/BW/04C_BW_20261112013020.png"
    },
    "adt": {
-    "ci": 2.5,
-    "pressure_hpa": 1004.5,
-    "vmax_kt": 35.0,
-    "final_t": 1.9,
-    "adjusted_t": 1.6,
-    "raw_t": 1.5,
-    "scene": "SHEAR",
-    "center_temp_c": 19.2,
-    "cloud_region_temp_c": -15.6,
-    "analysis_time": "11 NOV 2026 191020 UTC",
+    "ci": 2.6,
+    "pressure_hpa": 1003.6,
+    "vmax_kt": 37.0,
+    "final_t": 2.6,
+    "adjusted_t": 2.6,
+    "raw_t": 2.9,
+    "scene": "IRREGULAR",
+    "center_temp_c": -53.9,
+    "cloud_region_temp_c": -45.0,
+    "analysis_time": "12 NOV 2026 011020 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt04C.html"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=04C",
@@ -28,36 +28,24 @@
   },
   "31W": {
    "id": "31W",
-   "name": "CEMPAKA",
-   "display_name": "Typhoon CEMPAKA",
-   "timestamp": "As of 12:00 UTC Nov 11, 2026:",
-   "wind_kt": 65,
-   "pressure_hpa": 983,
-   "rmw_nm": 70,
-   "latitude": 30.2,
-   "longitude": 154.1,
-   "is_invest": false,
+   "name": "31W",
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP31.html",
-    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_31W_202611111930_lat30.2-lon154.1.jpg",
-    "official_forecast": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#31W",
-    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026111112_ECENS.png",
-    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP31_2026111112_GEFS.png",
-    "bd": "https://data.dapiya.top/history/31W/BD/31W_BD_20261111194000.png",
-    "bw": "https://data.dapiya.top/history/31W/BW/31W_BW_20261111194000.png"
+    "bd": "https://data.dapiya.top/history/31W/BD/31W_BD_20261112013000.png",
+    "bw": "https://data.dapiya.top/history/31W/BW/31W_BW_20261112013000.png"
    },
    "adt": {
     "ci": 4.6,
-    "pressure_hpa": 967.6,
+    "pressure_hpa": 966.7,
     "vmax_kt": 79.6,
-    "final_t": 4.2,
-    "adjusted_t": 3.9,
+    "final_t": 4.1,
+    "adjusted_t": 3.8,
     "raw_t": 2.0,
     "scene": "CURVED",
-    "center_temp_c": -1.0,
-    "cloud_region_temp_c": -28.0,
-    "analysis_time": "11 NOV 2026 190000 UTC",
+    "center_temp_c": -25.2,
+    "cloud_region_temp_c": -28.6,
+    "analysis_time": "11 NOV 2026 193000 UTC",
     "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt31W.html"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=31W",
@@ -69,8 +57,8 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP95.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#95P",
-    "bd": "https://data.dapiya.top/history/95P/BD/95P_BD_20261111194020.png",
-    "bw": "https://data.dapiya.top/history/95P/BW/95P_BW_20261111194020.png"
+    "bd": "https://data.dapiya.top/history/95P/BD/95P_BD_20261112013020.png",
+    "bw": "https://data.dapiya.top/history/95P/BW/95P_BW_20261112013020.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=95P",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/95P/AI_VIS/95P_AI_VIS.png"
