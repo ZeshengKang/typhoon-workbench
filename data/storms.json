@@ -1,14 +1,39 @@
 {
- "generated_at": "2026-11-21T11:59:36.702605Z",
+ "generated_at": "2026-11-21T18:52:41.543861Z",
  "storms": {
+  "04P": {
+   "id": "04P",
+   "name": "04P",
+   "products": {
+    "page": "https://www.weathernerds.org/tc_guidance/WP04.html",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#04P",
+    "bd": "https://data.dapiya.top/history/04P/BD/04P_BD_20261121184956.png",
+    "bw": "https://data.dapiya.top/history/04P/BW/04P_BW_20261121183022.png"
+   },
+   "adt": {
+    "ci": 3.1,
+    "pressure_hpa": 999.3,
+    "vmax_kt": 47.0,
+    "final_t": 2.6,
+    "adjusted_t": 2.3,
+    "raw_t": 2.3,
+    "scene": "CURVED",
+    "center_temp_c": -7.2,
+    "cloud_region_temp_c": -26.0,
+    "analysis_time": "21 NOV 2026 181022 UTC",
+    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt04P.html"
+   },
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=04P",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/04P/AI_VIS/04P_AI_VIS.png"
+  },
   "96S": {
    "id": "96S",
    "name": "96S",
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP96.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#96S",
-    "bd": "https://data.dapiya.top/history/96S/BD/96S_BD_20261121113032.png",
-    "bw": "https://data.dapiya.top/history/96S/BW/96S_BW_20261121113032.png"
+    "bd": "https://data.dapiya.top/history/96S/BD/96S_BD_20261121182032.png",
+    "bw": "https://data.dapiya.top/history/96S/BW/96S_BW_20261121182032.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=96S",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/96S/AI_VIS/96S_AI_VIS.png"
@@ -19,8 +44,8 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP97.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#97S",
-    "bd": "https://data.dapiya.top/history/97S/BD/97S_BD_20261121104500.png",
-    "bw": "https://data.dapiya.top/history/97S/BW/97S_BW_20261121104500.png"
+    "bd": "https://data.dapiya.top/history/97S/BD/97S_BD_20261121183000.png",
+    "bw": "https://data.dapiya.top/history/97S/BW/97S_BW_20261121183000.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=97S",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/97S/AI_VIS/97S_AI_VIS.png"
@@ -31,36 +56,11 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP98.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#98S",
-    "bd": "https://data.dapiya.top/history/98S/BD/98S_BD_20261121104500.png",
-    "bw": "https://data.dapiya.top/history/98S/BW/98S_BW_20261121104500.png"
+    "bd": "https://data.dapiya.top/history/98S/BD/98S_BD_20261121143000.png",
+    "bw": "https://data.dapiya.top/history/98S/BW/98S_BW_20261121143000.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=98S",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/98S/AI_VIS/98S_AI_VIS.png"
-  },
-  "04P": {
-   "id": "04P",
-   "name": "04P",
-   "products": {
-    "page": "https://www.weathernerds.org/tc_guidance/WP04.html",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#04P",
-    "bd": "https://data.dapiya.top/history/04P/BD/04P_BD_20261121114022.png",
-    "bw": "https://data.dapiya.top/history/04P/BW/04P_BW_20261121114022.png"
-   },
-   "adt": {
-    "ci": 3.1,
-    "pressure_hpa": 999.4,
-    "vmax_kt": 47.0,
-    "final_t": 3.0,
-    "adjusted_t": 2.6,
-    "raw_t": 2.4,
-    "scene": "CURVED",
-    "center_temp_c": -34.7,
-    "cloud_region_temp_c": -59.1,
-    "analysis_time": "21 NOV 2026 111022 UTC",
-    "source": "https://tropic.ssec.wisc.edu/real-time/adt/odt04P.html"
-   },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=04P",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/04P/AI_VIS/04P_AI_VIS.png"
   }
  }
 }
