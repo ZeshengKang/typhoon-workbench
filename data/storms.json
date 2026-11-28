@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T01:56:02.738751Z",
+ "generated_at": "2026-11-28T09:41:30.629054Z",
  "storms": {
   "99P": {
    "id": "99P",
@@ -7,11 +7,35 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP99.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#99P",
-    "bd": "https://data.dapiya.top/history/99P/BD/99P_BD_20261128013000.png",
-    "bw": "https://data.dapiya.top/history/99P/BW/99P_BW_20261128013000.png"
+    "bd": "https://data.dapiya.top/history/99P/BD/99P_BD_20261128092000.png",
+    "bw": "https://data.dapiya.top/history/99P/BW/99P_BW_20261128092000.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=99P",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/99P/AI_VIS/99P_AI_VIS.png"
+  },
+  "91W": {
+   "id": "91W",
+   "name": "91W",
+   "display_name": "Invest 91W",
+   "timestamp": "As of 06:00 UTC Nov 28, 2026:",
+   "wind_kt": 15,
+   "pressure_hpa": 1009,
+   "rmw_nm": null,
+   "latitude": 7.7,
+   "longitude": 106.5,
+   "is_invest": true,
+   "products": {
+    "page": "https://www.weathernerds.org/tc_guidance/WP91.html",
+    "satellite": "https://olorin.tropicaltidbits.com/satimages/himawari9_ir_91W_202611280910_lat7.7-lon106.5.jpg",
+    "official_forecast": "",
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#91W",
+    "ecmwf_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP91_2026112800_ECENS.png",
+    "gefs_ensemble": "https://www.weathernerds.org/tc_guidance/images/WP91_2026112800_GEFS.png",
+    "bd": "https://data.dapiya.top/history/91W/BD/91W_BD_20261128091032.png",
+    "bw": "https://data.dapiya.top/history/91W/BW/91W_BW_20261128091032.png"
+   },
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=91W",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/91W/AI_VIS/91W_AI_VIS.png"
   },
   "97S": {
    "id": "97S",
@@ -19,23 +43,23 @@
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP97.html",
     "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#97S",
-    "bd": "https://data.dapiya.top/history/97S/BD/97S_BD_20261128013000.png",
-    "bw": "https://data.dapiya.top/history/97S/BW/97S_BW_20261128013000.png"
+    "bd": "https://data.dapiya.top/history/97S/BD/97S_BD_20261128091500.png",
+    "bw": "https://data.dapiya.top/history/97S/BW/97S_BW_20261128091500.png"
    },
    "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=97S",
    "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/97S/AI_VIS/97S_AI_VIS.png"
   },
-  "90P": {
-   "id": "90P",
-   "name": "90P",
+  "90S": {
+   "id": "90S",
+   "name": "90S",
    "products": {
     "page": "https://www.weathernerds.org/tc_guidance/WP90.html",
-    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#90P",
-    "bd": "https://data.dapiya.top/history/90P/BD/90P_BD_20261128012032.png",
-    "bw": "https://data.dapiya.top/history/90P/BW/90P_BW_20261128012032.png"
+    "tropical_tidbits": "https://www.tropicaltidbits.com/storminfo/#90S",
+    "bd": "https://data.dapiya.top/history/90S/BD/90S_BD_20261128091032.png",
+    "bw": "https://data.dapiya.top/history/90S/BW/90S_BW_20261128091032.png"
    },
-   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=90P",
-   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/90P/AI_VIS/90P_AI_VIS.png"
+   "ai_vis_page": "https://ai-vis.dapiya.cn/sat.html?stormid=90S",
+   "ai_vis_latest": "https://data.dapiya.cn/AI-VIS/90S/AI_VIS/90S_AI_VIS.png"
   }
  }
 }
